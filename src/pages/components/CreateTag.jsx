@@ -17,11 +17,11 @@ export const CreateTag = ({ id }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className='w-fit text-[.7rem] leading-none overflow-hidden'
+      className='w-fit text-xs font-light leading-none overflow-hidden'
     >
       <input
         placeholder='&#43;'
-        className='h-full w-12 bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light outline-none rounded placeholder:text-[.7rem] '
+        className='h-full w-12 bg-c-box text-c-text outline-none rounded placeholder:text-[.7rem] '
         type='text'
         ref={tagRef}
       />

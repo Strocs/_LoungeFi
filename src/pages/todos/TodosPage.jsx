@@ -6,17 +6,16 @@ export const TodosPage = () => {
   const { todos = [] } = useSelector(state => state.todos)
   const dispatch = useDispatch()
   return (
-    <main className='w-full h-full max-w-2xl flex flex-col justify-between gap-4 sm:flex-row relative'>
-      <div className='w-full'>
-        <CreateTodo />
-        <div className='rounded-md shadow-xl overflow-hidden'>
+    <main>
+      <div className='flex flex-col gap-4 sm:flex-row relative'>
+        <FilterList />
+        <div className='flex flex-col gap-4 w-full max-w-2xl'>
+          <CreateTodo />
           <TodosList items={todos} />
-          <div className='flex bg-primary-light dark:bg-primary-dark p-5 justify-between items-center text-sm text-placeholder-dark dark:text-placeholder-light'>
-            <p className='text-placeholder-dark'>
-              {todos.filter(({ done }) => !done).length} items left
-            </p>
+          <div className='flex p-5 justify-between items-center text-sm text-c-gray'>
+            <p>{todos.filter(({ done }) => !done).length} items left</p>
             <button
-              className='text-placeholder-dark dark:text-placeholder-dark hover:text-primary-dark dark:hover:text-primary-light'
+              className='hover:text-c-text'
               type='button'
               onClick={() => dispatch(deleteDone())}
             >
@@ -24,9 +23,6 @@ export const TodosPage = () => {
             </button>
           </div>
         </div>
-      </div>
-      <div className='py-2 px-1 sm:max-w-[7rem] mb-[5.25rem]'>
-        <FilterList />
       </div>
     </main>
   )

@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { deleteTodo } from '../../../store'
+import { IoClose } from 'react-icons/io5'
 
 export const DeleteTodo = ({ id }) => {
   const dispatch = useDispatch()
@@ -9,7 +10,7 @@ export const DeleteTodo = ({ id }) => {
       type='button'
       onClick={() => dispatch(deleteTodo(id))}
     >
-      x
+      <IoClose className='fill-c-text text-2xl hover:fill-red-500' />
     </button>
   )
 }

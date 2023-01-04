@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { addTodo } from '../../../store'
-import { DoneButton } from './DoneButton'
+import { RiTodoFill } from 'react-icons/ri'
 
 export const CreateTodo = () => {
   const dispatch = useDispatch()
@@ -16,14 +16,14 @@ export const CreateTodo = () => {
   }
 
   return (
-    <div className='flex items-center gap-4 bg-primary-light dark:bg-primary-dark w-full mb-4 py-3 px-5 rounded-md overflow-hidden shadow-xl'>
-      <DoneButton />
+    <div className='flex items-center gap-4 bg-c-box w-full py-3 px-5 rounded-full overflow-hidden shadow-xl focus-within:outline focus-within:outline-2 focus-within:outline-c-text'>
+      <RiTodoFill className='fill-c-text text-lg' />
       <form className='flex-grow' onSubmit={handleSubmit}>
         <input
-          className='w-full text-xs text-primary-dark dark:text-primary-light placeholder:text-xs placeholder:text-placeholder-light dark:placeholder:text-placeholder-dark bg-primary-light dark:bg-primary-dark outline-none'
+          className='w-full text-sm text-c-text placeholder:text-c-gray placeholder:font-light bg-c-box outline-none'
           type='text'
           ref={newTodoRef}
-          placeholder='Let`s create a new todo!'
+          placeholder='Let`s create a new task!'
         />
       </form>
     </div>

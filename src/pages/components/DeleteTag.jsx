@@ -8,7 +8,7 @@ export const DeleteTag = ({ text, id }) => {
       onClick={() => dispatch(deleteTag({ id, tag: text }))}
       className='ml-1 -mr-1'
     >
-      <GoDash color='white' />
+      <GoDash className='fill-c-text text-md' />
     </button>
   )
 }

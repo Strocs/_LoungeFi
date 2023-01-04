@@ -2,7 +2,7 @@ import { TodoItem } from '.'
 
 export const TodosList = ({ items }) => {
   return (
-    <ul>
+    <ul className='flex flex-col gap-1 rounded-xl overflow-hidden'>
       {items.map(({ todo, done, id, tags, created }) => (
         <TodoItem
           key={todo}

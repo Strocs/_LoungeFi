@@ -18,7 +18,7 @@ export const TodoDateTag = ({ created, done }) => {
       }
       text={
         done
-          ? 'Completed'
+          ? 'Done'
           : timeElapsed < 24
           ? 'Less than 24hrs'
           : timeElapsed < 48
