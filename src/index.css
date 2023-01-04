@@ -6,7 +6,7 @@
 
 :root {
   font-family: 'Poppins', sans-serif;
-  --text: hsl(221, 24%, 10%);
+  --text: hsl(223, 21%, 13%);
   --box-background: hsl(221, 24%, 97%);
   --main-background: hsl(221, 24%, 87%);
   --gray: hsl(221, 10%, 60%);
@@ -19,8 +19,8 @@
   :root {
     font-family: 'Poppins', sans-serif;
     --text: hsl(221, 24%, 97%);
-    --box-background: hsl(221, 24%, 10%);
-    --main-background: hsl(221, 24%, 5%);
+    --box-background: hsl(223, 20%, 12%);
+    --main-background: hsl(223, 21%, 13%);
     --gray: hsl(221, 10%, 50%);
     --cyan: hsl(195, 80%, 70%);
     --magenta: hsl(275, 80%, 70%);
