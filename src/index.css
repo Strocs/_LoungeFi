@@ -6,11 +6,23 @@
 
 :root {
   font-family: 'Poppins', sans-serif;
-  --primary-light: hsl(221, 24%, 97%);
-  --bg-light: hsl(221, 24%, 87%);
-  --placeholder-light: hsl(221, 10%, 60%);
-  --placeholder-dark: hsl(221, 10%, 50%);
-  --dark-extra: hsl(221, 24%, 15%);
-  --primary-dark: hsl(221, 24%, 10%);
-  --bg-dark: hsl(221, 24%, 5%);
+  --text: hsl(221, 24%, 10%);
+  --box-background: hsl(221, 24%, 97%);
+  --main-background: hsl(221, 24%, 87%);
+  --gray: hsl(221, 10%, 60%);
+  --extra: hsl(221, 24%, 15%);
+  --cyan: darkblue;
+  --magenta: darkorchid;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    font-family: 'Poppins', sans-serif;
+    --text: hsl(221, 24%, 97%);
+    --box-background: hsl(221, 24%, 10%);
+    --main-background: hsl(221, 24%, 5%);
+    --gray: hsl(221, 10%, 50%);
+    --cyan: hsl(195, 80%, 70%);
+    --magenta: hsl(275, 80%, 70%);
+  }
 }
