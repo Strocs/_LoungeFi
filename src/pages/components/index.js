@@ -6,3 +6,6 @@ export * from './CreateTag'
 export * from './DeleteTag'
 export * from './TagItem'
 export * from './TodoDateTag'
+export * from './TodosLeft'
+export * from './Title'
+
