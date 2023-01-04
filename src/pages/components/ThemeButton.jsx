@@ -1,7 +1,8 @@
-export const ThemeButton = ({ mode, selected, children }) => {
+export const ThemeButton = ({ mode, selected = true, icon }) => {
   return (
     <button
-      className={`flex gap-1 w-20 h-7 items-center py-[.4rem] px-3 ${
+      onClick={() => {}}
+      className={
         mode === 'Light'
           ? selected
             ? 'text-yellow-300'
@@ -9,11 +10,9 @@ export const ThemeButton = ({ mode, selected, children }) => {
           : selected
           ? 'text-c-magenta'
           : 'hover:text-c-magenta'
-      } ${selected && 'bg-c-bg dark:bg-c-extra rounded-full'}`}
-      onClick={() => {}}
+      }
     >
-      <div className='grid place-items-center'>{children}</div>
-      <p className='text-xs h-full font-medium'>{mode}</p>
+      {icon}
     </button>
   )
 }

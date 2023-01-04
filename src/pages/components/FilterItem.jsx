@@ -1,7 +1,7 @@
 export const FilterItem = ({ title }) => {
   return (
     <button
-      className='h-min text-sm px-4 py-1 leading-none border-2 rounded-lg text-c-text hover:bg-c-text hover:text-c-bg'
+      className='h-min px-4 py-1 border border-dashed text-sm text-c-text leading-none hover:bg-c-text hover:text-c-bg'
       type='button'
       onClick={() => {}}
     >

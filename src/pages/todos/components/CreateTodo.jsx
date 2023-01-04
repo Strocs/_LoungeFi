@@ -16,11 +16,11 @@ export const CreateTodo = () => {
   }
 
   return (
-    <div className='flex items-center gap-4 bg-c-box w-full py-3 px-5 rounded-full overflow-hidden shadow-xl focus-within:outline focus-within:outline-2 focus-within:outline-c-text'>
+    <div className='flex items-center gap-5 w-full py-2 px-5 bg-c-box focus-within:outline-dashed focus-within:outline-1 focus-within:outline-c-text'>
       <RiTodoFill className='fill-c-text text-lg' />
       <form className='flex-grow' onSubmit={handleSubmit}>
         <input
-          className='w-full text-sm text-c-text placeholder:text-c-gray placeholder:font-light bg-c-box outline-none'
+          className='w-full bg-c-box outline-none text-sm text-c-text placeholder:text-c-gray placeholder:font-extralight'
           type='text'
           ref={newTodoRef}
           placeholder='Let`s create a new task!'

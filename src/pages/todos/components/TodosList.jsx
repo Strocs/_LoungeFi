@@ -1,9 +1,11 @@
+import { useSelector } from 'react-redux'
 import { TodoItem } from '.'
 
-export const TodosList = ({ items }) => {
+export const TodosList = () => {
+  const { todos = [] } = useSelector(state => state.todos)
   return (
-    <ul className='flex flex-col gap-1 rounded-xl overflow-hidden'>
-      {items.map(({ todo, done, id, tags, created }) => (
+    <ul className='my-4'>
+      {todos.map(({ todo, done, id, tags, created }) => (
         <TodoItem
           key={todo}
           text={todo}

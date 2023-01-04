@@ -11,13 +11,13 @@ export const DoneButton = ({ done, id }) => {
       onClick={() => {
         dispatch(toggleDone(id))
       }}
-      className={`grid place-items-center h-5 w-5 rounded-full flex-shrink-0 text-c-text  ${
+      className={`h-5 w-5 rounded-full text-c-text flex-shrink-0 ${
         done
           ? 'bg-c-text'
-          : 'border-2'
+          : 'border border-dashed'
       }`}
     >
-      {done && <BsCheck className='fill-c-bg' />}
+      {done && <BsCheck className='m-auto fill-c-bg' />}
     </button>
   )
 }

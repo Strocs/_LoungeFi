@@ -3,15 +3,11 @@ import { BsFillSunFill } from 'react-icons/bs'
 import { HiMoon } from 'react-icons/hi'
 
 export const ThemeBar = () => {
-  const mode = false
+  const mode = true
   return (
-    <div className='bg-c-box text-c-text h-10 w-44 flex items-center justify-center gap-1 p-1 rounded-full shadow-xl'>
-      <ThemeButton mode='Light' selected={mode}>
-        <BsFillSunFill />
-      </ThemeButton>
-      <ThemeButton mode='Dark' selected={mode}>
-        <HiMoon />
-      </ThemeButton>
+    <div className='flex gap-5 p-3 bg-c-box text-c-text text-xl sm:text-xl'>
+      <ThemeButton mode='Light' selected={mode} icon={<BsFillSunFill />} />
+      <ThemeButton mode='Dark' selected={mode} icon={<HiMoon />} />
     </div>
   )
 }

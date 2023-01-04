@@ -2,8 +2,8 @@ import { FilterItem } from '../../components'
 
 export const FilterList = () => {
   return (
-    <div className='h-min sm:min-w-[10rem] sm:max-w-[10rem] flex flex-wrap gap-2'>
-      <p className='text-c-text font-light self-center'>Filters: </p>
+    <div className='flex flex-wrap gap-2 h-min md:min-w-[10rem] md:max-w-[10rem]'>
+      <p className='self-center text-c-text font-light'>Filters: </p>
       <FilterItem title='All' />
       <FilterItem title='Active' />
       <FilterItem title='Done' />

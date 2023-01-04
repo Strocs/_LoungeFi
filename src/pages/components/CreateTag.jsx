@@ -9,7 +9,7 @@ export const CreateTag = ({ id }) => {
   const handleSubmit = e => {
     e.preventDefault()
     if (tagRef.current !== null && tagRef.current.value.length > 1) {
-      dispatch(addTag({id, tag: tagRef.current.value}))
+      dispatch(addTag({ id, tag: tagRef.current.value }))
       tagRef.current.value = ''
     }
   }
@@ -17,13 +17,13 @@ export const CreateTag = ({ id }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className='w-fit text-xs font-light leading-none overflow-hidden'
+      className='h-full w-fit text-xs font-light leading-none'
     >
       <input
-        placeholder='&#43;'
-        className='h-full w-12 bg-c-box text-c-text outline-none rounded placeholder:text-[.7rem] '
+        className='h-full w-12 bg-c-box text-c-text outline-none placeholder:text-base placeholder:text-c-text'
         type='text'
         ref={tagRef}
+        placeholder='&#43;'
       />
     </form>
   )
