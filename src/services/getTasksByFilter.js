@@ -1,4 +1,4 @@
-export const getTasksByFilter = (tasks = [], filter = '', filterArray = []) => {
+export const getTasksByFilter = (tasks = [], filter = '') => {
   switch (filter) {
     case 'All': {
       return tasks

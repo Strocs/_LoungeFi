@@ -1,4 +1,6 @@
 export * from './removeAccents'
 export * from './getTaskById'
+export * from './getTaskByName'
 export * from './getTasksByFilter'
 export * from './getUniqueFilterItems'
+export * from './formatDate'

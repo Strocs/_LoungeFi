@@ -7,7 +7,7 @@ const testState = [
     todo: 'Ordenar la casa',
     notes: [],
     done: false,
-    created: new Date().getTime(),
+    created: new Date(),
     tags: []
   },
   {
@@ -15,7 +15,7 @@ const testState = [
     todo: 'Molestar al Salmón',
     notes: [],
     done: true,
-    created: new Date().getTime(),
+    created: new Date(),
     tags: []
   }
 ]
@@ -41,7 +41,7 @@ export const todoSlice = createSlice({
         todo: payload,
         notes: [],
         done: false,
-        created: new Date().getTime(),
+        created: new Date(),
         tags: []
       })
       state.filteredTasks = state.todos
@@ -82,11 +82,7 @@ export const todoSlice = createSlice({
     },
     setFilteredTasks: (state, { payload }) => {
       state.filter = payload
-      state.filteredTasks = getTasksByFilter(
-        state.todos,
-        state.filter,
-        state.filterItems
-      )
+      state.filteredTasks = getTasksByFilter(state.todos, state.filter)
     }
   }
 })
