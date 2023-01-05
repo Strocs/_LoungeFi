@@ -9,7 +9,7 @@ export const SimpleTodoRouter = () => {
       <Header />
       <Routes>
         <Route path='/' element={<TodosPage />} />
-        <Route path='/todo/:id' element={<SingleTodoPage />} />
+        <Route path='/:todo' element={<SingleTodoPage />} />
         <Route path='/*' element={<Navigate to='/' />} />
       </Routes>
     </>
