@@ -3,14 +3,14 @@ export const ThemeButton = ({ mode, selected = true, icon }) => {
     <button
       onClick={() => {}}
       className={
-        mode === 'Light'
+        `text-2xl ${mode === 'Light'
           ? selected
-            ? 'text-yellow-300'
-            : 'hover:text-yellow-300'
+            ? 'text-yellow-400'
+            : 'hover:text-yellow-400'
           : selected
-          ? 'text-c-magenta'
-          : 'hover:text-c-magenta'
-      }
+          ? 'text-fuchsia-500'
+          : 'hover:text-fuchsia-500'
+      }`}
     >
       {icon}
     </button>

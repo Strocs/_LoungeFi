@@ -20,7 +20,7 @@ export const CreateTag = ({ id }) => {
       className='h-full w-fit text-xs font-light leading-none'
     >
       <input
-        className='h-full w-12 bg-c-box text-c-text outline-none placeholder:text-base placeholder:text-c-text'
+        className='h-full w-12 bg-c-bg text-c-text outline-none placeholder:text-base placeholder:text-c-text'
         type='text'
         ref={tagRef}
         placeholder='&#43;'

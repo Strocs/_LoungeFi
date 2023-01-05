@@ -6,7 +6,7 @@ export const FilterItem = ({ title }) => {
   const dispatch = useDispatch()
   return (
     <button
-      className={`h-min px-4 py-1 border border-dashed text-sm text-c-text leading-none hover:bg-c-text hover:text-c-bg ${
+      className={`h-min px-4 py-1 border border-c-text border-dashed text-sm text-c-text leading-none hover:bg-c-text hover:text-c-bg ${
         filter === title ? 'bg-c-text text-c-bg' : ''
       }`}
       type='button'

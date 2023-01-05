@@ -29,7 +29,7 @@ export const TodoDateTag = ({ created, done }) => {
 
   return (
     <li
-      className={`px-2 w-fit h-min py-[.12rem] text-xs font-light text-c-text ${
+      className={`px-2 w-fit h-min py-[.12rem] text-xs font-light text-white ${
         setColorAndText().color
       }`}
     >
