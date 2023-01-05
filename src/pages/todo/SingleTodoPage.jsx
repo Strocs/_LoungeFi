@@ -1,16 +1,12 @@
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import { removeAccents } from '../../services'
+import { getTaskById } from '../../services/getTaskById'
 import { TagBar } from './components'
 
 export const SingleTodoPage = () => {
   const { todos = [] } = useSelector(state => state.todos)
-  const path = useLocation()
-  console.log(path)
-  const todoPath = path.pathname.replaceAll('-', ' ').slice(1)
-  const { todo, notes, done, created, tags, id } = todos.find(
-    task => removeAccents(task.todo.toLowerCase()) === todoPath.toLowerCase()
-  )
+  const { state } = useLocation()
+  const { todo, notes, done, created, tags, id } = getTaskById(todos, state)
 
   return (
     <section className='mt-4'>

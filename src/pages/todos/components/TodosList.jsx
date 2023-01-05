@@ -2,10 +2,10 @@ import { useSelector } from 'react-redux'
 import { TodoItem } from '.'
 
 export const TodosList = () => {
-  const { todos = [] } = useSelector(state => state.todos)
+  const { filteredTasks = [] } = useSelector(state => state.todos)
   return (
     <ul className='my-4'>
-      {todos.map(({ todo, done, id, tags, created }) => (
+      {filteredTasks.map(({ todo, done, id, tags, created }) => (
         <TodoItem
           key={todo}
           text={todo}

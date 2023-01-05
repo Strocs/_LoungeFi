@@ -1,17 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { getTasksByFilter, getUniqueFilterItems } from '../../services'
 
 const testState = [
   {
     id: (Math.random() * 10000).toFixed(),
     todo: 'Ordenar la casa',
-    notes: [],
-    done: false,
-    created: new Date().getTime(),
-    tags: []
-  },
-  {
-    id: (Math.random() * 10000).toFixed(),
-    todo: 'Hacer la once',
     notes: [],
     done: false,
     created: new Date().getTime(),
@@ -27,17 +20,23 @@ const testState = [
   }
 ]
 
+const defaultFilteredItems = ['All', 'Active', 'Done']
+
+function uniqueFilteredTags (tasks) {
+  return [...defaultFilteredItems, ...getUniqueFilterItems(tasks)]
+}
+
 export const todoSlice = createSlice({
-  name: 'todos',
+  name: 'SimpleTasks',
   initialState: {
     todos: [...testState],
-    filteredTodos: [...testState],
-    filterTags: [],
+    filteredTasks: [...testState],
+    filterItems: defaultFilteredItems,
     filter: 'All'
   },
   reducers: {
-    addTodo: ({ todos }, { payload }) => {
-      todos.unshift({
+    addTodo: (state, { payload }) => {
+      state.todos.unshift({
         id: (Math.random() * 10).toFixed(),
         todo: payload,
         notes: [],
@@ -45,35 +44,49 @@ export const todoSlice = createSlice({
         created: new Date().getTime(),
         tags: []
       })
+      state.filteredTasks = state.todos
     },
-    deleteTodo: ({ todos }, { payload }) => {
-      return { todos: todos.filter(({ id }) => id !== payload) }
+    deleteTodo: (state, { payload }) => {
+      state.todos = state.todos.filter(({ id }) => id !== payload)
+      state.filteredTasks = state.todos
     },
-    toggleDone: ({ todos }, { payload }) => {
-      todos.map(todo => {
+    toggleDone: (state, { payload }) => {
+      state.todos.map(todo => {
         if (todo.id === payload) {
           todo.done = !todo.done
         }
       })
+      state.filteredTasks = state.todos
     },
-    deleteDone: ({ todos }) => {
-      return { todos: todos.filter(({ done }) => !done) }
+    deleteDone: state => {
+      state.todos = state.todos.filter(({ done }) => !done)
+      state.filteredTasks = state.todos
     },
-    addTag: ({ todos }, { payload }) => {
-      todos.map(todo => {
+    addTag: (state, { payload }) => {
+      state.todos.map(todo => {
         if (todo.id === payload.id) {
           if (!todo.tags.includes(payload.tag.toLowerCase())) {
             todo.tags = [...todo.tags, payload.tag.toLowerCase()]
           }
         }
       })
+      state.filterItems = uniqueFilteredTags(state.todos)
     },
-    deleteTag: ({ todos }, { payload }) => {
-      todos.map(todo => {
+    deleteTag: (state, { payload }) => {
+      state.todos.map(todo => {
         if (todo.id === payload.id) {
           todo.tags = todo.tags.filter(tag => tag !== payload.tag.toLowerCase())
         }
       })
+      state.filterItems = uniqueFilteredTags(state.todos)
+    },
+    setFilteredTasks: (state, { payload }) => {
+      state.filter = payload
+      state.filteredTasks = getTasksByFilter(
+        state.todos,
+        state.filter,
+        state.filterItems
+      )
     }
   }
 })
@@ -84,5 +97,6 @@ export const {
   toggleDone,
   deleteDone,
   addTag,
-  deleteTag
+  deleteTag,
+  setFilteredTasks
 } = todoSlice.actions
