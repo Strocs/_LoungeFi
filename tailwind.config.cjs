@@ -8,6 +8,7 @@ module.exports = {
         'c-bg': 'var(--main-background)',
         'c-box': 'var(--box-background)',
         'c-gray': 'var(--gray)',
+        'c-red': 'var(--red)'
       },
     }
   },

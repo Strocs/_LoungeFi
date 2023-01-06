@@ -5,21 +5,22 @@
 @tailwind utilities;
 
 :root {
-  --text: hsl(223, 21%, 12%);
-  --box-background: hsl(221, 24%, 93%);
-  --main-background: hsl(221, 24%, 87%);
-  --gray: hsl(221, 10%, 50%);
+  --text: #222;
+  --box-background: #eaeaea;
+  --main-background: #e2e2e2;
+  --gray: #62656D;
+  --red: #CB0D0B;
 }
 
 .dark {
-  --text: hsl(221, 24%, 93%);
-  --box-background: hsl(223, 20%, 15%);
-  --main-background: hsl(223, 20%, 13%);
-  --gray: hsl(221, 10%, 60%);
+  --text: #eaeaea;
+  --box-background: #2a2a2a;
+  --main-background: #222;
+  --gray: #838898;
+  --red: #E9574F;
 }
 
 html {
   font-family: 'Poppins', sans-serif;
 }
 
-  
