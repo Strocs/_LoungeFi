@@ -16,8 +16,9 @@ export const DeleteTasks = ({ id }) => {
   }
   return (
     <button
-      className='opacity-100 lg:opacity-40 hover:opacity-100'
       type='button'
+      aria-label='Delete task'
+      className='opacity-100 lg:opacity-40 hover:opacity-100'
       onClick={onDelete}
     >
       <IoClose className='fill-c-text text-2xl hover:fill-red-500' />

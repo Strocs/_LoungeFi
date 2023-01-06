@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { formatDate, getTaskByName } from '../../services'
 import { getTaskById } from '../../services/getTaskById'
 import { TagBar } from './components'
-import { IoClose } from 'react-icons/io5'
+import { IoClose } from 'react-icons/io5/index.esm?'
 export const TaskInfoPage = () => {
   const { tasks = [] } = useSelector(state => state.simpleTask)
   const { pathname, state } = useLocation()
@@ -25,7 +25,11 @@ export const TaskInfoPage = () => {
         <p>Tags: </p>
         <TagBar id={id} done={done} created={created} tags={tags} />
       </div>
-      <button onClick={onNavigate} className='bg-c-text text-c-bg'>
+      <button
+        type='button'
+        onClick={onNavigate}
+        className='bg-c-text text-c-bg'
+      >
         Close <IoClose className='inline' />
       </button>
     </section>

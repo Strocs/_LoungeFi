@@ -8,6 +8,8 @@ export const ThemeButton = ({
 
   return (
     <button
+      type='button'
+      aria-label={`${mode} Mode Button`}
       onClick={() => onDarkMode(isDark)}
       className={`text-2xl ${
         isDark

@@ -23,7 +23,7 @@ export const CreateTask = () => {
           className='w-full bg-c-box outline-none text-sm text-c-text placeholder:text-c-gray placeholder:font-extralight'
           type='text'
           ref={newTaskRef}
-          placeholder='Let`s create a new task!'
+          placeholder='Add a new mission!'
         />
       </form>
     </div>

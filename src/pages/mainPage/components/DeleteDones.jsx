@@ -16,13 +16,13 @@ export const DeleteDones = () => {
     }
   }
   return (
-    <div className='flex justify-end text-sm my-4 text-red-500'>
+    <div className='flex justify-end text-sm my-4 text-c-red'>
       <button
         className='px-2 focus:outline-none hover:outline-dashed'
         type='button'
         onClick={onDelete}
       >
-        Delete All Tasks Dones
+        <b>Delete</b> All Tasks Dones
       </button>
     </div>
   )

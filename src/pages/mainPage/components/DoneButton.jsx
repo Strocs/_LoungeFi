@@ -8,6 +8,7 @@ export const DoneButton = ({ done, id }) => {
   return (
     <button
       type='button'
+      aria-label='Toggle complete'
       onClick={() => {
         dispatch(toggleDone(id))
       }}

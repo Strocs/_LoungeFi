@@ -2,7 +2,7 @@ export const Title = () => {
   return (
     <div className='text-c-text'>
       <h1 className='text-3xl font-extralight inline-block'>
-        Simple<b className='font-bold'>Task</b>_
+        task<b className='font-bold'>Done</b>_
       </h1>
       <span className='-mt-1 text-xs block'>
         by&nbsp;
