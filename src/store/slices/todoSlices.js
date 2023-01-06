@@ -1,26 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getTasksByFilter, getUniqueFilterItems } from '../../services'
-
-const testState = [
-  {
-    id: (Math.random() * 10000).toFixed(),
-    todo: 'Ordenar la casa',
-    notes: [],
-    done: false,
-    created: new Date(),
-    tags: []
-  },
-  {
-    id: (Math.random() * 10000).toFixed(),
-    todo: 'Molestar al Salmón',
-    notes: [],
-    done: true,
-    created: new Date(),
-    tags: []
-  }
-]
+import {
+  getTasksByFilter,
+  getUniqueFilterItems,
+  getStorageValue,
+  setStorageValue
+} from '../../services'
 
 const defaultFilteredItems = ['All', 'Active', 'Done']
+const storedValue = getStorageValue({
+  todos: [],
+  filteredTasks: [],
+  filterItems: defaultFilteredItems,
+  filter: 'All'
+})
 
 function uniqueFilteredTags (tasks) {
   return [...defaultFilteredItems, ...getUniqueFilterItems(tasks)]
@@ -28,12 +20,7 @@ function uniqueFilteredTags (tasks) {
 
 export const todoSlice = createSlice({
   name: 'SimpleTasks',
-  initialState: {
-    todos: [...testState],
-    filteredTasks: [...testState],
-    filterItems: defaultFilteredItems,
-    filter: 'All'
-  },
+  initialState: storedValue,
   reducers: {
     addTodo: (state, { payload }) => {
       state.todos.unshift({
@@ -45,10 +32,12 @@ export const todoSlice = createSlice({
         tags: []
       })
       state.filteredTasks = state.todos
+      setStorageValue(state)
     },
     deleteTodo: (state, { payload }) => {
       state.todos = state.todos.filter(({ id }) => id !== payload)
       state.filteredTasks = state.todos
+      setStorageValue(state)
     },
     toggleDone: (state, { payload }) => {
       state.todos.map(todo => {
@@ -57,10 +46,12 @@ export const todoSlice = createSlice({
         }
       })
       state.filteredTasks = state.todos
+      setStorageValue(state)
     },
     deleteDone: state => {
       state.todos = state.todos.filter(({ done }) => !done)
       state.filteredTasks = state.todos
+      setStorageValue(state)
     },
     addTag: (state, { payload }) => {
       state.todos.map(todo => {
@@ -71,6 +62,7 @@ export const todoSlice = createSlice({
         }
       })
       state.filterItems = uniqueFilteredTags(state.todos)
+      setStorageValue(state)
     },
     deleteTag: (state, { payload }) => {
       state.todos.map(todo => {
@@ -79,10 +71,12 @@ export const todoSlice = createSlice({
         }
       })
       state.filterItems = uniqueFilteredTags(state.todos)
+      setStorageValue(state)
     },
     setFilteredTasks: (state, { payload }) => {
       state.filter = payload
       state.filteredTasks = getTasksByFilter(state.todos, state.filter)
+      setStorageValue(state)
     }
   }
 })
