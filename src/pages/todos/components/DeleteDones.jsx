@@ -4,9 +4,9 @@ import { deleteDone } from '../../../store'
 export const DeleteDones = () => {
   const dispatch = useDispatch()
   return (
-    <div className='flex justify-end text-sm my-4 text-red-600'>
+    <div className='flex justify-end text-sm my-4 text-red-500'>
       <button
-        className='hover:text-c-text'
+        className='px-2 focus:outline-none hover:outline-dashed'
         type='button'
         onClick={() => dispatch(deleteDone())}
       >
