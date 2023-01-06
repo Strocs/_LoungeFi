@@ -28,7 +28,7 @@ export const todoSlice = createSlice({
         todo: payload,
         notes: [],
         done: false,
-        created: new Date(),
+        created: new Date().getTime(),
         tags: []
       })
       state.filteredTasks = state.todos
@@ -51,6 +51,15 @@ export const todoSlice = createSlice({
     deleteDone: state => {
       state.todos = state.todos.filter(({ done }) => !done)
       state.filteredTasks = state.todos
+      setStorageValue(state)
+    },
+    editTodo: (state, { payload }) => {
+      state.todos.map(task => {
+        if (task.id !== payload.id) return
+        task.todo = payload.newTask
+        return task
+      })
+      state.filter = state.todos
       setStorageValue(state)
     },
     addTag: (state, { payload }) => {
@@ -86,6 +95,7 @@ export const {
   deleteTodo,
   toggleDone,
   deleteDone,
+  editTodo,
   addTag,
   deleteTag,
   setFilteredTasks
