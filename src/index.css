@@ -5,19 +5,21 @@
 @tailwind utilities;
 
 :root {
-  font-family: 'Poppins', sans-serif;
   --text: hsl(223, 21%, 12%);
   --box-background: hsl(221, 24%, 93%);
   --main-background: hsl(221, 24%, 87%);
   --gray: hsl(221, 10%, 50%);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    font-family: 'Poppins', sans-serif;
-    --text: hsl(221, 24%, 93%);
-    --box-background: hsl(223, 20%, 15%);
-    --main-background: hsl(223, 20%, 13%);
-    --gray: hsl(221, 10%, 60%);
-  }
+.dark {
+  --text: hsl(221, 24%, 93%);
+  --box-background: hsl(223, 20%, 15%);
+  --main-background: hsl(223, 20%, 13%);
+  --gray: hsl(221, 10%, 60%);
 }
+
+html {
+  font-family: 'Poppins', sans-serif;
+}
+
+  

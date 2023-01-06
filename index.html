@@ -1,18 +1,14 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 	<head>
-		<meta charset='UTF-8' />
-		<meta name='viewport' content='width=device-width' />
-		<link rel='icon' type='image/svg+xml+png' href='/favicon.svg' />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml+png" href="/favicon.svg" />
 		<title>Simple Task_</title>
-		<script>
-			const isDarkMode = localStorage.getItem('dark-mode-enabled')
-			const theme = isDarkMode === 'true' ? 'dark' : ''
-			document.querySelector('html').className = theme
-		</script>
+		<script src="./src/scripts/setDarkMode.js"></script>
 	</head>
-	<body class='w-full h-full bg-c-bg px-6 mx-auto md:px-16'>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+	<body class="w-full h-full bg-c-bg px-6 mx-auto md:px-16">
+		<div id="root"></div>
+		<script type="module" src="/src/main.jsx"></script>
 	</body>
 </html>
