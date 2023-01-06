@@ -1,9 +1,9 @@
-import { TodoDateTag, CreateTag, TagItem } from '.'
+import { TaskCreatedTag, CreateTag, TagItem } from '.'
 
 export const TagBar = ({ created, done, tags, id }) => {
   return (
     <ul className='flex gap-1 flex-wrap'>
-      <TodoDateTag created={created} done={done} />
+      <TaskCreatedTag created={created} done={done} />
       {tags.map(tag => (
         <TagItem key={tag} text={tag} id={id} />
       ))}

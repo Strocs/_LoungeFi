@@ -1,4 +1,4 @@
-import { ThemeBar, TodosLeft, Title } from '.'
+import { ThemeBar, ItemsLeft, Title } from '.'
 
 export const Header = () => {
   return (
@@ -7,7 +7,7 @@ export const Header = () => {
         <Title />
         <ThemeBar />
       </div>
-      <TodosLeft />
+      <ItemsLeft />
     </header>
   )
 }

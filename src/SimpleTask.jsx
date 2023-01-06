@@ -1,14 +1,14 @@
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import { SimpleTodoRouter } from './router/SimpleTodoRouter'
+import { SimpleTaskRouter } from './router/SimpleTaskRouter'
 import { store } from './store'
 
-export const SimpleTodo = () => {
+export const SimpleTask = () => {
   return (
     <>
       <BrowserRouter>
         <Provider store={store}>
-          <SimpleTodoRouter />
+          <SimpleTaskRouter />
         </Provider>
       </BrowserRouter>
     </>

@@ -1,8 +1,7 @@
-export const TodoDateTag = ({ created, done }) => {
+export const TaskCreatedTag = ({ created, done }) => {
   const timeElapsed = Math.floor(
     (new Date().getTime() - created) / 1000 / 60 / 60
   )
-
   const setColorAndText = () => {
     if (done) return { text: 'Done', color: 'bg-c-gray' }
     switch (true) {

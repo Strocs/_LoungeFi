@@ -4,21 +4,21 @@ import { formatDate, getTaskByName } from '../../services'
 import { getTaskById } from '../../services/getTaskById'
 import { TagBar } from './components'
 import { IoClose } from 'react-icons/io5'
-export const SingleTodoPage = () => {
-  const { todos = [] } = useSelector(state => state.todos)
+export const TaskInfoPage = () => {
+  const { tasks = [] } = useSelector(state => state.simpleTask)
   const { pathname, state } = useLocation()
   const navigate = useNavigate()
   const onNavigate = () => navigate('/')
 
-  const { todo, notes, done, created, tags, id } = !state
-    ? getTaskById(todos, state)
-    : getTaskByName(todos, pathname)
+  const { task, notes, done, created, tags, id } = !state
+    ? getTaskById(tasks, state)
+    : getTaskByName(tasks, pathname)
 
   const createdDate = formatDate(created)
 
   return (
     <section className='mt-4 text-c-text w-full max-w-4xl'>
-      <h2 className='text-c-text'>{todo}</h2>
+      <h2 className='text-c-text'>{task}</h2>
       <p>Notas: {JSON.stringify(notes)}</p>
       <p>Created: {createdDate}</p>
       <div className='flex items-center gap-2'>

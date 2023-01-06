@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
-import { DeleteTodo, DoneButton } from '.'
-import { removeAccents } from '../../../services'
+import { DeleteTasks, DoneButton } from '.'
+import { removeAccentsMark } from '../../../services'
 import { FiArrowUpRight } from 'react-icons/fi  '
 
-export const TodoItem = ({ text = '', done = false, id = 0 }) => {
-  const textToPath = removeAccents(text).replaceAll(' ', '-').toLowerCase()
+export const TaskItem = ({ text = '', done = false, id = '' }) => {
+  const textToPath = removeAccentsMark(text).replaceAll(' ', '-').toLowerCase()
   return (
     <li className='flex items-center justify-between gap-2 px-5 py-3 w-full bg-c-box'>
       <div className='flex items-center gap-4'>
@@ -20,7 +20,7 @@ export const TodoItem = ({ text = '', done = false, id = 0 }) => {
           </span>
         </Link>
       </div>
-      <DeleteTodo id={id} />
+      <DeleteTasks id={id} />
     </li>
   )
 }

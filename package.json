@@ -1,5 +1,5 @@
 {
-  "name": "simpletasks",
+  "name": "simple-task",
   "private": false,
   "version": "0.1.0",
   "type": "module",
@@ -17,7 +17,8 @@
     "react-icons": "^4.7.1",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.1",
-    "sort-by": "^0.0.2"
+    "sort-by": "^0.0.2",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

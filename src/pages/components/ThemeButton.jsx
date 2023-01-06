@@ -1,20 +1,22 @@
 export const ThemeButton = ({
   mode = '',
   active = false,
-  setDarkMode = () => {},
+  onDarkMode = () => {},
   icon
 }) => {
+  const isDark = mode === 'Dark'
+
   return (
     <button
-      onClick={() => setDarkMode(mode === 'Dark')}
+      onClick={() => onDarkMode(isDark)}
       className={`text-2xl ${
-        mode === 'Light'
+        isDark
           ? active
-            ? 'text-yellow-400'
-            : 'text-c-gray hover:text-yellow-400'
+            ? 'text-fuchsia-500'
+            : 'text-c-gray hover:text-fuchsia-500'
           : active
-          ? 'text-fuchsia-500'
-          : 'text-c-gray hover:text-fuchsia-500'
+          ? 'text-yellow-400'
+          : 'text-c-gray hover:text-yellow-400'
       }`}
     >
       {icon}

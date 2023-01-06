@@ -1,17 +1,17 @@
 import { useRef } from 'react'
 import { useDispatch } from 'react-redux'
-import { addTodo } from '../../../store'
+import { addTask } from '../../../store'
 import { RiTodoFill } from 'react-icons/ri'
 
-export const CreateTodo = () => {
+export const CreateTask = () => {
   const dispatch = useDispatch()
-  const newTodoRef = useRef(null)
+  const newTaskRef = useRef(null)
 
   const handleSubmit = e => {
     e.preventDefault()
-    if (newTodoRef.current !== null && newTodoRef.current.value.length > 1) {
-      dispatch(addTodo(newTodoRef.current.value))
-      newTodoRef.current.value = ''
+    if (newTaskRef.current !== null && newTaskRef.current.value.length > 1) {
+      dispatch(addTask(newTaskRef.current.value))
+      newTaskRef.current.value = ''
     }
   }
 
@@ -22,7 +22,7 @@ export const CreateTodo = () => {
         <input
           className='w-full bg-c-box outline-none text-sm text-c-text placeholder:text-c-gray placeholder:font-extralight'
           type='text'
-          ref={newTodoRef}
+          ref={newTaskRef}
           placeholder='Let`s create a new task!'
         />
       </form>

@@ -1,9 +1,8 @@
-import { removeAccents } from './removeAccents'
+import { removeAccentsMark } from './removeAccentsMark'
 
 export const getTaskByName = (tasks = [], name) => {
   return tasks.find(
-    task =>
-      removeAccents(task.todo.toLowerCase()) ===
-      name.slice(1).replaceAll('-', ' ')
+    ({ task }) =>
+      removeAccentsMark(task.toLowerCase()) === name.slice(1).replaceAll('-', ' ')
   )
 }

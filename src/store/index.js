@@ -1,2 +1,2 @@
 export * from './store'
-export * from './slices/todoSlices'
+export * from './slices/simpleTaskSlice'

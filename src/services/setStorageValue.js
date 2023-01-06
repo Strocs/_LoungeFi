@@ -1,5 +1,5 @@
-export const setStorageValue = (value) => {
+export const setStorageValue = (key, value) => {
   if (typeof window !== 'undefined') {
-    window.localStorage.setItem('simple-task', JSON.stringify(value))
+    window.localStorage.setItem(key, JSON.stringify(value))
   }
 }
