@@ -22,7 +22,7 @@ export const DeleteDones = () => {
         type='button'
         onClick={onDelete}
       >
-        Delete All Completed Tasks
+        Delete All Tasks Dones
       </button>
     </div>
   )
