@@ -1,6 +1,7 @@
 export * from './CreateTask'
 export * from './DeleteTasks'
 export * from './DoneButton'
+export * from './FilterItem'
 export * from './FilterList'
 export * from './TaskItem'
 export * from './TasksList'
