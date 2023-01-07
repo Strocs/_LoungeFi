@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { Header } from '../pages/components'
-import { TaskInfoPage } from '../pages/taskInfoPage'
-import { TasksPage } from '../pages/mainPage'
+import { TasksPage, TaskInfoPage } from '@pages'
+import { Header } from '@pages/components'
 
 export const SimpleTaskRouter = () => {
   return (
@@ -9,7 +8,7 @@ export const SimpleTaskRouter = () => {
       <Header />
       <Routes>
         <Route path='/' element={<TasksPage />}>
-          <Route path='/:task' element={<TaskInfoPage />} />
+          <Route path='/:id' element={<TaskInfoPage />} />
         </Route>
         <Route path='/*' element={<Navigate to='/' />} />
       </Routes>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getStorageValue, setStorageValue } from '../services'
+import { getStorageValue, setStorageValue } from '@services'
 
 const ACTIVE_CLASS = 'dark'
 

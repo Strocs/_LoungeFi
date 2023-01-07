@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { deleteTask } from '../../../store'
+import { deleteTask } from '@store'
 import { IoClose } from 'react-icons/io5'
 import { useLocation, useNavigate } from 'react-router-dom'
 
@@ -21,7 +21,7 @@ export const DeleteTasks = ({ id }) => {
       className='opacity-100 lg:opacity-40 hover:opacity-100'
       onClick={onDelete}
     >
-      <IoClose className='fill-c-text text-2xl hover:fill-red-500' />
+      <IoClose className='fill-c-text text-2xl hover:fill-c-red' />
     </button>
   )
 }

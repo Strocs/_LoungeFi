@@ -5,7 +5,7 @@ import {
   uniqueFilterItems,
   getStorageValue,
   setStorageValue
-} from '../../services'
+} from '@services'
 
 const STORAGE_ID = 'simple-task'
 const DEFAULT_FILTER_ITEMS = ['All', 'Active', 'Done']

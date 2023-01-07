@@ -1,5 +1,5 @@
 import { ThemeButton } from '.'
-import { useDarkMode } from '../../hooks'
+import { useDarkMode } from '@hooks'
 import { BsFillSunFill } from 'react-icons/bs'
 import { HiMoon } from 'react-icons/hi'
 

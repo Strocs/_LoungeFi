@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { deleteDone } from '../../../store'
+import { deleteDone } from '@store'
 
 export const DeleteDones = () => {
   const { tasks } = useSelector(state => state.simpleTask)
@@ -16,9 +16,9 @@ export const DeleteDones = () => {
     }
   }
   return (
-    <div className='flex justify-end text-sm my-4 text-c-red'>
+    <div className='flex justify-end text-sm text-c-red'>
       <button
-        className='px-2 focus:outline-none hover:outline-dashed'
+        className='p-2 leading-none focus:outline-none hover:bg-c-red hover:text-white'
         type='button'
         onClick={onDelete}
       >

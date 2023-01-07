@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { useDispatch } from 'react-redux'
-import { addTag } from '../../../store'
+import { addTag } from '@store'
 
 export const CreateTag = ({ id }) => {
   const tagRef = useRef(null)

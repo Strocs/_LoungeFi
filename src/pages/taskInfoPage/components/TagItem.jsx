@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { deleteTag } from '../../../store'
+import { deleteTag } from '@store'
 
 export const TagItem = ({ text, id }) => {
   const dispatch = useDispatch()

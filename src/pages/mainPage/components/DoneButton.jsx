@@ -1,6 +1,6 @@
 import { BsCheck } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
-import { toggleDone } from '../../../store'
+import { toggleDone } from '@store'
 
 export const DoneButton = ({ done, id }) => {
   const dispatch = useDispatch()
