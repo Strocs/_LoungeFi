@@ -1,20 +1,19 @@
 import { v4 as uuid } from 'uuid'
 import { createSlice } from '@reduxjs/toolkit'
-import {
-  getTasksByFilter,
-  uniqueFilterItems,
-  getStorageValue,
-  setStorageValue
-} from '@services'
+import { getTasksByFilter, uniqueFilterItems } from '@services'
+import { useLocalStorage } from '@hooks'
 
 const STORAGE_ID = 'task-done'
 const DEFAULT_FILTER_ITEMS = ['All', 'Active', 'Done']
 
-const storedValue = getStorageValue(STORAGE_ID, {
-  tasks: [],
-  filteredTasks: [],
-  filter: 'All',
-  filterItems: DEFAULT_FILTER_ITEMS
+const storedValue = useLocalStorage({
+  key: STORAGE_ID,
+  initialValue: {
+    tasks: [],
+    filteredTasks: [],
+    filter: 'All',
+    filterItems: DEFAULT_FILTER_ITEMS
+  }
 })
 
 export const taskDoneSlice = createSlice({
@@ -31,27 +30,7 @@ export const taskDoneSlice = createSlice({
         tags: []
       })
       state.filteredTasks = getTasksByFilter(state.tasks, state.filter)
-      setStorageValue(STORAGE_ID, state)
-    },
-    deleteTask: (state, { payload }) => {
-      state.tasks = state.tasks.filter(({ id }) => id !== payload)
-      state.filteredTasks = getTasksByFilter(state.tasks, state.filter)
-      state.filterItems = uniqueFilterItems(DEFAULT_FILTER_ITEMS, state.tasks)
-      setStorageValue(STORAGE_ID, state)
-    },
-    toggleDone: (state, { payload }) => {
-      state.tasks.map(task => {
-        if (task.id === payload) {
-          task.done = !task.done
-        }
-      })
-      state.filteredTasks = getTasksByFilter(state.tasks, state.filter)
-      setStorageValue(STORAGE_ID, state)
-    },
-    deleteDone: state => {
-      state.tasks = state.tasks.filter(({ done }) => !done)
-      state.filteredTasks = getTasksByFilter(state.tasks, state.filter)
-      setStorageValue(STORAGE_ID, state)
+      useLocalStorage({ key: STORAGE_ID, value: state })
     },
     editTask: (state, { payload }) => {
       state.tasks.map(task => {
@@ -60,7 +39,27 @@ export const taskDoneSlice = createSlice({
         return task
       })
       state.filteredTasks = getTasksByFilter(state.tasks, state.filter)
-      setStorageValue(STORAGE_ID, state)
+      useLocalStorage({ key: STORAGE_ID, value: state })
+    },
+    deleteTask: (state, { payload }) => {
+      state.tasks = state.tasks.filter(({ id }) => id !== payload)
+      state.filteredTasks = getTasksByFilter(state.tasks, state.filter)
+      state.filterItems = uniqueFilterItems(DEFAULT_FILTER_ITEMS, state.tasks)
+      useLocalStorage({ key: STORAGE_ID, value: state })
+    },
+    toggleDone: (state, { payload }) => {
+      state.tasks.map(task => {
+        if (task.id === payload) {
+          task.done = !task.done
+        }
+      })
+      state.filteredTasks = getTasksByFilter(state.tasks, state.filter)
+      useLocalStorage({ key: STORAGE_ID, value: state })
+    },
+    deleteDones: state => {
+      state.tasks = state.tasks.filter(({ done }) => !done)
+      state.filteredTasks = getTasksByFilter(state.tasks, state.filter)
+      useLocalStorage({ key: STORAGE_ID, value: state })
     },
     addTag: (state, { payload }) => {
       state.tasks.map(task => {
@@ -71,7 +70,7 @@ export const taskDoneSlice = createSlice({
         }
       })
       state.filterItems = uniqueFilterItems(DEFAULT_FILTER_ITEMS, state.tasks)
-      setStorageValue(STORAGE_ID, state)
+      useLocalStorage({ key: STORAGE_ID, value: state })
     },
     deleteTag: (state, { payload }) => {
       state.tasks.map(task => {
@@ -80,22 +79,22 @@ export const taskDoneSlice = createSlice({
         }
       })
       state.filterItems = uniqueFilterItems(DEFAULT_FILTER_ITEMS, state.tasks)
-      setStorageValue(STORAGE_ID, state)
+      useLocalStorage({ key: STORAGE_ID, value: state })
     },
     setFilteredTasks: (state, { payload }) => {
       state.filter = payload
       state.filteredTasks = getTasksByFilter(state.tasks, state.filter)
-      setStorageValue(STORAGE_ID, state)
+      useLocalStorage({ key: STORAGE_ID, value: state })
     }
   }
 })
 
 export const {
   addTask,
+  editTask,
   deleteTask,
   toggleDone,
-  deleteDone,
-  editTask,
+  deleteDones,
   addTag,
   deleteTag,
   setFilteredTasks

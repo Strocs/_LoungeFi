@@ -1,7 +1,4 @@
 export * from './removeAccentsMark'
 export * from './getTasksByFilter'
-export * from './getUniqueFilterItems'
 export * from './uniqueFilterItems'
 export * from './formatDate'
-export * from './getStorageValue'
-export * from './setStorageValue'

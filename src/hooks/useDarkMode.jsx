@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
-import { getStorageValue, setStorageValue } from '@services'
+import { useLocalStorage } from '@hooks'
 
 const ACTIVE_CLASS = 'dark'
 
 export function useDarkMode () {
-  const storageValue = getStorageValue(ACTIVE_CLASS)
+  const storageValue = useLocalStorage({ key: ACTIVE_CLASS })
+
   const [darkMode, setDarkMode] = useState(storageValue)
+
   const { matches } = window.matchMedia('(prefers-color-scheme: dark)')
-
   const isEnabled = typeof darkMode !== 'undefined' ? darkMode : matches
-
   useEffect(() => {
     const html = document.documentElement
     isEnabled
@@ -19,7 +19,7 @@ export function useDarkMode () {
 
   const onDarkMode = value => {
     setDarkMode(value)
-    setStorageValue(ACTIVE_CLASS, value)
+    useLocalStorage({ key: ACTIVE_CLASS, value })
   }
 
   return {

@@ -1,5 +1,5 @@
-import { getUniqueFilterItems } from './getUniqueFilterItems'
-
 export const uniqueFilterItems = (defaultValue, tasks) => {
-  return [...defaultValue, ...getUniqueFilterItems(tasks)]
+  const filterItems = tasks.flatMap(task => task.tags)
+  const uniqueItems = new Set(filterItems)
+  return [...defaultValue, ...uniqueItems]
 }
