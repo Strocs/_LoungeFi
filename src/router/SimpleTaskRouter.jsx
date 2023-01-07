@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { TasksPage, TaskInfoPage } from '@pages'
-import { Header } from '@pages/components'
+import { Header } from '@components'
 
 export function SimpleTaskRouter () {
   return (

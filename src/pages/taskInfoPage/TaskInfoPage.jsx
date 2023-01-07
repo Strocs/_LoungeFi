@@ -11,14 +11,18 @@ export function TaskInfoPage () {
     state !== null
       ? useGetTasks({ byId: state })
       : useGetTasks({ byName: pathname })
+
   if (!singleTask) return <Navigate to='/' />
 
   const { task, notes, done, created, tags, id } = singleTask
   const createdDate = formatDate(created)
 
   const onNavigate = () => navigate('/')
+
   return (
     <section className='mt-4 mx-auto text-c-text w-full max-w-2xl'>
+      {/* TODO: UI design of section */}
+      {/* TODO: Add pomodoro feat */}
       <EditTask task={task} id={id} />
       <p>Notas: {JSON.stringify(notes)}</p>
       <p>Created: {createdDate}</p>
