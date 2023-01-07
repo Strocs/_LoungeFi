@@ -15,10 +15,11 @@ export function DeleteDones () {
       navigate('/')
     }
   }
+
   return (
     <div className='flex justify-end text-sm text-c-red'>
       <button
-        className='p-2 leading-none focus:outline-none hover:bg-c-red hover:text-white'
+        className='p-2 leading-none hover:bg-c-red hover:text-white focus:bg-c-bg focus:text-c-red'
         type='button'
         onClick={onDelete}
       >
