@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { setFilteredTasks } from '../../store'
+import { setFilteredTasks } from '@store'
 
 export const FilterItem = ({ title }) => {
   const { filter } = useSelector(state => state.simpleTask)
