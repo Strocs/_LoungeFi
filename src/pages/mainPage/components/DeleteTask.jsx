@@ -3,7 +3,7 @@ import { deleteTask } from '@store'
 import { IoClose } from 'react-icons/io5'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-export function DeleteTasks ({ id }) {
+export function DeleteTask ({ id }) {
   const dispatch = useDispatch()
   const { state } = useLocation()
   const navigate = useNavigate()

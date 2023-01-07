@@ -1,4 +1,4 @@
-import { ThemeBar, ItemsLeft, Title } from '.'
+import { ThemeBar, TasksLeft, Title } from '.'
 
 export function Header () {
   return (
@@ -7,7 +7,7 @@ export function Header () {
         <Title />
         <ThemeBar />
       </div>
-      <ItemsLeft />
+      <TasksLeft />
     </header>
   )
 }

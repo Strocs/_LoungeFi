@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { removeAccentsMark } from '@services'
 import { FiArrowUpRight } from 'react-icons/fi  '
-import { DeleteTasks, DoneButton } from '.'
+import { DeleteTask, DoneButton } from '.'
 
 export function TaskItem ({ text, done, id }) {
   const textToPath = removeAccentsMark(text).replaceAll(' ', '-').toLowerCase()
@@ -20,7 +20,7 @@ export function TaskItem ({ text, done, id }) {
           </span>
         </Link>
       </div>
-      <DeleteTasks id={id} />
+      <DeleteTask id={id} />
     </li>
   )
 }
