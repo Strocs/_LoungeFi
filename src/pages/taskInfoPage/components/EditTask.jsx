@@ -1,13 +1,18 @@
-import { useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { editTask } from '@store'
 
-export const EditTask = ({ task = '', id }) => {
+export function EditTask ({ task, id }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const taskRef = useRef(null)
-  function onTaskEdit (e) {
+
+  useLayoutEffect(() => {
+    taskRef.current.value = task
+  }, [task])
+
+  const onTaskEdit = e => {
     e.preventDefault()
     if (taskRef.current !== null && taskRef.current.value.length > 1) {
       dispatch(editTask({ newTask: taskRef.current.value, id }))

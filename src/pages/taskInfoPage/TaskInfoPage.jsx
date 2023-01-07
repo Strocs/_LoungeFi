@@ -4,21 +4,19 @@ import { useGetTasks } from '@hooks'
 import { formatDate } from '@services'
 import { EditTask, TagBar } from './components'
 
-export const TaskInfoPage = () => {
+export function TaskInfoPage () {
   const navigate = useNavigate()
   const { pathname, state } = useLocation()
-
-  const singleTask = !state
-    ? useGetTasks({ byId: state })
-    : useGetTasks({ byName: pathname })
-
+  const singleTask =
+    state !== null
+      ? useGetTasks({ byId: state })
+      : useGetTasks({ byName: pathname })
   if (!singleTask) return <Navigate to='/' />
 
   const { task, notes, done, created, tags, id } = singleTask
   const createdDate = formatDate(created)
 
   const onNavigate = () => navigate('/')
-
   return (
     <section className='mt-4 mx-auto text-c-text w-full max-w-2xl'>
       <EditTask task={task} id={id} />
