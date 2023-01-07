@@ -1,19 +1,19 @@
-import { useSelector } from 'react-redux'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { IoClose } from 'react-icons/io5/index.esm?'
-import { formatDate, getTaskByName, getTaskById } from '@services'
+import { useGetTasks } from '@hooks'
+import { formatDate } from '@services'
 import { EditTask, TagBar } from './components'
 
 export const TaskInfoPage = () => {
-  const { tasks = [] } = useSelector(state => state.simpleTask)
   const navigate = useNavigate()
   const { pathname, state } = useLocation()
+
   const singleTask = !state
-    ? getTaskById(tasks, state)
-    : getTaskByName(tasks, pathname)
-  if (!singleTask) {
-    return <Navigate to='/' />
-  }
+    ? useGetTasks({ byId: state })
+    : useGetTasks({ byName: pathname })
+
+  if (!singleTask) return <Navigate to='/' />
+
   const { task, notes, done, created, tags, id } = singleTask
   const createdDate = formatDate(created)
 
