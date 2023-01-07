@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import { removeAccentsMark } from '@services'
 
-export const useGetTasks = ({ byId, byName }) => {
+export function useGetTasks ({ byId, byName }) {
   const { tasks } = useSelector(state => state.simpleTask)
 
   function getTaskById () {

@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import { TaskItem } from '.'
 
-export const TasksList = () => {
+export function TasksList () {
   const { filteredTasks = [] } = useSelector(state => state.simpleTask)
   return (
     <ul>

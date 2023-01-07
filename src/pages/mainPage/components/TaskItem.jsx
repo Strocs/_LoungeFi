@@ -3,7 +3,7 @@ import { removeAccentsMark } from '@services'
 import { FiArrowUpRight } from 'react-icons/fi  '
 import { DeleteTasks, DoneButton } from '.'
 
-export const TaskItem = ({ text = '', done = false, id = '' }) => {
+export function TaskItem ({ text, done, id }) {
   const textToPath = removeAccentsMark(text).replaceAll(' ', '-').toLowerCase()
   return (
     <li className='flex items-center justify-between gap-2 px-5 py-3 w-full bg-c-box'>

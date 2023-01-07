@@ -1,4 +1,4 @@
-export const Title = () => {
+export function Title () {
   return (
     <div className='text-c-text'>
       <h1 className='text-3xl font-extralight inline-block'>

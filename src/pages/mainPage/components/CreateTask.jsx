@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { addTask } from '@store'
 import { RiTodoFill } from 'react-icons/ri'
 
-export const CreateTask = () => {
+export function CreateTask () {
   const dispatch = useDispatch()
   const newTaskRef = useRef(null)
 

@@ -1,4 +1,4 @@
-export const TaskCreatedTag = ({ created, done }) => {
+export function TaskCreatedTag ({ created, done }) {
   const timeElapsed = Math.floor(
     (new Date().getTime() - created) / 1000 / 60 / 60
   )

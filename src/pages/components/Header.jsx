@@ -1,6 +1,6 @@
 import { ThemeBar, ItemsLeft, Title } from '.'
 
-export const Header = () => {
+export function Header () {
   return (
     <header className='w-full pt-8 max-w-2xl m-auto'>
       <div className='flex justify-between gap-2'>

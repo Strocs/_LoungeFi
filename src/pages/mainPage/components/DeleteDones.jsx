@@ -2,14 +2,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { deleteDone } from '@store'
 
-export const DeleteDones = () => {
+export function DeleteDones () {
   const { tasks } = useSelector(state => state.simpleTask)
   const donesTaskId = tasks.map(task => task.done && task.id)
   const dispatch = useDispatch()
   const { state } = useLocation()
   const navigate = useNavigate()
 
-  function onDelete () {
+  const onDelete = () => {
     dispatch(deleteDone())
     if (!!state && donesTaskId.includes(state)) {
       navigate('/')

@@ -1,9 +1,4 @@
-export const ThemeButton = ({
-  mode = '',
-  active = false,
-  onDarkMode = () => {},
-  icon
-}) => {
+export function ThemeButton ({ mode, active, onDarkMode, icon }) {
   const isDark = mode === 'Dark'
 
   return (

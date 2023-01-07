@@ -3,12 +3,12 @@ import { deleteTask } from '@store'
 import { IoClose } from 'react-icons/io5'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-export const DeleteTasks = ({ id }) => {
+export function DeleteTasks ({ id }) {
   const dispatch = useDispatch()
   const { state } = useLocation()
   const navigate = useNavigate()
 
-  function onDelete () {
+  const onDelete = () => {
     dispatch(deleteTask(id))
     if (state === id) {
       navigate('/')

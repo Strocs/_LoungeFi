@@ -3,7 +3,7 @@ import { useDarkMode } from '@hooks'
 import { BsFillSunFill } from 'react-icons/bs'
 import { HiMoon } from 'react-icons/hi'
 
-export const ThemeBar = () => {
+export function ThemeBar () {
   const { isEnabled, onDarkMode } = useDarkMode()
   return (
     <div className='flex gap-5 px-4 py-3 bg-c-box sm:text-xl'>

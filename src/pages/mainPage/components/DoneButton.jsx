@@ -2,7 +2,7 @@ import { BsCheck } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
 import { toggleDone } from '@store'
 
-export const DoneButton = ({ done, id }) => {
+export function DoneButton ({ done, id }) {
   const dispatch = useDispatch()
 
   return (
@@ -13,9 +13,7 @@ export const DoneButton = ({ done, id }) => {
         dispatch(toggleDone(id))
       }}
       className={`h-5 w-5 rounded-full text-c-text flex-shrink-0 ${
-        done
-          ? 'bg-c-text'
-          : 'border border-c-text border-dashed'
+        done ? 'bg-c-text' : 'border border-c-text border-dashed'
       }`}
     >
       {done && <BsCheck className='m-auto fill-c-bg' />}
