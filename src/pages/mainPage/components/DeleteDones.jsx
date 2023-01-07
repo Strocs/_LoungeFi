@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { deleteDone } from '@store'
 
 export function DeleteDones () {
-  const { tasks } = useSelector(state => state.simpleTask)
+  const { tasks } = useSelector(state => state.taskDone)
   const donesTaskId = tasks.map(task => task.done && task.id)
   const dispatch = useDispatch()
   const { state } = useLocation()

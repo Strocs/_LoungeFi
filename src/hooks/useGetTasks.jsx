@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import { removeAccentsMark } from '@services'
 
 export function useGetTasks ({ byId, byName }) {
-  const { tasks } = useSelector(state => state.simpleTask)
+  const { tasks } = useSelector(state => state.taskDone)
 
   function getTaskById () {
     return tasks.find(({ id }) => id === byId)

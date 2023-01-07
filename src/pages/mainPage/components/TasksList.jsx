@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import { TaskItem } from '.'
 
 export function TasksList () {
-  const { filteredTasks = [] } = useSelector(state => state.simpleTask)
+  const { filteredTasks } = useSelector(state => state.taskDone)
   return (
     <ul>
       {filteredTasks.map(({ task, done, id, tags, created }) => (

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setFilteredTasks } from '@store'
 
 export function FilterItem ({ title }) {
-  const { filter } = useSelector(state => state.simpleTask)
+  const { filter } = useSelector(state => state.taskDone)
   const dispatch = useDispatch()
   return (
     <button

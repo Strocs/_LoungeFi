@@ -2,7 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { TasksPage, TaskInfoPage } from '@pages'
 import { Header } from '@components'
 
-export function SimpleTaskRouter () {
+export function AppRouter () {
   return (
     <>
       <Header />

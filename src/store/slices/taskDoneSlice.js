@@ -7,7 +7,7 @@ import {
   setStorageValue
 } from '@services'
 
-const STORAGE_ID = 'simple-task'
+const STORAGE_ID = 'task-done'
 const DEFAULT_FILTER_ITEMS = ['All', 'Active', 'Done']
 
 const storedValue = getStorageValue(STORAGE_ID, {
@@ -17,8 +17,8 @@ const storedValue = getStorageValue(STORAGE_ID, {
   filterItems: DEFAULT_FILTER_ITEMS
 })
 
-export const simpleTaskSlice = createSlice({
-  name: 'simpleTask',
+export const taskDoneSlice = createSlice({
+  name: 'taskDone',
   initialState: storedValue,
   reducers: {
     addTask: (state, { payload }) => {
@@ -99,4 +99,4 @@ export const {
   addTag,
   deleteTag,
   setFilteredTasks
-} = simpleTaskSlice.actions
+} = taskDoneSlice.actions
