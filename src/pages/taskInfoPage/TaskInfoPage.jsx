@@ -1,11 +1,22 @@
+import { useState } from 'react'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
-import { IoClose } from 'react-icons/io5/index.esm?'
 import { useGetTasks } from '@hooks'
-import { formatDate } from '@services'
-import { EditTask, TagBar } from './components'
+import {
+  CreateNote,
+  CreationDate,
+  ModifyTask,
+  PomodoroCountdown,
+  PomodoroSetTimer,
+  TagBar,
+  TaskInfoButton
+} from './components'
+import { PomodoroButton } from './components/PomodoroButton'
 
 export function TaskInfoPage () {
+  const [isPomoActive, setIsPomoActive] = useState(false)
+  const [start, setStart] = useState(false)
   const navigate = useNavigate()
+  const onNavigate = () => navigate('/')
   const { pathname, state } = useLocation()
   const singleTask =
     state !== null
@@ -15,28 +26,30 @@ export function TaskInfoPage () {
   if (!singleTask) return <Navigate to='/' />
 
   const { task, notes, done, created, tags, id } = singleTask
-  const createdDate = formatDate(created)
 
-  const onNavigate = () => navigate('/')
+  const onSetPomodoro = () => setIsPomoActive(true)
 
   return (
-    <section className='mt-4 mx-auto text-c-text w-full max-w-2xl'>
-      {/* TODO: UI design of section */}
-      {/* TODO: Add pomodoro feat */}
-      <EditTask task={task} id={id} />
-      <p>Notas: {JSON.stringify(notes)}</p>
-      <p>Created: {createdDate}</p>
+    <section className='flex flex-col gap-3 mx-auto mb-4 text-c-text w-full max-w-2xl pt-4 pb-6 px-5 bg-c-box'>
+      <ModifyTask task={task} id={id} />
+      <CreationDate created={created} />
       <div className='flex items-center gap-2'>
-        <p>Tags: </p>
+        <p className='font-extralight'>Tags: </p>
         <TagBar id={id} done={done} created={created} tags={tags} />
       </div>
-      <button
-        type='button'
-        onClick={onNavigate}
-        className='bg-c-text text-c-bg'
-      >
-        Close <IoClose className='inline' />
-      </button>
+      <CreateNote />
+      <div className='flex w-full gap-3'>
+        {/* TODO: Add pomodoro feat */}
+        <PomodoroButton
+          isActive={isPomoActive}
+          start={start}
+          setStart={setStart}
+          onSetPomodoro={onSetPomodoro}
+        />
+        <TaskInfoButton text='Close' onClick={onNavigate} />
+      </div>
+      {isPomoActive && !start && <PomodoroSetTimer />}
+      {start && <PomodoroCountdown />}
     </section>
   )
 }
