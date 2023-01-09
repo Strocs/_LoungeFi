@@ -1,2 +1,2 @@
 export * from './mainPage/TasksPage'
-export * from './taskInfoPage/TaskInfoPage'
+export {TaskInfoPage as default} from './taskInfoPage/TaskInfoPage'
