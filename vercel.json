@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/:id*",
-      "destination": "https://taskdone.vercel.app/:id*"
+      "source": "/(.*)",
+      "destination": "/"
     }
   ]
 }
