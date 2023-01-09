@@ -1,21 +1,36 @@
 import { useSelector } from 'react-redux'
 import { removeAccentsMark } from '@utils'
 
-export function useGetTasks ({ byId, byName }) {
+export function useGetTasks (id, name) {
   const { tasks } = useSelector(state => state.taskDone)
 
   function getTaskById () {
-    return tasks.find(({ id }) => id === byId)
+    return tasks.find(task => task.id === id)
   }
 
   function getTaskByName () {
     return tasks.find(
       ({ task }) =>
         removeAccentsMark(task.toLowerCase()) ===
-        byName.slice(1).replaceAll('-', ' ')
+        name.slice(1).replaceAll('-', ' ')
     )
   }
 
-  if (!!byId) return getTaskById()
-  if (!!byName) return getTaskByName()
+  function getTask () {
+    try {
+      if (id !== null) {
+        return getTaskById()
+      }
+      return getTaskByName()
+    } catch (err) {
+      console.log(err)
+      throw new Error(err)
+    }
+  }
+
+  return {
+    singleTask: getTask(),
+    getTaskById,
+    getTaskByName
+  }
 }

@@ -10,17 +10,13 @@ import {
 } from './components'
 
 export function TaskInfoPage () {
+  const { pathname, state } = useLocation()
+  const { singleTask } = useGetTasks(state, pathname)
+  if (!singleTask) return <Navigate to='/' />
+  const { task, note, done, created, tags, id } = singleTask
+
   const navigate = useNavigate()
   const onNavigate = () => navigate('/')
-  const { pathname, state } = useLocation()
-  const singleTask =
-    state !== null
-      ? useGetTasks({ byId: state })
-      : useGetTasks({ byName: pathname })
-
-  if (!singleTask) return <Navigate to='/' />
-
-  const { task, note, done, created, tags, id } = singleTask
 
   return (
     <div className='flex flex-col gap-3 mx-auto mb-4 text-c-text w-full  sm:max-w-2xl pt-4 pb-6 px-5 bg-c-box'>
