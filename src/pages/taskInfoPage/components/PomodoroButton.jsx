@@ -1,13 +1,13 @@
 import { GiTomato, GiPauseButton, GiPlayButton } from 'react-icons/gi'
 import { TaskInfoButton } from '.'
 
-export const PomodoroButton = ({ isActive, start, setStart, onSetPomodoro }) => {
+export const PomodoroButton = ({ isActive, start, setStart, onAddPomodoro }) => {
   return (
     <>
       {!isActive ? (
         <TaskInfoButton
           text='Set a pomo'
-          onClick={onSetPomodoro}
+          onClick={onAddPomodoro}
           icon={<GiTomato className='ml-1 text-lg' />}
         />
       ) : !start ? (

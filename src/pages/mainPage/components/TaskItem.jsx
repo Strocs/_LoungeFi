@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { removeAccentsMark } from '@services'
+import { removeAccentsMark } from '@utils'
 import { FiArrowUpRight } from 'react-icons/fi  '
 import { DeleteTask, DoneButton } from '.'
 

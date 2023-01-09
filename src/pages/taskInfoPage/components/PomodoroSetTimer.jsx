@@ -2,27 +2,27 @@ export const PomodoroSetTimer = () => {
   return (
     <div>
       <form className='flex justify-between font-extralight text-center'>
-        <label for='work'>
+        <label>
           Work
           <input
             name='work'
             type='text'
             className='bg-c-box block max-w-[5rem] font-normal outline-1 outline-dashed outline-c-text text-center'
-            value='25:00'
+            defaultValue='25:00'
           />
         </label>
 
-        <label className='text-' for='rest'>
+        <label>
           Rest
           <input
             name='rest'
             type='text'
             className='bg-c-box block max-w-[5rem] font-normal outline-1 outline-dashed outline-c-text text-center'
-            value='15:00'
+            defaultValue='15:00'
           />
         </label>
 
-        <label className='text-' for='intervals'>
+        <label>
           Intervals
           <input
             name='intervals'

@@ -1,4 +1,4 @@
-import { formatDate } from '@services'
+import { formatDate } from '@utils'
 
 export const CreationDate = ({ created }) => {
   const createdDate = formatDate(created)

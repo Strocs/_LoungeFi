@@ -4,9 +4,9 @@ import { useLocalStorage } from '@hooks'
 const ACTIVE_CLASS = 'dark'
 
 export function useDarkMode () {
-  const storageValue = useLocalStorage({ key: ACTIVE_CLASS })
+  const storedValue = useLocalStorage({ key: ACTIVE_CLASS })
 
-  const [darkMode, setDarkMode] = useState(storageValue)
+  const [darkMode, setDarkMode] = useState(storedValue)
 
   const { matches } = window.matchMedia('(prefers-color-scheme: dark)')
   const isEnabled = typeof darkMode !== 'undefined' ? darkMode : matches
