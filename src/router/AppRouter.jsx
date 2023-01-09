@@ -1,10 +1,10 @@
-import { lazy, Suspense } from 'react'
+// import { lazy, Suspense } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { TasksPage } from '@pages'
-// import TaskInfoPage from '@pages'
+import TaskInfoPage from '@pages'
 import { Header } from '@components'
 
-const TaskInfoPage = lazy(() => import('@pages'))
+// const TaskInfoPage = lazy(() => import('@pages'))
 
 export function AppRouter () {
   return (
@@ -15,10 +15,9 @@ export function AppRouter () {
           <Route
             path='/:id'
             element={
-              // TODO: Realizar el skeleton loader
-              <Suspense fallback={<p>Loading...</p>}>
-                <TaskInfoPage />{' '}
-              </Suspense>
+              // <Suspense fallback={<p>Loading...</p>}>
+              <TaskInfoPage />
+              // </Suspense>
             }
           />
         </Route>

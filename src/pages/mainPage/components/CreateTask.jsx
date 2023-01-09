@@ -23,7 +23,7 @@ export function CreateTask () {
           className='w-full bg-c-box outline-none text-sm text-c-text placeholder:text-c-gray placeholder:font-extralight'
           type='text'
           ref={newTaskRef}
-          placeholder='Add a new mission!'
+          placeholder='Add a new task'
         />
       </form>
     </div>
