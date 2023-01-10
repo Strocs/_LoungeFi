@@ -49,7 +49,7 @@
 
 I know, a lot a students do a 'todo-app' 🥱, but what motivated me to do this is apply new technologies that I was learning 🤓. In this particular project, I used redux for state management and react-router for a little feature, nothing fancy.
 
-But, by my surprise, this app begin to be used by my inner circle and friends for his daily task, and I'm currently hearing all they feedback to keep adding new features and keep improving myself 😁.
+But, by my surprise, this app began to be used by my inner circle and friends for his daily task, and I'm currently hearing all they feedback to keep adding new features and keep improving myself 😁.
 
 ## Features
 
