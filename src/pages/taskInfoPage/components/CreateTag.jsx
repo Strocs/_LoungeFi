@@ -12,6 +12,7 @@ export function CreateTag({ id, tags }) {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
+		//TODO: wrap this fn on a useCallback hook for optimization
 		const closeDropdown = e => {
 			if (!suggestionsRef.current || suggestionsRef.current.contains(e.target)) {
 				return
