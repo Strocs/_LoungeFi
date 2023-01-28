@@ -8,7 +8,7 @@ export function TagBar ({ created, done, tags, id }) {
         <TagItem key={tag} text={tag} id={id} />
       ))}
       <li>
-        <CreateTag id={id} />
+        <CreateTag id={id} tags={tags} />
       </li>
     </ul>
   )
