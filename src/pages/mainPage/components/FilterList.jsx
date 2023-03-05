@@ -1,8 +1,8 @@
-import { useSelector } from 'react-redux'
+import { useTaskStore } from '@store'
 import { FilterItem } from '.'
 
 export function FilterList () {
-  const { filterItems } = useSelector(state => state.taskDone)
+  const filterItems = useTaskStore(state => state.filterItems)
 
   return (
     <div className='flex flex-wrap gap-2 h-min'>

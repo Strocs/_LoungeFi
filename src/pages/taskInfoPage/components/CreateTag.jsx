@@ -1,15 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { addTag } from '@store'
+import { useTaskStore } from '@store'
 import { TagSuggestions } from '.'
 
 export function CreateTag({ id, tags }) {
 	const [showDropdown, setShowDropdown] = useState(false)
-	const { filterItems } = useSelector(state => state.taskDone)
+	const filterItems = useTaskStore(state => state.filterItems)
+	const addTag = useTaskStore(state => state.addTag)
 	const filters = filterItems.slice(3).filter(item => !tags.includes(item))
 	const suggestionsRef = useRef()
 	const tagRef = useRef(null)
-	const dispatch = useDispatch()
 
 	useEffect(() => {
 		//TODO: wrap this fn on a useCallback hook for optimization
@@ -30,13 +29,13 @@ export function CreateTag({ id, tags }) {
 	const handleSubmit = e => {
 		e.preventDefault()
 		if (tagRef.current !== null && tagRef.current.value.length > 1) {
-			dispatch(addTag({ id, tag: tagRef.current.value }))
+			addTag({ id, tag: tagRef.current.value })
 			tagRef.current.value = ''
 		}
 	}
 
 	const handleSelectTag = tag => {
-		dispatch(addTag({ id, tag }))
+		addTag({ id, tag })
 		tagRef.current.focus()
 	}
 

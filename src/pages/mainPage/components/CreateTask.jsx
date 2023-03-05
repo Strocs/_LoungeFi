@@ -1,11 +1,10 @@
+import { useTaskStore } from '@store'
 import { useRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { RiTodoFill } from 'react-icons/ri'
-import { addTask } from '@store'
 
 export function CreateTask() {
-	const { filter } = useSelector(state => state.taskDone)
-	const dispatch = useDispatch()
+	const filter = useTaskStore(state => state.filter)
+	const addTask = useTaskStore(state => state.addTask)
 	const newTaskRef = useRef(null)
 
 	let tag = ''
@@ -16,7 +15,7 @@ export function CreateTask() {
 	const handleSubmit = e => {
 		e.preventDefault()
 		if (newTaskRef.current !== null && newTaskRef.current.value.length > 1) {
-			dispatch(addTask({ task: newTaskRef.current.value, tag }))
+			addTask({ task: newTaskRef.current.value, tag })
 			newTaskRef.current.value = ''
 		}
 	}
