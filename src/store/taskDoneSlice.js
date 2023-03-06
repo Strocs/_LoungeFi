@@ -29,8 +29,8 @@ export const useTaskStore = create((set, get) => ({
 					done: false,
 					created: new Date().getTime(),
 					tags: !!tag ? [tag] : [],
-					...state.tasks,
 				},
+				...state.tasks,
 			],
 		}))
 		get().updateFiltersAndLocalStorage()
@@ -74,6 +74,7 @@ export const useTaskStore = create((set, get) => ({
 					}
 					return task
 				}
+				return task
 			}),
 		}))
 		get().updateFiltersAndLocalStorage()
@@ -85,6 +86,7 @@ export const useTaskStore = create((set, get) => ({
 					task.tags = task.tags.filter(tag => tag !== taskTag.toLowerCase())
 					return task
 				}
+				return task
 			}),
 		}))
 		get().updateFiltersAndLocalStorage()
