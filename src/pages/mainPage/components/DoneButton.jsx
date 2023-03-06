@@ -11,7 +11,7 @@ export function DoneButton({ done, id }) {
 			onClick={() => {
 				toggleDone(id)
 			}}
-			className={`h-5 w-5 rounded-full text-c-text flex-shrink-0 ${done ? 'bg-c-text' : 'border border-c-text border-dashed'}`}
+			className={`h-4 w-4 rounded-full text-c-text flex-shrink-0 ${done ? 'bg-c-text' : 'border-2 border-c-text'}`}
 		>
 			{done && <BsCheck className='m-auto fill-c-bg' />}
 		</button>

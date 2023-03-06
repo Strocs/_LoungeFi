@@ -4,14 +4,23 @@ import { CreateTask, DeleteDones, FilterList, TasksList } from './components'
 export function TasksPage() {
 	return (
 		<>
-				<Outlet />
+			<Outlet />
 			<main className='m-auto w-full'>
-				<section className='flex flex-col gap-4 mb-6 mx-auto w-full max-w-2xl px-4'>
-					{/* <FilterList /> */}
-					<CreateTask />
-					<TasksList />
+				<FilterList />
+				<section className='mx-4 h-[26rem] rounded-xl'>
+					<div className='grid gap-2 px-4'>
+						<CreateTask />
+						<div className='overflow-y-scroll scroll h-80'>
+							<TasksList />
+						</div>
+					</div>
 					{/* <DeleteDones /> */}
 				</section>
+				<div className='flex mx-8 justify-between mt-4'>
+					<div className='h-20 bg-zinc-800 w-20 rounded-lg'></div>
+					<div className='h-20 bg-zinc-800 w-20 rounded-lg'></div>
+					<div className='h-20 bg-zinc-800 w-20 rounded-lg'></div>
+				</div>
 			</main>
 		</>
 	)

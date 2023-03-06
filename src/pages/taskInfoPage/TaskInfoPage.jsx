@@ -21,8 +21,8 @@ export function TaskInfoPage() {
 	return (
 		<>
 			<div className='absolute z-0 w-full top-0 bottom-0 h-full backdrop-blur-sm'></div>
-			<section className='absolute grid place-content-center z-10 px-4 w-full h-full -mt-16 overflow-x-hidden'>
-				<div className='grid gap-3 text-c-text rounded-xl pt-4 pb-6 bg-c-box px-5'>
+			<section className='absolute grid place-content-center z-10 px-4 w-full h-full -mt-16'>
+				<div className='grid gap-3 text-c-text rounded-xl pt-4 pb-6 bg-c-bg px-5'>
 					<ModifyTask task={task} id={id} />
 					<CreationDate created={created} />
 					<div className='flex items-center gap-2'>
@@ -37,12 +37,14 @@ export function TaskInfoPage() {
 
 					<Pomodoro id={id} />
 
-          <div className='flex gap-3 w-auto'>
-            <div className='h-20 bg-slate-500 w-20 rounded-lg'>
+          <div className='flex flex-shrink-0 gap-3 overflow-x-scroll'>
+            <div className='min-h-20 w-full h-full bg-slate-500 min-w-20 rounded-lg'>
             </div>
-            <div className='h-20 bg-slate-500 w-20 rounded-lg'>
+            <div className='min-h-20 bg-slate-500 min-w-20 rounded-lg'>
             </div>
-            <div className='h-20 bg-slate-500 w-20 rounded-lg'>
+            <div className='min-h-20 bg-slate-500 min-w-20 rounded-lg'>
+            </div>
+            <div className='min-h-20 bg-slate-500 min-w-20 rounded-lg'>
             </div>
           </div>
 				</div>
