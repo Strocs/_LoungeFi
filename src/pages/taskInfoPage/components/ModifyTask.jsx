@@ -31,9 +31,9 @@ export function ModifyTask({ task, id }) {
 
 	return (
 		<form onSubmit={onTaskEdit} className='flex gap-2 items-center'>
-			<input disabled={isDisabled} type='text' className='w-full text-lg bg-c-bg focus:outline-1 focus:outline-c-text focus:outline-dashed' ref={taskRef} defaultValue={task} />
+			<input disabled={isDisabled} type='text' className='w-full text-lg leading-none font-semibold bg-c-bg focus:outline-1 focus:outline-c-text focus:outline-dashed' ref={taskRef} defaultValue={task} />
 			<button type='button' aria-label='Edit this task' onClick={onEdit} className={`${isDisabled ? 'text-c-text' : 'text-green-500'}`}>
-				<BsPencilSquare className='text-2xl' />
+				<BsPencilSquare className='text-lg' />
 			</button>
 		</form>
 	)

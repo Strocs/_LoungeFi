@@ -1,8 +1,9 @@
 import { useTaskStore } from '@store'
-import { useRef } from 'react'
-import { RiTodoFill } from 'react-icons/ri'
+import { useRef, useState } from 'react'
+import { BsPlusCircleFill } from 'react-icons/bs'
 
 export function CreateTask() {
+	const [isActive, setIsActive] = useState(false)
 	const filter = useTaskStore(state => state.filter)
 	const addTask = useTaskStore(state => state.addTask)
 	const newTaskRef = useRef(null)
@@ -21,11 +22,11 @@ export function CreateTask() {
 	}
 
 	return (
-		<div className='flex items-center gap-4 w-full'>
-			<RiTodoFill className='fill-c-text text-lg' />
-			<form className='flex-grow' onSubmit={handleSubmit}>
-				<input className='w-full bg-zinc-900 outline-none text-sm text-c-text placeholder:text-c-gray placeholder:font-extralight' type='text' ref={newTaskRef} placeholder='Add a new task' />
+		<div className='flex gap-4 items-center justify-end'>
+			<form className={`${isActive ? 'w-full' : 'w-0'} flex items-center gap-4 bg-c-box rounded-full overflow-hidden transition-all duration-200 ease-in`} onSubmit={handleSubmit}>
+				<input className='w-full bg-c-box outline-none text-xs text-c-text px-4 py-1' type='text' ref={newTaskRef} />
 			</form>
+			<BsPlusCircleFill className='flex-shrink-0 fill-c-text text-lg w-6 h-6 cursor-pointer' onClick={() => setIsActive(!isActive)} />
 		</div>
 	)
 }

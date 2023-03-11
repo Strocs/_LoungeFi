@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { PomodoroButton, PomodoroCountdown, PomodoroSetTimer, TaskInfoButton } from '.'
 
 export const Pomodoro = ({ id }) => {
-	const [start, setStart] = useState(false)
+	const [start, setStart] = useState(true)
 	const { pomodoro, addPomodoro, deletePomodoro, setTimers } = usePomodoro(id)
 
 	const onAddPomodoro = () => {
@@ -11,13 +11,12 @@ export const Pomodoro = ({ id }) => {
 	}
 
 	return (
-		<>
-			<PomodoroSetTimer />
-			{start && <PomodoroCountdown />}
-			<div className='flex w-full gap-3'>
-				{/* TODO: Add pomodoro feat */}
-				<PomodoroButton isActive={start} start={start} setStart={setStart} onAddPomodoro={onAddPomodoro} />
+		<div className='grid gap-3'>
+			<div className='flex justify-between items-center'>
+				{start && <PomodoroCountdown />}
+				<PomodoroSetTimer />
 			</div>
-		</>
+			<PomodoroButton isActive={start} start={start} setStart={setStart} onAddPomodoro={onAddPomodoro} />
+		</div>
 	)
 }
