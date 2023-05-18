@@ -16,7 +16,7 @@ const button = tv({
 		},
 		size: {
 			sm: 'text-[10px]',
-			md: 'text-1',
+			md: 'text-[12px]',
 			lg: 'text-2',
 		},
 		padding: {
@@ -41,20 +41,26 @@ const button = tv({
 	},
 })
 
-export const Button = ({ children, padding, size, color, border, disabled, onClick = () => {}, ...props }) => {
-	const [clicked, setClicked] = useState(false)
+export const Button = ({ children, padding = '', size = '', color = '', border = '', onClick = () => {}, ...props }) => {
+	const [isAnimationStart, setIsAnimationStart] = useState(false)
+
+	const animationShoot = () => {
+		setIsAnimationStart(true)
+		setTimeout(() => {
+			setIsAnimationStart(false)
+		}, 200)
+	}
 
 	const handleClick = () => {
+		if (props.animated) {
+			animationShoot()
+		}
 		onClick()
-		setClicked(true)
-		setTimeout(() => {
-			setClicked(false)
-		}, 200)
 	}
 
 	return (
 		<button
-			className={button({ color, size, padding, border, disabled, animated: clicked })}
+			className={button({ color, size, padding, border, disabled: props.disabled, animated: isAnimationStart })}
 			onClick={handleClick}
 		>
 			{children}
