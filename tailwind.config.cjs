@@ -8,14 +8,23 @@ module.exports = {
 				dark: '#3E3E3E',
 				red: '#D04F4F',
 				green: '#5DD05A',
-				grey: '#707070',
+				grey: '#9F9F9F',
 				lightgrey: '#D9D9D9',
 				'25grey': 'rgba(217, 217, 217, 0.25)',
-				'c-bg': 'var(--main-background)',
+				'c-bg': '#0F1013',
 				'c-box': 'var(--box-background)',
 				'c-gray': 'var(--gray)',
 				'c-red': 'var(--red)',
 			},
+			keyframes: {
+				buttonTouched: {
+					'0%, 100%': { transform: 'translate3d(0, 0, 0)' },
+					'50%': { transform: 'translate3d(-3px, 3px, 0))' },
+				},
+			},
+			animation: {
+				touch: 'buttonTouched 200ms ease-in-out',
+			}
 		},
 	},
 	plugins: [],

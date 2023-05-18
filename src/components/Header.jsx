@@ -1,13 +1,11 @@
 import { ThemeBar, Title, UserAvatar } from '.'
+import { PomodoroBox } from './PomodoroBox'
 
 export function Header() {
 	return (
-		<header className='flex items-center justify-between w-full py-2 max-w-2xl px-8'>
+		<header className='flex items-start justify-between w-full py-4 max-w-2xl px-4'>
 			<Title />
-			<div className='flex items-center gap-3'>
-				{/* <ThemeBar /> */}
-				<UserAvatar />
-			</div>
+			<PomodoroBox />
 		</header>
 	)
 }

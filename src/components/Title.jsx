@@ -1,10 +1,12 @@
-export function Title() {
+export function Title({ name = 'Ignacio' }) {
 	return (
-		<div className='text-c-text grid gap-2'>
-			<h1 className='text-2xl font-extralight leading-none inline-block'>
-				task<b className='font-black'>Done</b>_
+		<div className='text-white grid gap-1'>
+			<h1 className='text-3xl font-extralight leading-none inline-block'>
+				task<b className='font-extrabold'>Done</b>_
 			</h1>
-			<span className='-mt-1 text-xs block'><b>Ignacio Andrés</b>'s Lounge</span>
+			<span className='-mt-1 text-xs font-light block text-grey'>
+				Wellcome {name}
+			</span>
 		</div>
 	)
 }
