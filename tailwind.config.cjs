@@ -24,8 +24,8 @@ module.exports = {
 			},
 			animation: {
 				touch: 'buttonTouched 200ms ease-in-out',
-			}
+			},
 		},
 	},
-	plugins: [],
+	plugins: [require('tailwind-scrollbar-hide')],
 }
