@@ -1,5 +1,5 @@
-import { ThemeBar, Title, UserAvatar } from '.'
-import { PomodoroBox } from './PomodoroBox'
+import { Title } from './ui'
+import { PomodoroBox } from '.'
 
 export function Header() {
 	return (

@@ -1,7 +1,4 @@
 export * from './Header'
-export * from './ThemeBar'
-export * from './ThemeButton'
-export * from './TasksLeft'
-export * from './Title'
-export * from './UserAvatar'
-
+export * from './Pomodoro'
+export * from './TaskGroups'
+export * from './TasksPanel'
