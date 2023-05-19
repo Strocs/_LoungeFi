@@ -5,16 +5,14 @@ module.exports = {
 		extend: {
 			colors: {
 				blue: '#4FB9D0',
-				dark: '#3E3E3E',
+				darkgrey: '#3E3E3E',
 				red: '#D04F4F',
 				green: '#5DD05A',
 				grey: '#9F9F9F',
 				lightgrey: '#D9D9D9',
-				'25grey': 'rgba(217, 217, 217, 0.25)',
-				'c-bg': '#0F1013',
-				'c-box': 'var(--box-background)',
-				'c-gray': 'var(--gray)',
-				'c-red': 'var(--red)',
+				opacitygrey: 'rgba(217, 217, 217, 0.25)',
+				dark: '#0F1013',
+				opacitydark: '#00000080',
 			},
 			keyframes: {
 				buttonTouched: {

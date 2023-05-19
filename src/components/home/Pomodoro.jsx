@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Button } from '@ui'
 
-export const PomodoroBox = () => {
+export const Pomodoro = () => {
 	const [active, setActive] = useState(false)
 	return (
 		<div className='flex items-center justify-between px-4 bg-white w-32 h-7 rounded-full shadow-[-3px_4px_0_0] shadow-blue'>

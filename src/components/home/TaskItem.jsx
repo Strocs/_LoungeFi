@@ -13,14 +13,14 @@ export const TaskItem = ({ task }) => {
 				<TiTick />
 			</Button>
 			<p className='leading-none text-sm w-full'>{task}</p>
-			<div className='flex items-center self-end gap-2'>
+			<div className='flex items-center'>
 				<Button
 					color='danger'
 					padding='none'
 				>
 					<HiOutlineTrash className='h-4 w-4' />
 				</Button>
-				<div className='flex flex-col gap-1 items-center w-4 cursor-grab'>
+				<div className='flex flex-col gap-1 items-end w-4 cursor-grab'>
 					<span className='w-[2px] h-[2px] rounded-full bg-white' />
 					<span className='w-[2px] h-[2px] rounded-full bg-white' />
 					<span className='w-[2px] h-[2px] rounded-full bg-white' />

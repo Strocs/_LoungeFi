@@ -12,7 +12,7 @@ export const TaskGroups = () => {
 	}
 
 	return (
-		<div className='flex gap-3 w-full px-4 my-1'>
+		<div className='flex gap-2 w-full my-1'>
 			{/* <CreateGroup /> */}
 			<button className='text-white'>
 				<GoPlus className='h-[19px] w-[19px]' />
