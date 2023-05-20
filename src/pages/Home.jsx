@@ -1,9 +1,25 @@
-import { Pomodoro, TaskGroups, TasksPanel, NowPlaying } from '@components/home'
-import { Header } from '@ui'
+import { Pomodoro, TaskGroups, TasksPanel, NowPlaying, Player } from '@components/home'
+import { Button, Header } from '@ui'
+import { useState } from 'react'
 
-const currentSong = 'Lo Fi Stream - Pedro Pascal'
+const currentRadio = 'lofi hip hop radio 📚 - beats to relax/study to'
+const avatarUrl = 'https://avatars.githubusercontent.com/u/71996940?v=4'
+const radioStreaming = ['https://i.ytimg.com/vi/jfKfPfyJRdk/maxresdefault.jpg']
 
 export const Home = () => {
+	const [isPaused, setIsPaused] = useState(true)
+	const [isStopped, setIsStopped] = useState(true)
+
+	const handlePlay = () => {
+		setIsPaused(!isPaused)
+		setIsStopped(false)
+	}
+
+	const handleStop = ref => {
+		setIsPaused(true)
+		setIsStopped(true)
+	}
+
 	return (
 		<>
 			<Header>
@@ -13,19 +29,41 @@ export const Home = () => {
 				<TaskGroups />
 				<TasksPanel />
 			</main>
-			<footer className='text-white h-24 overflow-hidden'>
+			<footer className='h-24'>
 				<div className='px-6 py-1 pb-4 flex justify-between items-center'>
-					<div className='h-7 w-7 bg-white rounded-full shadow-[-3px_3px_0_0] shadow-blue'></div>
-					<div className='flex gap-4'>
-						<div className='h-7 w-7 bg-white'></div>
-						<div className='h-7 w-7 bg-white'></div>
-						<div className='h-7 w-7 bg-white'></div>
-						<div className='h-7 w-7 bg-white'></div>
-					</div>
-					<div className='h-7 w-7 bg-white rounded-full shadow-[-3px_3px_0_0] shadow-blue'></div>
+					<Button
+						size=''
+						padding='none'
+						className='overflow-hidden'
+						animated
+					>
+						<img
+							src={avatarUrl}
+							alt=''
+							className='h-7 w-7'
+						/>
+					</Button>
+					<Player
+						isPaused={isPaused}
+						onPlay={handlePlay}
+						onStop={handleStop}
+					/>
 				</div>
-				<NowPlaying song={currentSong} />
+				<NowPlaying
+					radio={currentRadio}
+					isStopped={isStopped}
+					isPaused={isPaused}
+				/>
 			</footer>
+			{!isPaused && (
+				<section className='absolute top-0 bottom-0 w-full left-0 right-0 -z-20 overflow-hidden'>
+					<img
+						src={radioStreaming[0]}
+						alt=''
+						className='h-full object-cover'
+					/>
+				</section>
+			)}
 		</>
 	)
 }
