@@ -1,6 +1,7 @@
 import { Button } from '@ui'
-import { HiOutlineTrash } from 'react-icons/hi'
 import { TiTick } from 'react-icons/ti'
+import { Trash } from '../icons/Trash'
+import { Check } from '../icons/Check'
 
 export const TaskItem = ({ task }) => {
 	return (
@@ -8,17 +9,17 @@ export const TaskItem = ({ task }) => {
 			<Button
 				border='thick'
 				color='transparent'
-				padding='none'
+				padding='sm'
 			>
-				<TiTick />
+				<Check />
 			</Button>
 			<p className='leading-none text-sm w-full'>{task}</p>
 			<div className='flex items-center'>
 				<Button
 					color='danger'
-					padding='none'
+					padding='sm'
 				>
-					<HiOutlineTrash className='h-4 w-4' />
+					<Trash />
 				</Button>
 				<div className='flex flex-col gap-1 items-end w-4 cursor-grab'>
 					<span className='w-[2px] h-[2px] rounded-full bg-white' />
