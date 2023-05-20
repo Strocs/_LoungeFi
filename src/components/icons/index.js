@@ -1,0 +1,7 @@
+export * from './Trash'
+export * from './Check'
+export * from './Play'
+export * from './Skip'
+export * from './Pause'
+export * from './Stop'
+export * from './Volumen'
