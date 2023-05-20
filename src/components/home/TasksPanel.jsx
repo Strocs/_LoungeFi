@@ -8,7 +8,10 @@ export const TasksPanel = () => {
 		<div className='flex flex-col my-4 h-full text-white rounded-2xl bg-opacitydark'>
 			<ul className='flex flex-col h-full gap-4 p-6 overflow-y-scroll scrollbar-hide'>
 				{mockTasks.map(task => (
-					<TaskItem task={task} />
+					<TaskItem
+						key={task}
+						task={task}
+					/>
 				))}
 			</ul>
 			<button className='bg-white text-dark w-10 h-10 rounded-full my-4 mx-auto flex-shrink-0'>

@@ -20,6 +20,7 @@ export const TaskGroups = () => {
 			<div className='flex gap-3 w-full px-1 overflow-x-scroll py-1 scrollbar-hide'>
 				{groups.map(group => (
 					<Button
+						key={group}
 						size='md'
 						color={isActive === group ? 'active' : ''}
 						onClick={() => onClickGroupButton(group)}
