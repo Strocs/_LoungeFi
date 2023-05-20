@@ -15,13 +15,13 @@ module.exports = {
 				opacitydark: '#00000080',
 			},
 			keyframes: {
-				buttonTouched: {
-					'0%, 100%': { transform: 'translate3d(0, 0, 0)' },
-					'50%': { transform: 'translate3d(-3px, 3px, 0))' },
+				nowPlaying: {
+					'0%': { transform: 'translateX(0%)' },
+					'100%': { transform: 'translateX(100%)' },
 				},
 			},
 			animation: {
-				touch: 'buttonTouched 200ms ease-in-out',
+				nowPlaying: 'nowPlaying 4s linear infinite',
 			},
 		},
 	},
