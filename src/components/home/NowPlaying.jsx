@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-export const NowPlaying = ({ radio, isPaused, isStopped }) => {
+export const NowPlaying = ({ radio, isPlaying, isStopped }) => {
 	const radioWrapperRef = useRef(null)
 	const containerRef = useRef(null)
 
@@ -29,17 +29,21 @@ export const NowPlaying = ({ radio, isPaused, isStopped }) => {
 	}
 
 	useEffect(() => {
-		animationLoop()
+		if (!isPlaying) {
+			animationLoop().pause()
+		} else {
+			animationLoop().play()
+		}
 	}, [radio])
 
 	useEffect(() => {
 		const loop = animationLoop()
-		if (isPaused) {
+		if (!isPlaying) {
 			loop.pause()
 		} else {
 			loop.play()
 		}
-	}, [isPaused])
+	}, [isPlaying])
 
 	return (
 		<div
@@ -52,11 +56,11 @@ export const NowPlaying = ({ radio, isPaused, isStopped }) => {
 			>
 				<p className='text-[0.75rem] font-light flex-shrink-0'>
 					<b className='font-medium'>Now Playing: </b>
-					{radio}
+					{radio.slice(0, 30) + '...'}
 				</p>
 				<p className='text-[0.75rem] font-light flex-shrink-0'>
 					<b className='font-medium'>Now Playing: </b>
-					{radio}
+					{radio.slice(0, 30) + '...'}
 				</p>
 			</div>
 		</div>
