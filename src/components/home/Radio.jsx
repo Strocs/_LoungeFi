@@ -7,7 +7,7 @@ export const Radio = ({ renderOnLeft }) => {
 	const activeRadio = useLoFiRadioStore(state => state.activeRadio)
 
 	return (
-		<footer className='h-24'>
+		<footer className=''>
 			<div className='px-6 py-1 pb-4 flex justify-between items-center'>
 				{renderOnLeft}
 				<RadioController isPlaying={isPlaying} />

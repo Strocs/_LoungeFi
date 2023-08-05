@@ -4,24 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  height: 100%;
+:root {
   min-height: 100vh;
+  height: 100%;
   background-color: #0F1013;
-}
-
-body {
-  height: 100%;
-}
-
-#root {
-  position: relative;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 0 1rem;
-}
-
-html {
   font-family: 'Poppins', sans-serif;
 }

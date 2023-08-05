@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { tv } from 'tailwind-variants'
 
 const button = tv({
-	base: 'flex items-center rounded-full font-bold shadow-[-3px_3px_0_0] tracking-tight transition-all duration-200',
+	base: 'flex items-center rounded-full font-bold shadow-[-3px_3px_0_0] tracking-tight transition-all duration-100',
 	variants: {
 		color: {
 			primary: 'bg-white text-dark shadow-blue hover:bg-blue hover:text-white hover:shadow-white',
