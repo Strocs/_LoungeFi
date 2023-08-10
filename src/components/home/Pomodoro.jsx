@@ -35,7 +35,7 @@ export const Pomodoro = () => {
 				<div className='flex gap-[5px]'>
 					{structure.map((count, index) => (
 						<span
-							key={count} // change this value
+							key={count}
 							className={`w-[6px] h-[6px] rounded ${
 								index + 1 === currentStep ? 'bg-blue' : 'bg-lightgrey'
 							}`}
