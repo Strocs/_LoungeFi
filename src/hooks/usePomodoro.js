@@ -1,56 +1,72 @@
-import { useState } from 'react'
-import { useLocalStorage } from './useLocalStorage'
-import { DEFAULT_TIMERS, STORAGE_POMODORO_ID } from '@constants'
+import { useEffect, useState } from 'react'
 
-export const usePomodoro = id => {
-  const storedValue = useLocalStorage({
-    key: STORAGE_POMODORO_ID,
-    initialValue: []
-  })
-  const [pomodoroList, setPomodoro] = useState(storedValue)
+// TODO: Refactor this code for optimizations
 
-  const addPomodoro = id => {
-    setPomodoro([
-      ...pomodoroList,
-      {
-        taskId: id,
-        minutes: DEFAULT_TIMERS.minutes,
-        seconds: DEFAULT_TIMERS.seconds,
-        intervals: DEFAULT_TIMERS.intervals
-      }
-    ])
-    useLocalStorage({ key: STORAGE_POMODORO_ID, value: pomodoroList })
-  }
-  const setTimers = (id, { minutes, seconds, intervals }) => {
-    setPomodoro(
-      pomodoroList.map(pomo => {
-        if (pomo.taskId === id) {
-          pomo.minutes = minutes
-          pomo.seconds = seconds
-          pomo.intervals = intervals
-          return pomo
-        }
-      })
-    )
-    useLocalStorage({ key: STORAGE_POMODORO_ID, value: pomodoroList })
-  }
-  const deletePomodoro = id => {
-    setPomodoro(
-      pomodoroList.map(pomo => {
-        if (pomo.taskId !== id) {
-          return pomo
-        }
-      })
-    )
-    useLocalStorage({ key: STORAGE_POMODORO_ID, value: pomodoroList })
-  }
+const initialState = {
+	currentWholeCicle: 0,
+	currentStep: 1,
+	minutes: 0,
+	seconds: 0,
+	isStart: false,
+}
 
-  const pomodoro = pomodoroList.find(pomo => pomo.taskId === id)
-  
-  return {
-    pomodoro,
-    addPomodoro,
-    setTimers,
-    deletePomodoro
-  }
+export const usePomodoro = ({ maxCicles, work, shortBreak, longBreak }) => {
+	const [pomodoro, setPomodoro] = useState({
+		...initialState,
+		minutes: work,
+	})
+
+	const { isStart, currentWholeCicle, currentStep, minutes, seconds } = pomodoro
+
+	useEffect(() => {
+		let interval
+
+		if (isStart) {
+			if (minutes === 0 && seconds === 0) {
+				if (currentWholeCicle === maxCicles) {
+					setPomodoro({
+						...initialState,
+						minutes: longBreak,
+					})
+				} else {
+					const isLast = currentStep === 4
+					setPomodoro({
+						...pomodoro,
+						currentWholeCicle: isLast ? currentWholeCicle + 1 : currentWholeCicle,
+						currentStep: isLast ? 1 : currentStep + 1,
+						minutes: currentStep % 2 === 0 ? work : shortBreak,
+					})
+				}
+			}
+
+			interval = setInterval(() => {
+				if (seconds > 0) {
+					setPomodoro({
+						...pomodoro,
+						seconds: seconds - 1,
+					})
+				} else if (minutes > 0) {
+					setPomodoro({
+						...pomodoro,
+						minutes: minutes - 1,
+						seconds: 59,
+					})
+				}
+			}, 1000)
+		}
+
+		return () => clearInterval(interval)
+	}, [pomodoro])
+
+	const togglePomodoro = () => {
+		setPomodoro({
+			...pomodoro,
+			isStart: !isStart,
+		})
+	}
+
+	return {
+		pomodoro,
+		togglePomodoro,
+	}
 }
