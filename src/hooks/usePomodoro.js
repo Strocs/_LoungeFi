@@ -1,72 +1,94 @@
 import { useEffect, useState } from 'react'
+import { formatTime } from '@utils'
 
-// TODO: Refactor this code for optimizations
-
-const initialState = {
-	currentWholeCicle: 0,
-	currentStep: 1,
-	minutes: 0,
-	seconds: 0,
+const initialValues = {
 	isStart: false,
+	currentCycle: 1,
+	currentStep: 1,
+	seconds: 0,
 }
 
-export const usePomodoro = ({ maxCicles, work, shortBreak, longBreak }) => {
+export const usePomodoro = ({ numberOfCycles, times: { work, shortBreak, longBreak }, alarmSound }) => {
 	const [pomodoro, setPomodoro] = useState({
-		...initialState,
+		...initialValues,
 		minutes: work,
 	})
 
-	const { isStart, currentWholeCicle, currentStep, minutes, seconds } = pomodoro
+	const { isStart, currentCycle, currentStep, minutes, seconds } = pomodoro
+
+	const soundSelected = new Audio(alarmSound)
 
 	useEffect(() => {
-		let interval
+		const togglePomodoroKeyDown = (e) => {
+			if (e.keyCode !== 32) return
+			togglePomodoro()
+		}
+
+		window.addEventListener('keydown', togglePomodoroKeyDown)
+		return () => {
+			window.removeEventListener('keydown', togglePomodoroKeyDown)
+		}
+	}, [])
+
+	useEffect(() => {
+		let countdown
 
 		if (isStart) {
 			if (minutes === 0 && seconds === 0) {
-				if (currentWholeCicle === maxCicles) {
-					setPomodoro({
-						...initialState,
-						minutes: longBreak,
-					})
-				} else {
-					const isLast = currentStep === 4
-					setPomodoro({
-						...pomodoro,
-						currentWholeCicle: isLast ? currentWholeCicle + 1 : currentWholeCicle,
-						currentStep: isLast ? 1 : currentStep + 1,
-						minutes: currentStep % 2 === 0 ? work : shortBreak,
-					})
-				}
+				changeStep()
 			}
 
-			interval = setInterval(() => {
-				if (seconds > 0) {
-					setPomodoro({
-						...pomodoro,
-						seconds: seconds - 1,
-					})
-				} else if (minutes > 0) {
-					setPomodoro({
-						...pomodoro,
-						minutes: minutes - 1,
-						seconds: 59,
-					})
-				}
+			countdown = setInterval(() => {
+				setPomodoro((prevPomodoro) => ({
+					...prevPomodoro,
+					seconds: prevPomodoro.seconds > 0 ? prevPomodoro.seconds - 1 : 59,
+					minutes: prevPomodoro.seconds === 0 && prevPomodoro.minutes > 0 ? prevPomodoro.minutes - 1 : prevPomodoro.minutes,
+				}))
 			}, 1000)
 		}
 
-		return () => clearInterval(interval)
+		return () => clearInterval(countdown)
 	}, [pomodoro])
 
-	const togglePomodoro = () => {
-		setPomodoro({
-			...pomodoro,
-			isStart: !isStart,
-		})
+	function changeStep() {
+		playAlarm()
+		if (currentCycle === numberOfCycles && currentStep === 3) {
+			setPomodoro({
+				...initialValues,
+				minutes: longBreak,
+				isStart: false,
+				currentStep: 4,
+			})
+		} else {
+			const isLastStep = currentStep === 4
+			setPomodoro((prevPomodoro) => ({
+				...prevPomodoro,
+				currentCycle: isLastStep ? prevPomodoro.currentCycle + 1 : prevPomodoro.currentCycle,
+				currentStep: isLastStep ? initialValues.currentStep : prevPomodoro.currentStep + 1,
+				minutes: prevPomodoro.currentStep % 2 === 0 ? work : shortBreak,
+				isStart: false,
+			}))
+		}
+	}
+
+	function togglePomodoro() {
+		setPomodoro((prevPomodoro) => ({
+			...prevPomodoro,
+			isStart: !prevPomodoro.isStart,
+		}))
+	}
+
+	function playAlarm() {
+		soundSelected.play()
 	}
 
 	return {
 		pomodoro,
+		isStart,
+		longBreak: currentCycle === numberOfCycles && currentStep === 4,
+		currentStep,
+		minutes: formatTime(minutes),
+		seconds: formatTime(seconds),
 		togglePomodoro,
 	}
 }
