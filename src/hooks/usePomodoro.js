@@ -58,6 +58,7 @@ export const usePomodoro = ({ numberOfCycles, times: { work, shortBreak, longBre
 				minutes: longBreak,
 				isStart: false,
 				currentStep: 4,
+				currentCycle,
 			})
 		} else {
 			const isLastStep = currentStep === 4
@@ -90,5 +91,6 @@ export const usePomodoro = ({ numberOfCycles, times: { work, shortBreak, longBre
 		minutes: formatTime(minutes),
 		seconds: formatTime(seconds),
 		togglePomodoro,
+		changeStep,
 	}
 }
