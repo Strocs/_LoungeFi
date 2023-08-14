@@ -19,4 +19,9 @@ export default defineConfig({
 			'@icons': path.resolve(__dirname, './src/components/icons'),
 		},
 	},
+	test: {
+		globals: true,
+		environment: 'jsdom',
+		setupFiles: [path.resolve(__dirname, './__tests__/setup.js')],
+	},
 })
