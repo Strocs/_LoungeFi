@@ -1,7 +1,3 @@
-export const STORAGE_TASK_ID = 'task-done'
-
-export const DEFAULT_FILTER_ITEMS = ['All']
-
 export const STORAGE_POMODORO_ID = 'pomodoro'
 
 export const TIMER_DEFAULTS = {
