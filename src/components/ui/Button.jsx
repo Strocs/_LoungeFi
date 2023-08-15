@@ -6,7 +6,7 @@ const button = tv({
 	variants: {
 		color: {
 			primary: 'bg-white text-dark shadow-blue hover:bg-blue hover:text-white hover:shadow-white',
-			transparent: 'bg-transparent text-transparent shadow-blue hover:bg-blue hover:text-white',
+			transparent: 'bg-transparent text-transparent shadow-blue hover:bg-blue hover:text-white focus:bg-transparent focus:text-transparent',
 			done: 'bg-green text-white shadow-blue',
 			active: 'bg-blue text-white shadow-white',
 			danger: 'bg-white text-red shadow-red hover:bg-red hover:text-white hover:shadow-white',

@@ -2,12 +2,12 @@ import { useLoFiRadioStore } from '@store'
 import { NowPlaying, RadioController, BackgroundVideo } from '.'
 
 export const Radio = ({ renderOnLeft }) => {
-	const isPlaying = useLoFiRadioStore(state => state.isPlaying)
-	const isStopped = useLoFiRadioStore(state => state.isStopped)
-	const activeRadio = useLoFiRadioStore(state => state.activeRadio)
+	const isPlaying = useLoFiRadioStore((state) => state.isPlaying)
+	const isStopped = useLoFiRadioStore((state) => state.isStopped)
+	const activeRadio = useLoFiRadioStore((state) => state.activeRadio)
 
 	return (
-		<footer className=''>
+		<footer className='max-w-2xl w-full'>
 			<div className='px-6 py-1 pb-4 flex justify-between items-center'>
 				{renderOnLeft}
 				<RadioController isPlaying={isPlaying} />
