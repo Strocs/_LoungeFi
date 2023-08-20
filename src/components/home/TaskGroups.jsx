@@ -15,6 +15,7 @@ export const TaskGroups = () => {
 			{/* <CreateGroup /> */}
 			{isOpenInput ? (
 				<form
+					name='create-group'
 					action=''
 					className=''
 				>

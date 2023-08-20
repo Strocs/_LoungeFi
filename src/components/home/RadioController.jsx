@@ -11,25 +11,25 @@ export const RadioController = ({ isPlaying = false }) => {
 		<>
 			<div className='flex gap-4 text-white'>
 				<button
-					className='shadow-opacitygrey drop-shadow-[-5px_5px_0_rgba(0,0,0,0.25)]'
+					className='shadow-opacityGrey drop-shadow-[-5px_5px_0_rgba(0,0,0,0.25)]'
 					onClick={playLast}
 				>
 					<Skip reverse />
 				</button>
 				<button
-					className='shadow-opacitygrey drop-shadow-[-5px_5px_0_rgba(0,0,0,0.25)]'
+					className='shadow-opacityGrey drop-shadow-[-5px_5px_0_rgba(0,0,0,0.25)]'
 					onClick={onPlayOrPause}
 				>
 					{isPlaying ? <Pause /> : <Play />}
 				</button>
 				<button
-					className='shadow-opacitygrey drop-shadow-[-5px_5px_0_rgba(0,0,0,0.25)]'
+					className='shadow-opacityGrey drop-shadow-[-5px_5px_0_rgba(0,0,0,0.25)]'
 					onClick={onStop}
 				>
 					<Stop />
 				</button>
 				<button
-					className='shadow-opacitygrey drop-shadow-[-5px_5px_0_rgba(0,0,0,0.25)]'
+					className='shadow-opacityGrey drop-shadow-[-5px_5px_0_rgba(0,0,0,0.25)]'
 					onClick={playNext}
 				>
 					<Skip />
