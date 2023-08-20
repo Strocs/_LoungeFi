@@ -5,14 +5,14 @@ module.exports = {
 		extend: {
 			colors: {
 				blue: '#4FB9D0',
-				darkgrey: '#3E3E3E',
+				darkGrey: '#3E3E3E',
 				red: '#D04F4F',
 				green: '#5DD05A',
 				grey: '#9F9F9F',
 				lightgrey: '#D9D9D9',
-				opacitygrey: 'rgba(217, 217, 217, 0.25)',
+				opacityGrey: 'rgba(217, 217, 217, 0.25)',
 				dark: '#0F1013',
-				opacitydark: '#00000080',
+				opacityDark: '#0F101380',
 			},
 			keyframes: {
 				nowPlaying: {
