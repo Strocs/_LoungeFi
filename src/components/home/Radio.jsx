@@ -1,5 +1,5 @@
-import { useLoFiRadioStore } from '@store'
-import { NowPlaying, RadioController, BackgroundVideo } from '.'
+// import { useLoFiRadioStore } from '@store'
+// import { NowPlaying, RadioController, BackgroundVideo } from '@components/home'
 
 export const Radio = ({ renderOnLeft }) => {
   // const isPlaying = useLoFiRadioStore((state) => state.isPlaying)
@@ -13,16 +13,16 @@ export const Radio = ({ renderOnLeft }) => {
         {/* <RadioController isPlaying={isPlaying} /> */}
       </div>
       {/* <NowPlaying
-				radio={activeRadio.title}
-				isStopped={isStopped}
-				isPlaying={isPlaying}
-			/> */}
-      {/* {!isStopped && (
-				<BackgroundVideo
-					videoStreamURL={activeRadio.url}
-					isPlaying={isPlaying}
-				/>
-			)} */}
+        radio={activeRadio.title}
+        isStopped={isStopped}
+        isPlaying={isPlaying}
+      />
+      {!isStopped && (
+        <BackgroundVideo
+          videoStreamURL={activeRadio.url}
+          isPlaying={isPlaying}
+        />
+      )} */}
     </footer>
   )
 }

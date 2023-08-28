@@ -1,4 +1,10 @@
-import { Pause, Play, Skip, Stop, Volumen } from '@icons'
+import {
+  PauseIcon,
+  PlayIcon,
+  SkipIcon,
+  StopIcon,
+  VolumenIcon
+} from '@components/icons'
 import { useLoFiRadioStore } from '@store'
 
 export const RadioController = ({ isPlaying = false }) => {
@@ -14,29 +20,29 @@ export const RadioController = ({ isPlaying = false }) => {
           className='shadow-opacityGrey drop-shadow-[-5px_5px_0_rgba(0,0,0,0.25)]'
           onClick={playLast}
         >
-          <Skip reverse />
+          <SkipIcon reverse />
         </button>
         <button
           className='shadow-opacityGrey drop-shadow-[-5px_5px_0_rgba(0,0,0,0.25)]'
           onClick={onPlayOrPause}
         >
-          {isPlaying ? <Pause /> : <Play />}
+          {isPlaying ? <PauseIcon /> : <PlayIcon />}
         </button>
         <button
           className='shadow-opacityGrey drop-shadow-[-5px_5px_0_rgba(0,0,0,0.25)]'
           onClick={onStop}
         >
-          <Stop />
+          <StopIcon />
         </button>
         <button
           className='shadow-opacityGrey drop-shadow-[-5px_5px_0_rgba(0,0,0,0.25)]'
           onClick={playNext}
         >
-          <Skip />
+          <SkipIcon />
         </button>
       </div>
       <button className='h-7 w-7 bg-white rounded-full shadow-[-3px_3px_0_0] shadow-blue flex items-center justify-center text-dark'>
-        <Volumen />
+        <VolumenIcon />
       </button>
     </>
   )

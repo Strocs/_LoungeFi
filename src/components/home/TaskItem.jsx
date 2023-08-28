@@ -1,6 +1,5 @@
-import { Button } from '@ui'
-import { Trash } from '../icons/Trash'
-import { Check } from '../icons/Check'
+import { Button } from '@components/ui'
+import { TrashIcon, CheckIcon } from '@components/icons'
 import { useTaskStore } from '@store'
 
 export const TaskItem = ({ id, task, done }) => {
@@ -15,7 +14,7 @@ export const TaskItem = ({ id, task, done }) => {
         color={done ? 'done' : 'transparent'}
         padding='sm'
       >
-        <Check />
+        <CheckIcon />
       </Button>
       <p
         className={`leading-none text-sm w-full ${
@@ -26,7 +25,7 @@ export const TaskItem = ({ id, task, done }) => {
       </p>
       <div className='flex items-center'>
         <Button onClick={() => deleteTask(id)} color='danger' padding='sm'>
-          <Trash />
+          <TrashIcon />
         </Button>
         <div className='flex flex-col gap-1 items-end w-4 cursor-grab'>
           <span className='w-[2px] h-[2px] rounded-full bg-white' />

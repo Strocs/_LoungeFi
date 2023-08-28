@@ -1,8 +1,8 @@
-import { UserAvatar, Button } from '@ui'
+import { UserAvatar, Button } from '@components/ui'
 
 export const ProfileButton = () => {
   return (
-    <Button padding='none' className='overflow-hidden' animated>
+    <Button padding='none'>
       <UserAvatar />
     </Button>
   )

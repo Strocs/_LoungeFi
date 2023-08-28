@@ -1,4 +1,4 @@
-import { Button } from '@ui'
+import { Button } from '@components/ui'
 import { usePomodoro } from '@hooks'
 import { DEFAULT_POMODORO_VALUES } from '@constants'
 
@@ -14,9 +14,9 @@ export const Pomodoro = () => {
     })
 
   return (
-    <section className={styles.section}>
+    <section className='flex items-center justify-between px-3 bg-white w-32 h-7 rounded-full shadow shadow-blue'>
       <Button color='active' onClick={e => togglePomodoro(e)}>
-        <span className={styles.button}>{!isStart ? 'Start' : 'Pause'}</span>
+        {!isStart ? 'Start' : 'Pause'}
       </Button>
       <div className='flex flex-col w-11 justify-center'>
         <span className='font-bold leading-none tracking-tight text-dark flex items-center w-full mx-auto'>
@@ -43,10 +43,4 @@ export const Pomodoro = () => {
       </div>
     </section>
   )
-}
-
-const styles = {
-  section:
-    'flex items-center justify-between px-3 bg-white w-32 h-7 rounded-full shadow-[-3px_4px_0_0] shadow-blue',
-  button: 'leading-none -mt-[.1px] py-[2.75px] w-max'
 }

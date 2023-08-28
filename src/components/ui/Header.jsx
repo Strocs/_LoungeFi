@@ -1,4 +1,4 @@
-import { Title } from '.'
+import { Title } from '@components/ui'
 
 export function Header ({ renderOnRight }) {
   return (

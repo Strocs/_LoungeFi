@@ -5,7 +5,7 @@ import {
   Radio,
   ProfileButton
 } from '@components/home'
-import { Header } from '@ui'
+import { Header } from '@components/ui'
 
 // TODO: Add swipe between Tasks Panels changing the Task Group selected
 
