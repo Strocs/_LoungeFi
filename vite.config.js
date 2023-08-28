@@ -14,9 +14,7 @@ export default defineConfig({
       '@scripts': path.resolve(__dirname, './src/scripts'),
       '@router': path.resolve(__dirname, './src/router'),
       '@components': path.resolve(__dirname, './src/components'),
-      '@constants': path.resolve(__dirname, './src/constants'),
-      '@ui': path.resolve(__dirname, './src/components/ui'),
-      '@icons': path.resolve(__dirname, './src/components/icons')
+      '@constants': path.resolve(__dirname, './src/constants')
     }
   },
   test: {

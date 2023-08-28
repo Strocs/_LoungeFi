@@ -22,6 +22,9 @@ module.exports = {
       },
       animation: {
         nowPlaying: 'nowPlaying 4s linear infinite'
+      },
+      boxShadow: {
+        DEFAULT: '-3px 4px'
       }
     }
   },

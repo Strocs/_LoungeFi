@@ -9,9 +9,8 @@
 			"@scripts": ["src/scripts"],
 			"@router": ["src/router"],
 			"@components": ["src/components"],
-			"@constants": ["src/constants"],
-			"@ui": ["src/components/ui"],
-			"@icons": ["src/components/icons"]
-		}
+			"@constants": ["src/constants"]
+		},
+		"jsx": "react-jsx"
 	}
 }
