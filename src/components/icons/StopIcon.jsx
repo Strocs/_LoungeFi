@@ -1,4 +1,4 @@
-export const Stop = ({ size = '23' }) => {
+export const StopIcon = ({ size = '23' }) => {
   return (
     <svg
       width={size}

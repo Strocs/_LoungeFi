@@ -1,4 +1,4 @@
-export const Skip = ({ size = '28', reverse }) => {
+export const SkipIcon = ({ size = '28', reverse }) => {
   return (
     <svg
       width={size}

@@ -1,4 +1,4 @@
-export const Check = ({ size = '12' }) => {
+export const CheckIcon = ({ size = '12' }) => {
   return (
     <svg
       width={size}

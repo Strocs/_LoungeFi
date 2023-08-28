@@ -1,4 +1,4 @@
-export const Trash = ({ size = '16' }) => {
+export const TrashIcon = ({ size = '16' }) => {
   return (
     <svg
       width={size}

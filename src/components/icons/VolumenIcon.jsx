@@ -1,4 +1,4 @@
-export const Volumen = ({ size = '20' }) => {
+export const VolumenIcon = ({ size = '20' }) => {
   return (
     <svg
       height={size}
