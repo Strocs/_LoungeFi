@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { formatTime } from '@utils'
+import { useTaskStore } from '@store'
 
 const initialValues = {
   isStart: false,
@@ -13,11 +14,8 @@ export const usePomodoro = ({
   times: { work, shortBreak, longBreak },
   alarmSound
 }) => {
-  const [pomodoro, setPomodoro] = useState({
-    ...initialValues,
-    minutes: work
-  })
-
+  const [pomodoro, setPomodoro] = useState({ ...initialValues, minutes: work })
+  const isUserWriting = useTaskStore(state => state.isUserWriting)
   const { isStart, currentCycle, currentStep, minutes, seconds } = pomodoro
 
   const soundSelected = new Audio(alarmSound)
@@ -32,7 +30,7 @@ export const usePomodoro = ({
     return () => {
       window.removeEventListener('keydown', togglePomodoroKeyDown)
     }
-  }, [])
+  }, [isUserWriting])
 
   useEffect(() => {
     let countdown
@@ -57,7 +55,7 @@ export const usePomodoro = ({
     return () => clearInterval(countdown)
   }, [pomodoro])
 
-  function changeStep () {
+  function changeStep() {
     playAlarm()
     if (currentCycle === numberOfCycles && currentStep === 3) {
       setPomodoro({
@@ -71,26 +69,24 @@ export const usePomodoro = ({
       const isLastStep = currentStep === 4
       setPomodoro(prevPomodoro => ({
         ...prevPomodoro,
-        currentCycle: isLastStep
-          ? prevPomodoro.currentCycle + 1
-          : prevPomodoro.currentCycle,
-        currentStep: isLastStep
-          ? initialValues.currentStep
-          : prevPomodoro.currentStep + 1,
+        currentCycle: isLastStep ? prevPomodoro.currentCycle + 1 : prevPomodoro.currentCycle,
+        currentStep: isLastStep ? initialValues.currentStep : prevPomodoro.currentStep + 1,
         minutes: prevPomodoro.currentStep % 2 === 0 ? work : shortBreak,
         isStart: false
       }))
     }
   }
 
-  function togglePomodoro () {
+  function togglePomodoro() {
+    if (isUserWriting) return
+    console.log(isUserWriting)
     setPomodoro(prevPomodoro => ({
       ...prevPomodoro,
       isStart: !prevPomodoro.isStart
     }))
   }
 
-  function playAlarm () {
+  function playAlarm() {
     soundSelected.play()
   }
 
