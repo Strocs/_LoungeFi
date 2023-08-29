@@ -14,14 +14,16 @@ export const TaskGroups = () => {
   })
 
   return (
-    <div className='flex gap-2 w-full my-1 items-center'>
+    <div className='flex gap-2 w-full items-center'>
       {isInputOpen ? (
-        <form name='create-group' className='h-fit' onSubmit={handleSubmit} onBlur={handleCloseInput}>
+        <form
+          name='create-group'
+          className='h-fit'
+          onSubmit={handleSubmit}
+          onBlur={handleCloseInput}>
           <input
             className='w-14 rounded-full placeholder:text-xs px-2 h-6 text-sm'
             type='text'
-            name=''
-            id=''
             placeholder='Group'
             ref={ref}
           />

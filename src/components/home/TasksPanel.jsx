@@ -1,5 +1,5 @@
 import { useTaskStore } from '@store'
-import { AddTask, TaskItem } from '@components/home'
+import { TaskItem } from '@components/home'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 export const TasksPanel = () => {
   const filteredTasks = useTaskStore(state => state.filteredTasks)
@@ -7,7 +7,7 @@ export const TasksPanel = () => {
   return (
     <section
       name='tasks-panel'
-      className=' my-4 grow text-white rounded-2xl relative bg-opacityDark'>
+      className='grow text-white rounded-2xl relative bg-opacityDark'>
       <ul
         ref={parent}
         name='tasks-list'
@@ -16,7 +16,6 @@ export const TasksPanel = () => {
           <TaskItem key={task.id} id={task.id} task={task.task} done={task.done} />
         ))}
       </ul>
-      <AddTask />
     </section>
   )
 }

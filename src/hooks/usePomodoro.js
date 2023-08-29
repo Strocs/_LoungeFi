@@ -79,7 +79,6 @@ export const usePomodoro = ({
 
   function togglePomodoro() {
     if (isUserWriting) return
-    console.log(isUserWriting)
     setPomodoro(prevPomodoro => ({
       ...prevPomodoro,
       isStart: !prevPomodoro.isStart

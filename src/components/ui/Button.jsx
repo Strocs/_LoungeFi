@@ -24,7 +24,7 @@ export const Button = ({ padding, size, color, border, ...props }) => {
 }
 
 const button = tv({
-  base: 'rounded-full font-bold shadow tracking-tight transition-all duration-100',
+  base: 'rounded-full font-semibold shadow tracking-tight transition-all duration-100',
   variants: {
     color: {
       primary:
