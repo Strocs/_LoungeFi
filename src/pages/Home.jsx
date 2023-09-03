@@ -4,22 +4,31 @@ import {
   TasksPanel,
   AddTask,
   Radio,
-  ProfileButton
+  ProfileButton,
+  NowPlaying
 } from '@components/home'
-import { Header } from '@components/ui'
+import { Header, Footer } from '@components/ui'
 
 // TODO: Add swipe between Tasks Panels changing the Task Group selected
 
 export const Home = () => {
   return (
     <>
-      <Header renderOnRight={<Pomodoro />} />
-      <main className='grow flex flex-col max-w-2xl w-full gap-4 mb-5'>
+      <Header>
+        <Pomodoro />
+      </Header>
+      <main className='grow flex flex-col max-w-xl w-full gap-3'>
         <AddTask />
-        <TasksPanel />
         <TaskGroups />
+        <TasksPanel />
       </main>
-      <Radio renderOnLeft={<ProfileButton />} />
+      <Footer>
+        <div className='p-4 flex w-full justify-between items-center'>
+          <ProfileButton />
+          <Radio />
+        </div>
+        <NowPlaying />
+      </Footer>
     </>
   )
 }

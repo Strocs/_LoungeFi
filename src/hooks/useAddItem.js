@@ -12,7 +12,7 @@ export const useAddItem = addFn => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    if (ref.current !== null && ref.current.value.length > 1) {
+    if (ref.current.value.length > 1) {
       addFn()
       ref.current.value = ''
     }
