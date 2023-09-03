@@ -7,13 +7,12 @@
     <title>Task Done_</title>
     <meta name="description" content="A -very- simple todo list for daily tasks." />
   </head>
-  <body class="relative h-full px-[1rem]">
+  <body class="relative h-full px-[1rem] overflow-hidden">
     <div id="root" class="h-full flex flex-col items-center"></div>
     <script type="module" src="/src/main.jsx"></script>
     <script>
       const body = document.querySelector('body')
-      const height = window.innerHeight
-      body.style.height = `${height}px`
+      body.style.height = `${window.innerHeight}px`
     </script>
   </body>
 </html>

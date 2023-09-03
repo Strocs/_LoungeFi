@@ -14,6 +14,7 @@
     "framer-motion": "^10.16.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-player": "^2.12.0",
     "react-router-dom": "^6.6.1",
     "tailwind-scrollbar-hide": "^1.1.7",
     "tailwind-variants": "^0.1.5",

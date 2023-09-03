@@ -3,5 +3,5 @@ const userName = 'Ignacio Molina Palominos'
 
 export const UserAvatar = () => {
   // get data from userState
-  return <img src={avatarUrl} alt={userName} className='h-7 w-7 rounded-full' />
+  return <img src={avatarUrl} alt={userName} className='h-7 w-7 rounded-full aspect-square' />
 }

@@ -14,8 +14,8 @@ export const Pomodoro = () => {
     })
 
   return (
-    <section className='flex items-center justify-between px-3 bg-white w-32 h-7 rounded-full shadow shadow-blue'>
-      <Button color='active' onClick={e => togglePomodoro(e)}>
+    <section className='flex items-center justify-between px-3 bg-white w-32 h-7 rounded-full shadow shadow-blue outline outline-2 outline-blue'>
+      <Button color='active' padding onClick={e => togglePomodoro(e)}>
         {!isStart ? 'Start' : 'Pause'}
       </Button>
       <div className='flex flex-col w-11 justify-center'>

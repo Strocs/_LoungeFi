@@ -5,13 +5,14 @@ import {
   StopIcon,
   VolumenIcon
 } from '@components/icons'
-import { useLoFiRadioStore } from '@store'
+import { useRadioStore } from '@store'
+import { Button } from '../ui'
 
-export const RadioController = ({ isPlaying = false }) => {
-  const onPlayOrPause = useLoFiRadioStore(state => state.onPlayOrPause)
-  const onStop = useLoFiRadioStore(state => state.onStop)
-  const playNext = useLoFiRadioStore(state => state.playNext)
-  const playLast = useLoFiRadioStore(state => state.playLast)
+export const RadioControls = ({ isPlaying = false }) => {
+  const onPlayOrPause = useRadioStore(state => state.onPlayOrPause)
+  const onStop = useRadioStore(state => state.onStop)
+  const playNext = useRadioStore(state => state.playNext)
+  const playLast = useRadioStore(state => state.playLast)
 
   return (
     <>
@@ -41,9 +42,9 @@ export const RadioController = ({ isPlaying = false }) => {
           <SkipIcon />
         </button>
       </div>
-      <button className='h-7 w-7 bg-white rounded-full shadow-[-3px_3px_0_0] shadow-blue flex items-center justify-center text-dark'>
+      <Button circle shadow>
         <VolumenIcon />
-      </button>
+      </Button>
     </>
   )
 }
