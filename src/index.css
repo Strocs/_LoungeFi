@@ -5,7 +5,6 @@
 @tailwind utilities;
 
 :root {
-  /* background-color: #0f1013; */
   font-family: 'Poppins', sans-serif;
   background-image: radial-gradient(circle at center, #3e3e3e 0.05rem, #0f1013 0),
     radial-gradient(circle at center, #3e3e3e 0.05rem, #0f1013 0);

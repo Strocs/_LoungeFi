@@ -7,12 +7,10 @@
     <title>Task Done_</title>
     <meta name="description" content="A -very- simple todo list for daily tasks." />
   </head>
-  <body class="relative h-full px-[1rem] overflow-hidden">
-    <div id="root" class="h-full flex flex-col items-center"></div>
+  <body>
+    <div
+      id="root"
+      class="relative h-full min-h-screen px-4 grid grid-rows-[auto_1fr_auto] after:content-[''] before:content-[''] after:absolute before:absolute after:w-full before:w-full after:h-1/2 before:h-1/2 after:bottom-0 before:top-0 after:-z-10 before:-z-10 after:bg-gradient-to-t after:from-dark after:to-transparent before:bg-gradient-to-b before:from-dark before:to-transparent"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <script>
-      const body = document.querySelector('body')
-      body.style.height = `${window.innerHeight}px`
-    </script>
   </body>
 </html>
