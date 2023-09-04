@@ -32,21 +32,21 @@ export const Radio = () => {
         <img className='absolute top-0 bottom-0 h-screen left-0 right-0 -z-10' src='glitch.gif' />
       )}
       {!isStopped && (
-        <div className='absolute top-0 bottom-0 h-screen left-0 right-0 -z-20 overflow-hidden'>
-          <div className='absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-dark to-transparent z-10' />
-          <div className='absolute bottom-0 left-0 right-0 h-1/2 z-10 bg-gradient-to-t from-dark to-transparent' />
+        <div className='fixed top-0 bottom-0 h-screen left-0 right-0 -z-20 overflow-hidden'>
           <ReactPlayer
             url={`https://www.youtube.com/watch?v=${currentRadio.id}`}
-            style={{ transform: `scale(${scaleValue})` }}
-            width='100%'
-            height='100%'
+            // style={{ transform: `scale(${scaleValue})` }}
             config={{
               youtube: {
                 playerVars: {
+                  modestbranding: 1,
                   color: 'black'
                 }
               }
             }}
+            width='1920px'
+            height='973px'
+            className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'
             playing={isPlaying}
             volume={0.5}
             onPlay={() => setIsBuffering(false)}
