@@ -4,7 +4,7 @@ export const taskSlice = (set, get) => ({
       tasks: [
         ...state.tasks,
         {
-          id: self.crypto.randomUUID(),
+          id: crypto.randomUUID(),
           task,
           note: '',
           done: false,

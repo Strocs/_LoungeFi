@@ -14,6 +14,8 @@ const storedValue = useLocalStorage({
   }
 })
 
+// TODO: on mobile crypto.randomUUID() is not working, so I need to use a custom id
+
 export const useTaskStore = create((set, get) => ({
   ...storedValue,
   isUserWriting: false,
