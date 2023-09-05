@@ -1,6 +1,7 @@
 import { Button } from '@components/ui'
 import { usePomodoro } from '@hooks'
 import { DEFAULT_POMODORO_VALUES } from '@constants'
+import { useEffect } from 'react'
 
 const { stepsList } = DEFAULT_POMODORO_VALUES
 
@@ -8,6 +9,10 @@ const { stepsList } = DEFAULT_POMODORO_VALUES
 
 export const Pomodoro = () => {
   const { isStart, longBreak, currentStep, minutes, seconds, togglePomodoro } = usePomodoro()
+
+  useEffect(() => {
+    document.title = `_LoungeFi | ${minutes}:${seconds}`
+  }, [seconds])
 
   return (
     <section className='flex items-center justify-between px-3 bg-white w-32 h-7 rounded-full shadow shadow-blue outline outline-2 outline-blue'>
