@@ -1,4 +1,4 @@
-import { useTaskStore } from '@store'
+import { useRadioStore, useTaskStore } from '@store'
 import { TaskItem } from '@components/home'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { useRef } from 'react'
@@ -8,10 +8,12 @@ export const TasksPanel = () => {
   const [parent] = useAutoAnimate({ duration: 150 })
   const panelRef = useRef(null)
 
+  const isRadioOn = useRadioStore(state => state.isRadioOn)
+
   return (
     <section
       name='tasks-panel'
-      className='grow text-white rounded-xl bg-opacityDark'
+      className={`grow text-white rounded-xl ${isRadioOn ? 'bg-opacityDark' : ''}`}
       style={{ maxHeight: `${panelRef.current?.clientHeight}px` }}
       ref={panelRef}>
       <ul
