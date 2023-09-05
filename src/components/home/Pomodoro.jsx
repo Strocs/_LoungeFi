@@ -4,6 +4,8 @@ import { DEFAULT_POMODORO_VALUES } from '@constants'
 
 const { stepsList } = DEFAULT_POMODORO_VALUES
 
+// TODO: Change styles. While pomo is paused, component must show a title for Pomodoro (or icon on a button) and two buttons for start and reset, otherwise, if is started, show the timers and steps, and on hover must replace something to show pause button
+
 export const Pomodoro = () => {
   const { isStart, longBreak, currentStep, minutes, seconds, togglePomodoro } = usePomodoro()
 
