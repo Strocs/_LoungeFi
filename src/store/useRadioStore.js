@@ -1,77 +1,78 @@
-import { getNextItemIndex, getPrevItemIndex, shuffleList } from '@utils'
+import { DEFAULT_RADIO_LIST, STORAGE_RADIO_ID } from '@constants'
+import { useLocalStorage } from '@hooks'
+import { getNextItemIndex, getPrevItemIndex } from '@utils'
 import { create } from 'zustand'
 
-// A list of YouTube LoFi Radio Streams
-const DEFAULT_RADIO_LIST = [
-  {
-    id: '5yx6BWlEVcY'
-  },
-  {
-    id: '7NOSDKb0HlU'
-  },
-  {
-    id: 'rSXWZzh-GaU'
-  },
-  {
-    id: '0ba7dl40tSQ'
-  },
-  {
-    id: 'jfKfPfyJRdk'
-  }
-]
+const storedCurrentRadio = useLocalStorage({
+  key: STORAGE_RADIO_ID,
+  initialValue: { index: 0, ...DEFAULT_RADIO_LIST[0] }
+})
 
-const shuffledRadio = shuffleList({ list: DEFAULT_RADIO_LIST })
-
-export const useRadioStore = create((set, get) => ({
-  radioList: shuffledRadio,
-  currentRadio: { index: 0, ...shuffledRadio[0] },
+export const useRadioStore = create(set => ({
+  radioList: DEFAULT_RADIO_LIST,
+  currentRadio: storedCurrentRadio,
   currentRadioTitle: '',
-  isPlaying: false, // Play/pause button is active.
-  isStopped: true, // The user has clicked the stop button. True if it is.
+  isPlaying: false,
+  isRadioOn: false,
   isBuffering: true,
-  volumen: 0.5,
+  volumen: 0.1,
+  isError: false, // TODO: handle if any radio station is down
 
   setCurrentRadioTitle: title => {
-    set({currentRadioTitle: title})
+    set({ currentRadioTitle: title })
   },
+
   setIsBuffering: isBuffering => {
     set({ isBuffering })
   },
+
   onPlayOrPause: () => {
     set(state => ({
       isPlaying: !state.isPlaying,
-      isStopped: false
+      isRadioOn: true
     }))
   },
-  onStop: () => {
+
+  turnOffRadio: () => {
     set({ isPlaying: false })
-    set({ isStopped: true })
+    set({ isRadioOn: false })
   },
+
   playNext: () => {
     set(state => {
       const nextIndex = getNextItemIndex({
         list: state.radioList,
         itemIndex: state.currentRadio.index
       })
+
+      const newState = { index: nextIndex, ...state.radioList[nextIndex] }
+
+      useLocalStorage({ key: STORAGE_RADIO_ID, value: newState })
+
       return {
-        currentRadio: { index: nextIndex, ...state.radioList[nextIndex] }
+        currentRadio: newState,
+        isPlaying: true,
+        isRadioOn: true
       }
     })
   },
+
   playLast: () => {
     set(state => {
       const prevIndex = getPrevItemIndex({
         list: state.radioList,
         itemIndex: state.currentRadio.index
       })
+
+      const newState = { index: prevIndex, ...state.radioList[prevIndex] }
+
+      useLocalStorage({ key: STORAGE_RADIO_ID, value: newState })
+
       return {
-        currentRadio: { index: prevIndex, ...state.radioList[prevIndex] }
+        currentRadio: newState,
+        isPlaying: true,
+        isRadioOn: true
       }
     })
-  },
-  playRandom: () => {
-    set(state => ({
-      currentRadio: state.radioList[Math.floor(Math.random() * state.radioList.length)]
-    }))
   }
 }))

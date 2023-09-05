@@ -1,22 +1,31 @@
 import { useEffect, useState } from 'react'
 import { formatTime } from '@utils'
 import { useTaskStore } from '@store'
+import { useLocalStorage } from '@hooks'
+import { DEFAULT_POMODORO_VALUES, STORAGE_POMODORO_ID } from '@constants'
 
-const initialValues = {
-  isStart: false,
+const {
+  cyclesBeforeLongBreak,
+  timersInMinutes: { work, shortBreak, longBreak },
+  alarmSound
+} = DEFAULT_POMODORO_VALUES
+
+const initialValue = {
   currentCycle: 1,
   currentStep: 1,
-  seconds: 0
+  seconds: 0,
+  minutes: work
 }
 
-export const usePomodoro = ({
-  numberOfCycles,
-  times: { work, shortBreak, longBreak },
-  alarmSound
-}) => {
-  const [pomodoro, setPomodoro] = useState({ ...initialValues, minutes: work })
+const storedPomodoroValues = useLocalStorage({ key: STORAGE_POMODORO_ID, initialValue })
+
+export const usePomodoro = () => {
+  const [pomodoro, setPomodoro] = useState(storedPomodoroValues)
+  const [isStart, setIsStart] = useState(false)
+
   const isUserWriting = useTaskStore(state => state.isUserWriting)
-  const { isStart, currentCycle, currentStep, minutes, seconds } = pomodoro
+
+  const { currentCycle, currentStep, minutes, seconds } = pomodoro
 
   const soundSelected = new Audio(alarmSound)
 
@@ -52,51 +61,54 @@ export const usePomodoro = ({
       }, 1000)
     }
 
+    useLocalStorage({ key: STORAGE_POMODORO_ID, value: pomodoro })
     return () => clearInterval(countdown)
-  }, [pomodoro])
+  }, [pomodoro, isStart])
 
   function changeStep() {
     playAlarm()
-    if (currentCycle === numberOfCycles && currentStep === 3) {
+    if (currentCycle === cyclesBeforeLongBreak && currentStep === 3) {
       setPomodoro({
-        ...initialValues,
+        ...storedPomodoroValues,
         minutes: longBreak,
-        isStart: false,
         currentStep: 4,
         currentCycle
       })
+      setIsStart(false)
     } else {
       const isLastStep = currentStep === 4
       setPomodoro(prevPomodoro => ({
         ...prevPomodoro,
         currentCycle: isLastStep ? prevPomodoro.currentCycle + 1 : prevPomodoro.currentCycle,
-        currentStep: isLastStep ? initialValues.currentStep : prevPomodoro.currentStep + 1,
-        minutes: prevPomodoro.currentStep % 2 === 0 ? work : shortBreak,
-        isStart: false
+        currentStep: isLastStep ? storedPomodoroValues.currentStep : prevPomodoro.currentStep + 1,
+        minutes: prevPomodoro.currentStep % 2 === 0 ? work : shortBreak
       }))
+      setIsStart(false)
     }
   }
 
   function togglePomodoro() {
     if (isUserWriting) return
-    setPomodoro(prevPomodoro => ({
-      ...prevPomodoro,
-      isStart: !prevPomodoro.isStart
-    }))
+    setIsStart(!isStart)
   }
 
   function playAlarm() {
     soundSelected.play()
   }
 
+  function resetPomodoro() {
+    setPomodoro(initialValue)
+  }
+
   return {
     pomodoro,
     isStart,
-    longBreak: currentCycle === numberOfCycles && currentStep === 4,
+    longBreak: currentCycle === cyclesBeforeLongBreak && currentStep === 4,
     currentStep,
     minutes: formatTime(minutes),
     seconds: formatTime(seconds),
     togglePomodoro,
-    changeStep
+    changeStep,
+    resetPomodoro
   }
 }

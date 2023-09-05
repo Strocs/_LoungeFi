@@ -2,16 +2,10 @@ import { Button } from '@components/ui'
 import { usePomodoro } from '@hooks'
 import { DEFAULT_POMODORO_VALUES } from '@constants'
 
-const { cyclesBeforeLongBreak, stepsList, timersInMinutes, alarmSound } =
-  DEFAULT_POMODORO_VALUES
+const { stepsList } = DEFAULT_POMODORO_VALUES
 
 export const Pomodoro = () => {
-  const { isStart, longBreak, currentStep, minutes, seconds, togglePomodoro } =
-    usePomodoro({
-      numberOfCycles: cyclesBeforeLongBreak,
-      times: timersInMinutes,
-      alarmSound
-    })
+  const { isStart, longBreak, currentStep, minutes, seconds, togglePomodoro } = usePomodoro()
 
   return (
     <section className='flex items-center justify-between px-3 bg-white w-32 h-7 rounded-full shadow shadow-blue outline outline-2 outline-blue'>
@@ -32,9 +26,7 @@ export const Pomodoro = () => {
               return (
                 <li
                   key={step}
-                  className={`w-[6px] h-[6px] rounded ${
-                    isActive ? workingColor : 'bg-lightgrey'
-                  }`}
+                  className={`w-[6px] h-[6px] rounded ${isActive ? workingColor : 'bg-lightgrey'}`}
                 />
               )
             })
