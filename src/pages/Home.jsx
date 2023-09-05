@@ -17,7 +17,7 @@ export const Home = () => {
       <Header>
         <Pomodoro />
       </Header>
-      <main className='grow flex flex-col max-w-xl w-full gap-3'>
+      <main className='grid grid-rows-[auto_auto_1fr] gap-3 max-w-xl w-full'>
         <AddTask />
         <TaskGroups />
         <TasksPanel />
