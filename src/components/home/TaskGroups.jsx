@@ -15,7 +15,7 @@ export const TaskGroups = () => {
 
   return (
     <div className='flex gap-2 w-full items-center'>
-      <div className='flex gap-3 w-full px-1 py-1'>
+      <div className='flex gap-3 w-full pr-1 pl-2 py-1'>
         {groupList.map(group => (
           <Button
             key={group}

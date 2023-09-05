@@ -7,7 +7,7 @@ export const Radio = () => {
   const isPlaying = useRadioStore(state => state.isPlaying)
   const isRadioOn = useRadioStore(state => state.isRadioOn)
   const currentRadio = useRadioStore(state => state.currentRadio)
-  const volumen = useRadioStore(state => state.volumen)
+  const volume = useRadioStore(state => state.volume)
   const setIsBuffering = useRadioStore(state => state.setIsBuffering)
   const isBuffering = useRadioStore(state => state.isBuffering)
   const setCurrentRadioTitle = useRadioStore(state => state.setCurrentRadioTitle)
@@ -44,7 +44,7 @@ export const Radio = () => {
             playsinline={true}
             className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'
             playing={isPlaying}
-            volume={volumen}
+            volume={volume}
             onPlay={() => setIsBuffering(false)}
             onBuffer={() => setIsBuffering(true)}
             ref={videoRef}

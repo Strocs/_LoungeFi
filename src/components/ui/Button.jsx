@@ -16,7 +16,6 @@ export const Button = ({ padding, size, color, outline, circle, shadow, onClick,
         circle,
         shadow,
         disabled: props.disabled,
-        className: props.className
       })}
       onClick={handleClick}
       {...props}>
@@ -26,7 +25,7 @@ export const Button = ({ padding, size, color, outline, circle, shadow, onClick,
 }
 
 const button = tv({
-  base: 'rounded-full font-medium',
+  base: 'rounded-full font-medium relative w-fit h-fit',
   variants: {
     color: {
       primary:
