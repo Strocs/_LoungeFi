@@ -1,4 +1,4 @@
-import { DEFAULT_RADIO_LIST, STORAGE_RADIO_ID } from '@constants'
+import { DEFAULT_RADIO_LIST, STORAGE_RADIO_ID, STORAGE_VOLUME_ID } from '@constants'
 import { useLocalStorage } from '@hooks'
 import { getNextItemIndex, getPrevItemIndex } from '@utils'
 import { create } from 'zustand'
@@ -8,6 +8,11 @@ const storedCurrentRadio = useLocalStorage({
   initialValue: { index: 0, ...DEFAULT_RADIO_LIST[0] }
 })
 
+const storedVolume = useLocalStorage({
+  key: STORAGE_VOLUME_ID,
+  initialValue: 0.5
+})
+
 export const useRadioStore = create(set => ({
   radioList: DEFAULT_RADIO_LIST,
   currentRadio: storedCurrentRadio,
@@ -15,7 +20,7 @@ export const useRadioStore = create(set => ({
   isPlaying: false,
   isRadioOn: false,
   isBuffering: true,
-  volumen: 0.1,
+  volume: +storedVolume,
   isError: false, // TODO: handle if any radio station is down
 
   setCurrentRadioTitle: title => {
@@ -74,5 +79,11 @@ export const useRadioStore = create(set => ({
         isRadioOn: true
       }
     })
+  },
+
+  setVolume: volume => {
+    set({ volume })
+
+    useLocalStorage({ key: STORAGE_VOLUME_ID, value: volume })
   }
 }))

@@ -17,4 +17,5 @@ export const DEFAULT_RADIO_LIST = [
   }
 ]
 
-export const STORAGE_RADIO_ID = 'lofi-radio'
+export const STORAGE_RADIO_ID = 'current-radio'
+export const STORAGE_VOLUME_ID = 'volume-level'

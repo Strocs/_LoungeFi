@@ -5,7 +5,8 @@ import {
   AddTask,
   Radio,
   ProfileButton,
-  NowPlaying
+  NowPlaying,
+  GithubButton
 } from '@components/home'
 import { Header, Footer } from '@components/ui'
 
@@ -21,12 +22,13 @@ export const Home = () => {
         <AddTask />
         <TaskGroups />
         <TasksPanel />
-      </main>
-      <Footer>
-        <div className='p-4 flex w-full justify-between items-center'>
+        <section className='pb-4 px-3 grid w-full grid-cols-[1fr_2fr_1fr] items-center'>
           <ProfileButton />
           <Radio />
-        </div>
+          <GithubButton />
+        </section>
+      </main>
+      <Footer>
         <NowPlaying />
       </Footer>
     </>
