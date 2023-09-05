@@ -1,9 +1,9 @@
 import { useRadioStore } from '@store'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 
 export const NowPlaying = () => {
   const isPlaying = useRadioStore(state => state.isPlaying)
-  const isStopped = useRadioStore(state => state.isStopped)
+  const isRadioOn = useRadioStore(state => state.isRadioOn)
   const isBuffering = useRadioStore(state => state.isBuffering)
   const currentRadioTitle = useRadioStore(state => state.currentRadioTitle)
 
@@ -50,7 +50,7 @@ export const NowPlaying = () => {
   return (
     <div
       ref={containerRef}
-      className={`overflow-hidden text-white w-full ${isStopped ? 'opacity-0' : ''}`}>
+      className={`overflow-hidden text-white w-full ${!isRadioOn ? 'opacity-0' : ''}`}>
       <div
         ref={radioWrapperRef}
         className={`w-full text-center ${

@@ -1,24 +1,17 @@
 import { useRadioStore } from '@store'
 import { RadioControls } from '@components/home'
 import ReactPlayer from 'react-player'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 export const Radio = () => {
   const isPlaying = useRadioStore(state => state.isPlaying)
-  const isStopped = useRadioStore(state => state.isStopped)
+  const isRadioOn = useRadioStore(state => state.isRadioOn)
   const currentRadio = useRadioStore(state => state.currentRadio)
+  const volumen = useRadioStore(state => state.volumen)
   const setIsBuffering = useRadioStore(state => state.setIsBuffering)
   const isBuffering = useRadioStore(state => state.isBuffering)
   const setCurrentRadioTitle = useRadioStore(state => state.setCurrentRadioTitle)
-
-  const [scaleValue, setScaleValue] = useState(null)
-
-  useEffect(() => {
-    const windowHeight = window.innerHeight
-    const scale = windowHeight / 2 / 100
-    setScaleValue(scale)
-  }, [])
-
+  
   const videoRef = useRef(null)
 
   useEffect(() => {
@@ -29,13 +22,15 @@ export const Radio = () => {
     <>
       <RadioControls isPlaying={isPlaying} />
       {isBuffering && isPlaying && (
-        <img className='absolute top-0 bottom-0 h-screen left-0 right-0 -z-10' src='glitch.gif' />
+        <img
+          className='absolute top-0 bottom-0 left-0 right-0 -z-10 w-full h-full object-cover contrast-150'
+          src='loading.gif'
+        />
       )}
-      {!isStopped && (
+      {isRadioOn && (
         <div className='fixed top-0 bottom-0 h-screen left-0 right-0 -z-20 overflow-hidden'>
           <ReactPlayer
             url={`https://www.youtube.com/watch?v=${currentRadio.id}`}
-            // style={{ transform: `scale(${scaleValue})` }}
             config={{
               youtube: {
                 playerVars: {
@@ -44,11 +39,12 @@ export const Radio = () => {
                 }
               }
             }}
-            width='1920px'
+            width='1730px'
             height='973px'
+            playsinline={true}
             className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'
             playing={isPlaying}
-            volume={0.5}
+            volume={volumen}
             onPlay={() => setIsBuffering(false)}
             onBuffer={() => setIsBuffering(true)}
             ref={videoRef}

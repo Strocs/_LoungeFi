@@ -1,9 +1,9 @@
 import { tv } from 'tailwind-variants'
 
-export const Button = ({ padding, size, color, outline, circle, shadow, ...props }) => {
+export const Button = ({ padding, size, color, outline, circle, shadow, onClick, ...props }) => {
   const handleClick = evt => {
     evt.preventDefault()
-    props.onClick()
+    onClick()
   }
 
   return (

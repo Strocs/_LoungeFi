@@ -10,7 +10,7 @@ import { Button } from '../ui'
 
 export const RadioControls = ({ isPlaying = false }) => {
   const onPlayOrPause = useRadioStore(state => state.onPlayOrPause)
-  const onStop = useRadioStore(state => state.onStop)
+  const turnOffRadio = useRadioStore(state => state.turnOffRadio)
   const playNext = useRadioStore(state => state.playNext)
   const playLast = useRadioStore(state => state.playLast)
 
@@ -31,7 +31,7 @@ export const RadioControls = ({ isPlaying = false }) => {
         </button>
         <button
           className='shadow-opacityGrey drop-shadow-[-5px_5px_0_rgba(0,0,0,0.25)]'
-          onClick={onStop}
+          onClick={turnOffRadio}
         >
           <StopIcon />
         </button>
