@@ -65,7 +65,7 @@ export const usePomodoro = () => {
     return () => clearInterval(countdown)
   }, [pomodoro, isStart])
 
-  function changeStep() {
+  const changeStep = () => {
     playAlarm()
     if (currentCycle === cyclesBeforeLongBreak && currentStep === 3) {
       setPomodoro({
@@ -87,16 +87,16 @@ export const usePomodoro = () => {
     }
   }
 
-  function togglePomodoro() {
+  const togglePomodoro = () => {
     if (isUserWriting) return
     setIsStart(!isStart)
   }
 
-  function playAlarm() {
+  const playAlarm = () => {
     soundSelected.play()
   }
 
-  function resetPomodoro() {
+  const resetPomodoro = () => {
     setPomodoro(initialValue)
   }
 

@@ -22,7 +22,7 @@ export const Home = () => {
         <AddTask />
         <TaskGroups />
         <TasksPanel />
-        <section className='pb-4 px-3 grid w-full grid-cols-[1fr_2fr_1fr] items-center'>
+        <section className='pb-1 px-3 grid w-full grid-cols-[1fr_2fr_1fr] items-center'>
           <ProfileButton />
           <Radio />
           <GithubButton />

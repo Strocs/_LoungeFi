@@ -1,18 +1,16 @@
 import { PauseIcon, PlayIcon, SkipIcon, StopIcon } from '@components/icons'
+import { VolumeSlider } from '@components/home'
 import { useRadioStore } from '@store'
-import VolumeSlider from './VolumeSlider'
 
 export const RadioControls = ({ isPlaying = false }) => {
   const onPlayOrPause = useRadioStore(state => state.onPlayOrPause)
   const turnOffRadio = useRadioStore(state => state.turnOffRadio)
   const playNext = useRadioStore(state => state.playNext)
   const playLast = useRadioStore(state => state.playLast)
-  const setVolume = useRadioStore(state => state.setVolume)
-  const volume = useRadioStore(state => state.volume)
 
   return (
     <section className='h-fit place-self-center'>
-      <div className='flex gap-4 text-white'>
+      <div className='flex gap-4 text-white mb-1'>
         <button
           className='shadow-opacityGrey drop-shadow-[-5px_5px_0_rgba(0,0,0,0.25)]'
           onClick={playLast}>
@@ -34,7 +32,7 @@ export const RadioControls = ({ isPlaying = false }) => {
           <SkipIcon />
         </button>
       </div>
-      <VolumeSlider volume={volume} setVolume={setVolume} />
+      <VolumeSlider />
     </section>
   )
 }
