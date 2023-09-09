@@ -6,9 +6,10 @@ import {
   Radio,
   ProfileButton,
   NowPlaying,
-  GithubButton
+  GithubButton,
+  WelcomeName
 } from '@components/home'
-import { Header, Footer } from '@components/ui'
+import { Header, Footer, Title } from '@components/ui'
 
 // TODO: Add swipe between Tasks Panels changing the Task Group selected
 
@@ -16,6 +17,10 @@ export const Home = () => {
   return (
     <>
       <Header>
+        <div className='grid gap-1'>
+          <Title />
+          <WelcomeName />
+        </div>
         <Pomodoro />
       </Header>
       <main className='grid grid-rows-[auto_auto_1fr] gap-3 max-w-xl w-full'>

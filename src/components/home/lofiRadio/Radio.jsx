@@ -2,16 +2,17 @@ import { useRadioStore } from '@store'
 import { RadioControls } from '@components/home'
 import ReactPlayer from 'react-player'
 import { useEffect, useRef } from 'react'
+import { youtubeBaseURL } from '@constants'
 
 export const Radio = () => {
   const isPlaying = useRadioStore(state => state.isPlaying)
   const isRadioOn = useRadioStore(state => state.isRadioOn)
-  const currentRadio = useRadioStore(state => state.currentRadio)
+  const { id } = useRadioStore(state => state.currentRadio)
   const volume = useRadioStore(state => state.volume)
   const setIsBuffering = useRadioStore(state => state.setIsBuffering)
   const isBuffering = useRadioStore(state => state.isBuffering)
   const setCurrentRadioTitle = useRadioStore(state => state.setCurrentRadioTitle)
-  
+
   const videoRef = useRef(null)
 
   useEffect(() => {
@@ -30,7 +31,7 @@ export const Radio = () => {
       {isRadioOn && (
         <div className='fixed top-0 bottom-0 h-screen left-0 right-0 -z-20 overflow-hidden'>
           <ReactPlayer
-            url={`https://www.youtube.com/watch?v=${currentRadio.id}`}
+            url={youtubeBaseURL + id}
             config={{
               youtube: {
                 playerVars: {

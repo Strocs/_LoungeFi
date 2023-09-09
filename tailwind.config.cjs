@@ -24,7 +24,7 @@ module.exports = {
         nowPlaying: 'nowPlaying 4s linear infinite'
       },
       boxShadow: {
-        DEFAULT: '-5px 5px'
+        DEFAULT: '5px 5px'
       }
     }
   },

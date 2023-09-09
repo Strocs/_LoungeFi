@@ -18,7 +18,7 @@ export const POMODORO_ALARMS = {
 }
 
 export const DEFAULT_POMODORO_VALUES = {
-  cyclesBeforeLongBreak: 3,
+  cyclesBeforeLongBreak: 4,
   timersInMinutes: TIMER_DEFAULTS,
   stepsList: POMODORO_STEPS,
   alarmSound: `/sounds/${

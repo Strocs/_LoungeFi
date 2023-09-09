@@ -11,7 +11,6 @@ export const useAddItem = addFn => {
   }, [isInputOpen])
 
   const handleSubmit = e => {
-    e.preventDefault()
     if (ref.current.value.length > 1) {
       addFn()
       ref.current.value = ''

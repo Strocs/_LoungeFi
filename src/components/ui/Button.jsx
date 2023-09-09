@@ -1,6 +1,6 @@
 import { tv } from 'tailwind-variants'
 
-export const Button = ({ padding, size, color, outline, circle, shadow, onClick, ...props }) => {
+export const Button = ({ size, color, outline, hover, shadow, onClick = () => {}, ...props }) => {
   const handleClick = evt => {
     evt.preventDefault()
     onClick()
@@ -11,11 +11,10 @@ export const Button = ({ padding, size, color, outline, circle, shadow, onClick,
       className={button({
         color,
         size,
-        padding,
         outline,
-        circle,
+        hover,
         shadow,
-        disabled: props.disabled,
+        className: props.className
       })}
       onClick={handleClick}
       {...props}>
@@ -25,41 +24,49 @@ export const Button = ({ padding, size, color, outline, circle, shadow, onClick,
 }
 
 const button = tv({
-  base: 'rounded-full font-medium relative w-fit h-fit',
+  base: 'rounded-full font-medium relative w-fit h-fit group transition-all duration-150 active:opacity-80',
   variants: {
     color: {
-      primary:
-        'bg-white text-dark shadow-blue outline-blue hover:bg-blue hover:text-white hover:shadow-white',
-      transparent:
-        'bg-transparent text-transparent outline-white shadow-blue hover:bg-blue hover:text-white',
-      done: 'bg-green text-white shadow-white',
-      active: 'bg-blue text-white shadow-white',
-      danger: 'bg-white text-red shadow-red hover:bg-red hover:text-white hover:shadow-white'
+      white: 'bg-white text-dark',
+      blue: 'bg-blue text-white',
+      'text-blue': 'bg-white text-blue',
+      red: 'bg-red text-white',
+      'text-red': 'bg-white text-red',
+      green: 'bg-green text-white',
+      'text-green': 'bg-white text-green',
+      transparent: 'bg-transparent text-transparent'
+    },
+    hover: {
+      white: 'hover:bg-white hover:text-dark',
+      blue: 'hover:bg-blue hover:text-white',
+      red: 'hover:bg-red hover:text-white',
+      green: 'hover:bg-green hover:text-white'
     },
     shadow: {
-      true: 'shadow',
-    },
-    circle: {
-      true: 'p-[.125rem]'
-    },
-    size: {
-      sm: 'text-xs',
-      md: 'text-sm'
-    },
-    padding: {
-      true: 'px-2 py-[.031rem]'
+      white: 'shadow shadow-white',
+      blue: 'shadow shadow-blue',
+      red: 'shadow shadow-red',
+      green: 'shadow shadow-green'
     },
     outline: {
-      true: 'outline outline-2'
+      white: 'outline outline-2 outline-white',
+      blue: 'outline outline-2 outline-blue',
+      red: 'outline outline-2 outline-red',
+      green: 'outline outline-2 outline-green'
+    },
+    size: {
+      sm: 'px-2 py-[.03125rem] text-xs',
+      md: 'px-3 py-[.0625rem] text-sm',
+      xl: 'px-4 py-[.125rem] text-base',
+      'round-sm': 'p-[2px]',
+      'round-md': 'p-1',
+      'round-xl': 'p-2'
     },
     animated: {
       true: 'translate-x-[-3px] translate-y-[3px] shadow-none'
     }
   },
   defaultVariants: {
-    size: 'sm',
-    color: 'primary',
-    padding: false,
-    outline: false,
+    color: 'white'
   }
 })

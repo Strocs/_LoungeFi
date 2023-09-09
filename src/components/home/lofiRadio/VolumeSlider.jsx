@@ -2,10 +2,9 @@ import { useRadioStore } from '@store'
 import { useEffect, useRef, useState } from 'react'
 
 export const VolumeSlider = () => {
-  
   const setVolume = useRadioStore(state => state.setVolume)
   const volume = useRadioStore(state => state.volume)
-  
+
   const sliderRef = useRef(null)
 
   const [clicking, setClicking] = useState(false)
@@ -44,11 +43,13 @@ export const VolumeSlider = () => {
       onPointerMove={handleMouseMove}
       onPointerLeave={handleMouseUp}
       ref={sliderRef}
-      className='w-auto flex py-2 justify-between gap-1 cursor-pointer'>
+      className={`w-auto flex py-2 justify-between gap-1 cursor-pointer transition-all duration-150 ${
+        volume === 0 ? 'text-red' : 'text-white'
+      }`}>
       {Array.from({ length: 10 }, (_, i) => (
         <span
           key={i}
-          className={`w-full h-3 pointer-events-none bg-white ${
+          className={`w-full h-3 rounded-full pointer-events-none bg-current ${
             i / 10 < volume ? 'opacity-100' : 'opacity-50'
           }`}
         />

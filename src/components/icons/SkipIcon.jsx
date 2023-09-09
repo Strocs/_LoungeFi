@@ -1,20 +1,24 @@
-export const SkipIcon = ({ size = '28', reverse }) => {
+export const SkipIcon = ({ size = 25, reverse }) => {
   return (
     <svg
       width={size}
       height={size}
-      viewBox='0 0 24 24'
-      xmlns='http://www.w3.org/2000/svg'
       className={reverse && 'rotate-180'}
-    >
+      viewBox='0 0 24 24'
+      strokeWidth='2'
+      stroke='currentColor'
+      fill='none'
+      strokeLinecap='round'
+      strokeLinejoin='round'>
+      <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
       <path
-        d='M18 7v10M6.972 5.267A.6.6 0 006 5.738v12.524a.6.6 0 00.972.47l7.931-6.261a.6.6 0 000-.942L6.972 5.267z'
-        fill='currentColor'
-        stroke='currentColor'
-        strokeWidth='1.6'
-        strokeLinecap='square'
-        strokeLinejoin='square'
-      />
+        d='M3 5v14a1 1 0 0 0 1.504 .864l12 -7a1 1 0 0 0 0 -1.728l-12 -7a1 1 0 0 0 -1.504 .864z'
+        strokeWidth='0'
+        fill='currentColor'></path>
+      <path
+        d='M20 4a1 1 0 0 1 .993 .883l.007 .117v14a1 1 0 0 1 -1.993 .117l-.007 -.117v-14a1 1 0 0 1 1 -1z'
+        strokeWidth='0'
+        fill='currentColor'></path>
     </svg>
   )
 }

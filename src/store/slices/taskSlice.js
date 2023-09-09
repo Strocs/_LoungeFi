@@ -32,12 +32,12 @@ export const taskSlice = (set, get) => ({
       tasks: state.tasks.map(task => (task.id === id ? { ...task, done: !task.done } : task))
     }))
     get().updateFiltersAndLocalStorage()
-  }
+  },
 
-  // deleteDones: () => {
-  // 	set((state) => ({
-  // 		tasks: state.tasks.filter(({ done }) => !done),
-  // 	}))
-  // 	get().updateFiltersAndLocalStorage()
-  // },
+  deleteDones: () => {
+  	set((state) => ({
+  		tasks: state.tasks.filter(({ done }) => !done),
+  	}))
+  	get().updateFiltersAndLocalStorage()
+  },
 })

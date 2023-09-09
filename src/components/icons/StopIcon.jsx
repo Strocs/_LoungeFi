@@ -1,16 +1,19 @@
-export const StopIcon = ({ size = '23' }) => {
+export const StopIcon = ({ size = 24 }) => {
   return (
     <svg
       width={size}
       height={size}
       viewBox='0 0 24 24'
-      xmlns='http://www.w3.org/2000/svg'
-    >
+      strokeWidth='2'
+      stroke='currentColor'
+      fill='none'
+      strokeLinecap='round'
+      strokeLinejoin='round'>
+      <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
       <path
-        d='M21 3.6v16.8a.6.6 0 01-.6.6H3.6a.6.6 0 01-.6-.6V3.6a.6.6 0 01.6-.6h16.8a.6.6 0 01.6.6z'
-        stroke='currentColor'
-        fill='currentColor'
-      />
+        d='M17 4h-10a3 3 0 0 0 -3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3 -3v-10a3 3 0 0 0 -3 -3z'
+        strokeWidth='0'
+        fill='currentColor'></path>
     </svg>
   )
 }

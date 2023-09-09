@@ -10,19 +10,18 @@ const {
   alarmSound
 } = DEFAULT_POMODORO_VALUES
 
-const initialValue = {
+const initialValues = {
   currentCycle: 1,
   currentStep: 1,
   seconds: 0,
   minutes: work
 }
 
-const storedPomodoroValues = useLocalStorage({ key: STORAGE_POMODORO_ID, initialValue })
+const storedPomodoroValues = useLocalStorage({ key: STORAGE_POMODORO_ID, initialValues })
 
 export const usePomodoro = () => {
   const [pomodoro, setPomodoro] = useState(storedPomodoroValues)
   const [isStart, setIsStart] = useState(false)
-
   const isUserWriting = useTaskStore(state => state.isUserWriting)
 
   const { currentCycle, currentStep, minutes, seconds } = pomodoro
@@ -39,7 +38,7 @@ export const usePomodoro = () => {
     return () => {
       window.removeEventListener('keydown', togglePomodoroKeyDown)
     }
-  }, [isUserWriting])
+  }, [isUserWriting, isStart])
 
   useEffect(() => {
     let countdown
@@ -79,8 +78,12 @@ export const usePomodoro = () => {
       const isLastStep = currentStep === 4
       setPomodoro(prevPomodoro => ({
         ...prevPomodoro,
-        currentCycle: isLastStep ? prevPomodoro.currentCycle + 1 : prevPomodoro.currentCycle,
-        currentStep: isLastStep ? storedPomodoroValues.currentStep : prevPomodoro.currentStep + 1,
+        currentCycle: isLastStep
+          ? currentCycle === cyclesBeforeLongBreak
+            ? initialValues.currentCycle
+            : prevPomodoro.currentCycle + 1
+          : prevPomodoro.currentCycle,
+        currentStep: isLastStep ? initialValues.currentStep : prevPomodoro.currentStep + 1,
         minutes: prevPomodoro.currentStep % 2 === 0 ? work : shortBreak
       }))
       setIsStart(false)
@@ -97,7 +100,7 @@ export const usePomodoro = () => {
   }
 
   const resetPomodoro = () => {
-    setPomodoro(initialValue)
+    setPomodoro(initialValues)
   }
 
   return {

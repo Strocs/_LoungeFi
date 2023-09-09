@@ -1,4 +1,4 @@
-export const CheckIcon = ({ size = 16 }) => {
+export const GoogleIcon = ({ size = 20 }) => {
   return (
     <svg
       width={size}
@@ -10,7 +10,7 @@ export const CheckIcon = ({ size = 16 }) => {
       strokeLinecap='round'
       strokeLinejoin='round'>
       <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
-      <path d='M5 12l5 5l10 -10'></path>
+      <path d='M17.788 5.108a9 9 0 1 0 3.212 6.892h-8'></path>
     </svg>
   )
 }

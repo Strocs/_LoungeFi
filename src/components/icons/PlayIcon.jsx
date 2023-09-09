@@ -1,16 +1,19 @@
-export const PlayIcon = ({ size = '28' }) => {
+export const PlayIcon = ({ size = 25 }) => {
   return (
     <svg
       width={size}
       height={size}
       viewBox='0 0 24 24'
-      xmlns='http://www.w3.org/2000/svg'
-    >
+      strokeWidth='2'
+      stroke='currentColor'
+      fill='none'
+      strokeLinecap='round'
+      strokeLinejoin='round'>
+      <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
       <path
-        d='M6.906 4.537A.6.6 0 006 5.053v13.894a.6.6 0 00.906.516l11.723-6.947a.6.6 0 000-1.032L6.906 4.537z'
-        fill='currentColor'
-        stroke='currentColor'
-      />
+        d='M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z'
+        strokeWidth='0'
+        fill='currentColor'></path>
     </svg>
   )
 }

@@ -1,24 +1,18 @@
-
 export const groupSlice = (set, get) => ({
   addGroup: ({ group }) => {
     set(state => {
       if (state.groupList.some(g => g.toLowerCase() === group.toLowerCase())) return state
-      return {groupList: [...state.groupList, group]}
+      return { groupList: [...state.groupList, group], groupActive: group }
     })
     get().updateFiltersAndLocalStorage()
   },
-  // deleteTag: ({ id, taskTag }) => {
-  // 	set((state) => ({
-  // 		tasks: state.tasks.map((task) => {
-  // 			if (task.id === id) {
-  // 				task.tags = task.tags.filter((tag) => tag !== taskTag.toLowerCase())
-  // 				return task
-  // 			}
-  // 			return task
-  // 		}),
-  // 	}))
-  // 	get().updateFiltersAndLocalStorage()
-  // },
+  deleteGroup: ({ group }) => {
+    set(state => ({
+      groupActive: state.groupList[0],
+      groupList: state.groupList.filter(g => !g.includes(group))
+    }))
+    get().updateFiltersAndLocalStorage()
+  },
   setGroupActive: newFilter => {
     set({
       groupActive: newFilter

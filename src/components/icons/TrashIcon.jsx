@@ -1,24 +1,20 @@
-export const TrashIcon = ({ size = '16' }) => {
+export const TrashIcon = ({ size = 16 }) => {
   return (
     <svg
       width={size}
       height={size}
-      viewBox='0 0 21 21'
-      xmlns='http://www.w3.org/2000/svg'
-    >
-      <g
-        fill='none'
-        stroke='currentColor'
-        strokeWidth='1.5'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-        transform='translate(3 2)'
-      >
-        <path d='m2.5 2.5h10v12c0 1.1045695-.8954305 2-2 2h-6c-1.1045695 0-2-.8954305-2-2zm5-2c1.0543618 0 1.91816512.81587779 1.99451426 1.85073766l.00548574.14926234h-4c0-1.1045695.8954305-2 2-2z' />
-        <path d='m.5 2.5h14' />
-        <path d='m5.5 5.5v8' />
-        <path d='m9.5 5.5v8' />
-      </g>
+      viewBox='0 0 24 24'
+      strokeWidth='2'
+      stroke='currentColor'
+      fill='none'
+      strokeLinecap='round'
+      strokeLinejoin='round'>
+      <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
+      <path d='M4 7l16 0'></path>
+      <path d='M10 11l0 6'></path>
+      <path d='M14 11l0 6'></path>
+      <path d='M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12'></path>
+      <path d='M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3'></path>
     </svg>
   )
 }
