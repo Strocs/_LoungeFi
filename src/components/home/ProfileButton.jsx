@@ -1,9 +1,11 @@
-import { UserAvatar, Button } from '@components/ui'
+import { Button, UserAvatar } from '@components/ui'
 
-export const ProfileButton = () => {
+export const ProfileButton = ({ onClick }) => {
   return (
-    <Button color='transparent' outline='white'>
-      <UserAvatar />
+    <Button size='round-sm' color='white' onClick={onClick}>
+      <div className='overflow-hidden h-6 aspect-square rounded-full'>
+        <UserAvatar />
+      </div>
     </Button>
   )
 }

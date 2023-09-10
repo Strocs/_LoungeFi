@@ -1,7 +1,15 @@
-const avatarUrl = 'https://avatars.githubusercontent.com/u/71996940?v=4'
-const userName = 'Ignacio Molina Palominos'
+const getRandomNumber = Math.random(0, 1) * 100
 
-export const UserAvatar = () => {
+export const UserAvatar = ({
+  name = 'Guest',
+  src = 'https://robohash.org/' + getRandomNumber + '?set=set2'
+}) => {
   // get data from userState
-  return <img src={avatarUrl} alt={userName} className='h-7 w-7 rounded-full aspect-square' />
+  return (
+    <img
+      src={src}
+      alt={name + ' Avatar Image'}
+      className='object-cover rounded-full aspect-square scale-125 group-hover:scale-[2] transition-transform duration-150'
+    />
+  )
 }
