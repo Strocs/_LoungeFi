@@ -1,5 +1,5 @@
 // A list of YouTube LoFi Radio Streams
-export const DEFAULT_RADIO_LIST = [
+export const RADIO_LIST = [
   {
     id: '5yx6BWlEVcY',
     title: 'Chillhop Radio - jazzy & lofi hip hop beats 🐾'
@@ -22,8 +22,9 @@ export const DEFAULT_RADIO_LIST = [
     title: 'Coffee Shop Radio ☕ - 24/7 lofi & jazzy hip-hop beats'
   },
   {
-    id: 'Dx5qFachd3A',
-    title: 'Relaxing Jazz Piano Radio - Slow Jazz Music - 24/7 Live Stream - Music For Work & Study'
+    id: 'nscCjJEpzyU',
+    title:
+      'Cozy Coffee Shop Ambience ~ Warm Jazz Music ☕ Relaxing Jazz Instrumental Music with Fireplace Sounds'
   },
   {
     id: 'uRImXboQnzE',
