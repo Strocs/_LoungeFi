@@ -1,7 +1,7 @@
 import { useRadioStore, useTaskStore } from '@store'
 import { TaskItem } from '@components/home'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-import { DEFAULT_FILTER_ITEMS } from '@constants'
+import { FILTER_ITEMS } from '@constants'
 
 // TODO: Add swipe between Tasks Panels changing the Task Group selected
 
@@ -13,7 +13,7 @@ export const TasksPanel = () => {
   
   const [parent] = useAutoAnimate({ duration: 150 })
 
-  const isDonesGroup = groupActive === DEFAULT_FILTER_ITEMS[2]
+  const isDonesGroup = groupActive === FILTER_ITEMS.DONES
 
   return (
     <section

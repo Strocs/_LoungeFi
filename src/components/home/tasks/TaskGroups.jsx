@@ -2,7 +2,7 @@ import { useTaskStore } from '@store'
 import { Button } from '@components/ui'
 import { PlusIcon } from '../../icons'
 import { useAddItem } from '@hooks'
-import { DEFAULT_FILTER_ITEMS } from '@constants'
+import { FILTER_ITEMS } from '@constants'
 
 export const TaskGroups = () => {
   const groupActive = useTaskStore(state => state.groupActive)
@@ -19,7 +19,7 @@ export const TaskGroups = () => {
     <div className='flex gap-2 w-full items-center'>
       <div className='flex gap-3  w-full pr-1 pl-[10px] py-1'>
         {groupList.map(group => {
-          const isDeletable = !DEFAULT_FILTER_ITEMS.includes(group)
+          const isDeletable = !Object.values(FILTER_ITEMS).includes(group)
           return (
             <Button
               key={group}

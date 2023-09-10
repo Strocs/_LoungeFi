@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { useLocalStorage } from '@hooks'
-import { DEFAULT_FILTER_ITEMS, STORAGE_TASK_ID } from '@constants'
+import { FILTER_ITEMS, STORAGE_TASK_ID } from '@constants'
 import { getTasksByFilter } from '@utils'
 import { taskSlice, groupSlice } from './slices'
 
@@ -9,12 +9,10 @@ const storedValue = useLocalStorage({
   initialValue: {
     tasks: [],
     filteredTasks: [],
-    groupActive: DEFAULT_FILTER_ITEMS[0],
-    groupList: DEFAULT_FILTER_ITEMS
+    groupActive: FILTER_ITEMS.ALL,
+    groupList: Object.values(FILTER_ITEMS)
   }
 })
-
-// TODO: on mobile crypto.randomUUID() is not working, so I need to use a custom id
 
 export const useTaskStore = create((set, get) => ({
   ...storedValue,

@@ -1,14 +1,14 @@
-import { DEFAULT_FILTER_ITEMS } from '@constants'
+import { FILTER_ITEMS } from '@constants'
 
 export const getTasksByFilter = (tasks = [], groupActive = '') => {
   switch (groupActive) {
-    case DEFAULT_FILTER_ITEMS[0]: {
+    case FILTER_ITEMS.ALL: {
       return tasks
     }
-    case DEFAULT_FILTER_ITEMS[1]: {
+    case FILTER_ITEMS.ACTIVES: {
       return tasks.filter(task => !task.done)
     }
-    case DEFAULT_FILTER_ITEMS[2]: {
+    case FILTER_ITEMS.DONES: {
       return tasks.filter(task => task.done)
     }
     default: {
