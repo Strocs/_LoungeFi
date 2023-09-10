@@ -1,27 +1,21 @@
 export const STORAGE_POMODORO_ID = 'pomodoro'
 
-export const TIMER_DEFAULTS = {
-  work: 25,
-  shortBreak: 5,
-  longBreak: 15
-}
-export const POMODORO_STEPS = [
-  'firstWork',
-  'firstBreak',
-  'secondWork',
-  'secondBreak'
-]
+export const TOGGLE_KEY = 32
 
-export const POMODORO_ALARMS = {
-  soundsList: ['tone.wav'],
-  soundSelected: 0
+export const TIMERS = {
+  WORK: 25,
+  SHORT_REST: 5,
+  LONG_REST: 15
 }
 
-export const DEFAULT_POMODORO_VALUES = {
-  cyclesBeforeLongBreak: 4,
-  timersInMinutes: TIMER_DEFAULTS,
-  stepsList: POMODORO_STEPS,
-  alarmSound: `/sounds/${
-    POMODORO_ALARMS.soundsList[POMODORO_ALARMS.soundSelected]
-  }`
+export const ALARMS = {
+  ALARM_LIST: ['tone.wav'],
+  ALARM_SELECTED: 0
+}
+
+export const POMODORO_VALUES = {
+  CYCLES: 4,
+  STEPS: 4,
+  TIMERS,
+  ALARM: `/sounds/${ALARMS.ALARM_LIST[ALARMS.ALARM_SELECTED]}`
 }
