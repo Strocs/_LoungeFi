@@ -1,4 +1,4 @@
-import { DEFAULT_POMODORO_VALUES } from '@constants'
+import { POMODORO_VALUES } from '@constants'
 import { usePomodoro } from '../../src/hooks/usePomodoro'
 import { act, renderHook } from '@testing-library/react'
 import { describe, expect, test } from 'vitest'
@@ -8,7 +8,7 @@ describe('Tests on custom hook: usePomodoro', () => {
     cyclesBeforeLongBreak: numberOfCycles,
     timersInMinutes: times,
     alarmSound
-  } = DEFAULT_POMODORO_VALUES
+  } = POMODORO_VALUES
   const initialValues = {
     isStart: false,
     currentCycle: 1,
