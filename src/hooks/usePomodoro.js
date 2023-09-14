@@ -39,5 +39,5 @@ export const usePomodoro = ({
     }
 
     return () => clearInterval(countdownInterval)
-  }, [isStart])
+  }, [isStart, isTimerEnd])
 }

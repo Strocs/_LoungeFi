@@ -26,14 +26,14 @@ export const usePomodoroStore = create((set, get) => ({
 
   changeStep: () =>
     set(state => {
-      // Evaluate if pomodoro cycle is the last one and current step is previous to last, if true start a long break on step 4, otherwise, follows normal behavior
+      // Evaluate if pomodoro cycle is the last one and current step is previous to last, if true start a long rest on step 4, otherwise, follows normal behavior
 
       if (state.currentCycle === CYCLES && state.currentStep === STEPS - 1) {
         return {
           minutes: TIMERS.LONG_REST,
           currentStep: 4,
           isStart: state.autoStart,
-          isLongBreak: true
+          isLongRest: true
         }
       } else {
         const isLastStep = state.currentStep === STEPS
@@ -45,9 +45,9 @@ export const usePomodoroStore = create((set, get) => ({
         return {
           currentCycle: newCurrentCycle,
           currentStep: isLastStep ? initialValues.currentStep : state.currentStep + 1,
-          minutes: state.currentStep % 2 === 0 ? TIMERS.WORK : TIMERS.SHORT_BREAK,
+          minutes: state.currentStep % 2 === 0 ? TIMERS.WORK : TIMERS.SHORT_REST,
           isStart: state.autoStart,
-          isLongBreak: false
+          isLongRest: false
         }
       }
     }),
@@ -57,13 +57,13 @@ export const usePomodoroStore = create((set, get) => ({
       minutes: state.seconds === 0 && state.minutes > 0 ? state.minutes - 1 : state.minutes
     }))
 
-    const { isStart, isLongBreak, ...value } = get()
+    const { isStart, isLongRest, ...value } = get()
     useLocalStorage({ key: STORAGE_POMODORO_ID, value })
   },
   resetPomodoro: () => {
     set({ ...initialValues, isStart: false })
 
-    const { isStart, isLongBreak, ...value } = get()
+    const { isStart, isLongRest, ...value } = get()
     useLocalStorage({ key: STORAGE_POMODORO_ID, value })
   },
   togglePomodoro: () => set(state => ({ isStart: !state.isStart })),
