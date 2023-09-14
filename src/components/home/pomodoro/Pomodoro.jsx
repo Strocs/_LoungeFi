@@ -1,10 +1,9 @@
-import { useEffect } from 'react'
 import { usePomodoro } from '@hooks'
 import { PomodoroIcon } from '@components/icons'
 import { Countdown, StepsList, PomodoroSettings } from '@components/home'
 import { Button } from '@components/ui'
 import { usePomodoroStore, useTaskStore } from '@store'
-import { DOCUMENT_TITLE, POMODORO_VALUES, TOGGLE_KEY } from '@constants'
+import { POMODORO_VALUES, TOGGLE_KEY } from '@constants'
 
 const { ALARM } = POMODORO_VALUES
 
@@ -24,12 +23,6 @@ export const Pomodoro = () => {
     toggleKeyButton: TOGGLE_KEY
   })
 
-  useEffect(() => {
-    isStart
-      ? (document.title = `${minutes}:${seconds} ${DOCUMENT_TITLE}`)
-      : (document.title = DOCUMENT_TITLE)
-  }, [seconds, isStart])
-
   return (
     <section
       className={`${
@@ -40,7 +33,7 @@ export const Pomodoro = () => {
           <PomodoroIcon size={32} isActive={isStart} />
         </Button>
         <div className='w-fit grid place-items-center'>
-          <Countdown minutes={minutes} seconds={seconds} />
+          <Countdown minutes={minutes} seconds={seconds} isStart={isStart} />
           <StepsList isStart={isStart} />
         </div>
       </div>
