@@ -14,7 +14,7 @@ export const Countdown = ({ minutes, seconds, isStart }) => {
   
   return (
     <span className='text-dark text-lg font-bold leading-none w-12'>
-      {minutes}:{seconds}
+      {formattedMinutes}:{formattedSeconds}
     </span>
   )
 }
