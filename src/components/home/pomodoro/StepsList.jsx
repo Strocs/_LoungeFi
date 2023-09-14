@@ -3,7 +3,7 @@ import { usePomodoroStore } from '@store'
 export const StepsList = ({ isStart }) => {
   const { isLongRest, steps, currentStep } = usePomodoroStore()
   return (
-    <div className='flex gap-1 justify-center'>
+    <div className='flex gap-1 justify-center w-full'>
       {isLongRest ? (
         <span className={`${isStart ? 'bg-blue' : 'bg-grey'} w-full h-2 sm:h-[.6rem] rounded`} />
       ) : (
