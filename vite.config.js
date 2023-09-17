@@ -1,34 +1,52 @@
 import { defineConfig } from 'vite'
-import { VitePWA } from 'vite-plugin-pwa'
 import react from '@vitejs/plugin-react'
+import { VitePWA } from 'vite-plugin-pwa'
 import path from 'path'
-
-const manifestForPlugin = {
-  registerType: 'prompt',
-  includeAssets: ['favicon.svg'],
-  manifest: {
-    name: '_LoungeFi',
-    short_name: '_LoungeFi',
-    description: 'A -very- simple app to keep focus on your daily tasks.',
-    icons: [
-      {
-        src: '/favicon.svg',
-        size: '100x100',
-        type: 'image/svg+xml'
-      }
-    ],
-    theme_color: '#4FB9D0',
-    background_color: '#0F1013',
-    display: 'standalone',
-    scope: '/',
-    start_utl: '/',
-    orientation: 'portrait'
-  }
-}
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), VitePWA(manifestForPlugin)],
+  plugins: [
+    react(),
+    VitePWA({
+      manifest: {
+        name: '_LoungeFi',
+        short_name: '_LoungeFi',
+        description: 'A -very- simple app to keep focus on your daily tasks.',
+        icons: [
+          {
+            src: 'icons/favicon-144x144.png',
+            sizes: '144x144',
+            type: 'image/png',
+            purpose: 'any'
+          },
+          {
+            src: 'icons/favicon-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+            purpose: 'any maskable'
+          },
+          {
+            src: 'icons/favicon-32x32.png',
+            sizes: '32x32',
+            type: 'image/png',
+            purpose: 'any'
+          },
+          {
+            src: 'icons/favicon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any'
+          }
+        ],
+        theme_color: '#0F1013',
+        background_color: '#0F1013',
+        display: 'standalone',
+        scope: '/',
+        start_utl: '/',
+        orientation: 'portrait'
+      }
+    })
+  ],
   resolve: {
     alias: {
       '@hooks': path.resolve(__dirname, './src/hooks'),
