@@ -4,16 +4,15 @@ import { PlusIcon } from '@components/icons'
 import { Input, Button } from '@components/ui'
 
 export const AddTask = () => {
-  const addTask = useTaskStore(state => state.addTask)
-  const groupActive = useTaskStore(state => state.groupActive)
+  const createTask = useTaskStore(state => state.createTask)
   const toggleIsWriting = useTaskStore(state => state.toggleIsWriting)
 
   const { ref, handleSubmit } = useAddItem(() => {
-    addTask({ task: ref.current.value, group: groupActive })
+    createTask({ task: ref.current.value })
   })
 
   return (
-    <form className='flex items-center gap-4'>
+    <form className='flex items-center gap-4' onSubmit={handleSubmit}>
       <Input
         name='add-task'
         placeholder='What we need to do?'
@@ -22,9 +21,8 @@ export const AddTask = () => {
         reference={ref}
         onBlur={() => toggleIsWriting(false)}
         onClick={() => toggleIsWriting(true)}
-        onSubmit={handleSubmit}
       />
-      <Button color='blue' size='round-md' outline='white' onClick={handleSubmit}>
+      <Button type='submit' color='blue' size='round-md' outline='white'>
         <PlusIcon />
       </Button>
     </form>

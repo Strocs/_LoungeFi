@@ -1,7 +1,7 @@
 import { useTaskStore } from '@store'
 import { useEffect, useRef, useState } from 'react'
 
-export const useAddItem = addFn => {
+export const useAddItem = callback => {
   const [isInputOpen, setIsInputOpen] = useState(false)
   const toggleIsWriting = useTaskStore(state => state.toggleIsWriting)
   const ref = useRef(null)
@@ -11,8 +11,10 @@ export const useAddItem = addFn => {
   }, [isInputOpen])
 
   const handleSubmit = e => {
-    if (ref.current.value.length > 1) {
-      addFn()
+    e.preventDefault()
+    if (ref.current.value.length >= 1) {
+      const { value } = ref.current
+      callback(value)
       ref.current.value = ''
     }
   }

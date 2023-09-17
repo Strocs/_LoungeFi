@@ -1,11 +1,6 @@
 import { tv } from 'tailwind-variants'
 
-export const Button = ({ size, color, outline, hover, shadow, onClick = () => {}, ...props }) => {
-  const handleClick = evt => {
-    evt.preventDefault()
-    onClick()
-  }
-
+export const Button = ({ size, color, outline, hover, shadow, className, ...props }) => {
   return (
     <button
       className={button({
@@ -14,9 +9,8 @@ export const Button = ({ size, color, outline, hover, shadow, onClick = () => {}
         outline,
         hover,
         shadow,
-        className: props.className
+        className
       })}
-      onClick={handleClick}
       {...props}>
       {props.children}
     </button>
@@ -24,7 +18,7 @@ export const Button = ({ size, color, outline, hover, shadow, onClick = () => {}
 }
 
 const button = tv({
-  base: 'rounded-full font-medium relative w-fit h-fit group transition-all duration-150 group whitespace-nowrap',
+  base: 'rounded-full font-medium relative w-fit h-fit group transition-all duration-150 group',
   variants: {
     color: {
       white: 'bg-white text-dark',
@@ -37,7 +31,7 @@ const button = tv({
       'text-green': 'bg-white text-green',
       transparent: 'bg-transparent text-transparent',
       grey: 'bg-grey text-white',
-      'text-grey': 'bg-white text-grey',
+      'text-grey': 'bg-white text-grey'
     },
     hover: {
       white: 'hover:bg-white hover:text-dark hover:outline-white',
@@ -59,10 +53,10 @@ const button = tv({
       grey: 'outline outline-2 outline-grey'
     },
     size: {
-      sm: 'px-2 py-[.03125rem] text-xs',
-      md: 'px-3 py-[.0625rem] text-sm',
-      xl: 'px-4 py-[.125rem] text-base',
-      'round-sm': 'p-[2px]',
+      sm: 'px-2 text-sm',
+      md: 'px-3 text-base',
+      xl: 'px-4 text-lg',
+      'round-sm': 'p-[.125rem]',
       'round-md': 'p-1',
       'round-xl': 'p-2'
     },

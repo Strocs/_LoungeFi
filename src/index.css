@@ -10,3 +10,12 @@
     radial-gradient(circle at center, #3e3e3e 0.05rem, #0f1013 0);
   background-size: 1.2rem 1.2rem;
 }
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
