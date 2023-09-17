@@ -1,10 +1,12 @@
 import { defineConfig } from 'vite'
+import { VitePWA } from 'vite-plugin-pwa'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+import { manifestForPlugin } from './manifestForPlugin.js'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), VitePWA(manifestForPlugin)],
   resolve: {
     alias: {
       '@hooks': path.resolve(__dirname, './src/hooks'),
