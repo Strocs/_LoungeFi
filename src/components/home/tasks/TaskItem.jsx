@@ -2,9 +2,9 @@ import { Reorder } from 'framer-motion'
 import { Button } from '@components/ui'
 import { TrashIcon, CheckIcon, GripIcon } from '@components/icons'
 import { useTaskStore } from '@store'
-import { ANIMATION_VARIANTS } from '@constants'
+import { ANIMATION_VARIANTS, UNGROUPED } from '@constants'
 
-export const TaskItem = ({ item, group }) => {
+export const TaskItem = ({ item, group = UNGROUPED }) => {
   const { id, task, done } = item
 
   const toggleDone = useTaskStore(state => state.toggleDone)
