@@ -1,5 +1,5 @@
 import { POMODORO_VALUES } from '@constants'
-import { usePomodoro } from '../../src/hooks/usePomodoro'
+import { usePomodoro } from '../../src/features/pomodoroTimer/hooks/usePomodoro'
 import { act, renderHook } from '@testing-library/react'
 import { describe, expect, test } from 'vitest'
 

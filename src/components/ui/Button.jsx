@@ -37,13 +37,15 @@ const button = tv({
       white: 'hover:bg-white hover:text-dark hover:outline-white',
       blue: 'hover:bg-blue hover:text-white hover:outline-blue',
       red: 'hover:bg-red hover:text-white hover:outline-red',
-      green: 'hover:bg-green hover:text-white hover:outline-green'
+      green: 'hover:bg-green hover:text-white hover:outline-green',
+      grey: 'hover:bg-grey hover:text-white hover:outline-grey',
     },
     shadow: {
       white: 'shadow shadow-white',
       blue: 'shadow shadow-blue',
       red: 'shadow shadow-red',
-      green: 'shadow shadow-green'
+      green: 'shadow shadow-green',
+      grey: 'shadow shadow-grey',
     },
     outline: {
       white: 'outline outline-2 outline-white',

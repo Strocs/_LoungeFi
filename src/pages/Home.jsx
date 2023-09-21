@@ -1,19 +1,17 @@
-import {
-  Pomodoro,
-  TaskGroups,
-  TasksPanel,
-  AddTask,
-  Radio,
-  NowPlaying,
-  GithubButton,
-  WelcomeName,
-  Profile
-} from '@components/home'
+import { WelcomeName, GithubButton } from '@components'
 import { Header, Footer, Title } from '@components/ui'
+import { CreateTask, TaskFocusModal, TaskPanel } from '@features/tasks'
+import { GroupList } from '@features/groups'
+import { Pomodoro } from '@features/pomodoroTimer'
+import { Radio, NowPlaying } from '@features/radioPlayer'
+import { Profile } from '@features/profile'
+import { useTaskStore } from '@context/useTaskStore'
 
 // TODO: Add swipe between Tasks Panels changing the Task Group selected
 
 export const Home = () => {
+  const isFocusModalOpen = useTaskStore(state => state.isFocusModalOpen)
+
   return (
     <>
       <Header>
@@ -23,17 +21,26 @@ export const Home = () => {
         </div>
         <Pomodoro />
       </Header>
-      <main className='grid grid-rows-[auto_auto_1fr] gap-3 max-w-xl w-full'>
-        <AddTask />
-        <TaskGroups />
-        <TasksPanel />
-        <section className='pb-1 px-3 grid w-full grid-cols-[1fr_2fr_1fr] items-center'>
+      <main
+        className={`grid ${
+          isFocusModalOpen ? 'grid-rows-1' : 'grid-rows-[auto_auto_1fr]'
+        } gap-3 max-w-xl w-full`}>
+        {isFocusModalOpen ? (
+          <TaskFocusModal />
+        ) : (
+          <>
+            <CreateTask />
+            <GroupList />
+            <TaskPanel />
+          </>
+        )}
+      </main>
+      <Footer>
+        <section className='pb-1 pt-3 px-3 grid w-full grid-cols-[1fr_2fr_1fr] items-center'>
           <Profile />
           <Radio />
           <GithubButton />
         </section>
-      </main>
-      <Footer>
         <NowPlaying />
       </Footer>
     </>
