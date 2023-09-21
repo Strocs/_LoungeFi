@@ -23,7 +23,7 @@ export default defineConfig({
             src: 'icons/favicon-192x192.png',
             sizes: '192x192',
             type: 'image/png',
-            purpose: 'any maskable'
+            purpose: 'any'
           },
           {
             src: 'icons/favicon-32x32.png',
@@ -35,7 +35,7 @@ export default defineConfig({
             src: 'icons/favicon-512x512.png',
             sizes: '512x512',
             type: 'image/png',
-            purpose: 'any'
+            purpose: 'any maskable'
           }
         ],
         theme_color: '#0F1013',
