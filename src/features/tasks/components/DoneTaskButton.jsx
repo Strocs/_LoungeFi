@@ -9,7 +9,8 @@ export const DoneTaskButton = ({ done, id, group }) => {
       onClick={() => toggleDone({ id, group })}
       size='round-sm'
       color={done ? 'green' : 'transparent'}
-      outline='white'>
+      outline='white'
+    >
       <CheckIcon />
     </Button>
   )

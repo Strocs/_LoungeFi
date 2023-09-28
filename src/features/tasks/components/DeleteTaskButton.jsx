@@ -10,7 +10,8 @@ export const DeleteTaskButton = ({ id, group }) => {
       size='round-sm'
       color='text-red'
       outline='red'
-      hover='red'>
+      hover='red'
+    >
       <TrashIcon />
     </Button>
   )

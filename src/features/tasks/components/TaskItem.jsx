@@ -29,13 +29,15 @@ export const TaskItem = ({ item, group = UNGROUPED }) => {
       value={item}
       dragListener={false}
       dragControls={controls}
-      className='flex items-center gap-2 py-2 pr-1 pl-3 hover:bg-grey hover:bg-opacity-10 transition-[background-color] duration-200 rounded-full outline-white'>
+      className='flex items-center gap-2 py-2 pr-1 pl-3 hover:bg-grey hover:bg-opacity-10 transition-[background-color] duration-200 rounded-full outline-white'
+    >
       <DoneTaskButton group={group} id={id} done={done} />
       <p
         onDoubleClick={handleDoubleClick}
         className={`leading-none text-sm w-full cursor-pointer ${
           done ? 'line-through text-grey' : ''
-        }`}>
+        }`}
+      >
         {task}
       </p>
       <div className='flex items-center gap-2'>

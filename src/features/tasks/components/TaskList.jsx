@@ -15,10 +15,15 @@ export const TaskList = ({ children, list, group, indent }) => {
       )}
       <Reorder.Group
         axis='y'
-        onReorder={newList => reorderTasks({ newOrder: newList, group: group || UNGROUPED })}
+        onReorder={newList =>
+          reorderTasks({ newOrder: newList, group: group || UNGROUPED })
+        }
         values={list}
         name='tasks-list'
-        className={indent ? 'border-l-[1px] border-grey border-dashed ml-4' : ''}>
+        className={
+          indent ? 'border-l-[1px] border-grey border-dashed ml-4' : ''
+        }
+      >
         {list.map(task => (
           <TaskItem key={task.id} item={task} group={group} />
         ))}

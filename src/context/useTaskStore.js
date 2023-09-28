@@ -137,7 +137,10 @@ export const useTaskStore = create((set, get) => ({
         newData = {
           ...state.taskData,
           ungrouped: {
-            tasks: [...state.taskData[UNGROUPED].tasks, ...state.taskData[group].tasks]
+            tasks: [
+              ...state.taskData[UNGROUPED].tasks,
+              ...state.taskData[group].tasks
+            ]
           }
         }
       }

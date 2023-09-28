@@ -44,8 +44,11 @@ export const usePomodoroStore = create((set, get) => ({
           : state.currentCycle
         return {
           currentCycle: newCurrentCycle,
-          currentStep: isLastStep ? initialValue.currentStep : state.currentStep + 1,
-          minutes: state.currentStep % 2 === 0 ? TIMERS.WORK : TIMERS.SHORT_REST,
+          currentStep: isLastStep
+            ? initialValue.currentStep
+            : state.currentStep + 1,
+          minutes:
+            state.currentStep % 2 === 0 ? TIMERS.WORK : TIMERS.SHORT_REST,
           isStart: state.autoStart,
           isLongRest: false
         }
@@ -57,7 +60,10 @@ export const usePomodoroStore = create((set, get) => ({
   countdown: () => {
     set(state => ({
       seconds: state.seconds > 0 ? state.seconds - 1 : 59,
-      minutes: state.seconds === 0 && state.minutes > 0 ? state.minutes - 1 : state.minutes
+      minutes:
+        state.seconds === 0 && state.minutes > 0
+          ? state.minutes - 1
+          : state.minutes
     }))
 
     const { isStart, ...value } = get()

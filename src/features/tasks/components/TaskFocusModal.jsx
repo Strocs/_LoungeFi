@@ -15,12 +15,11 @@ export const TaskFocusModal = () => {
 
   const createdDate = formatDate(created)
 
-  const { ref, handleSubmit, isInputOpen, handleShowInput, handleCloseInput } = useTextInput(
-    value => {
+  const { ref, handleSubmit, isInputOpen, handleShowInput, handleCloseInput } =
+    useTextInput(value => {
       updateTask({ id, group, newTask: value })
-    },
-    false
-  )
+    }, false)
+
   const handleCloseModal = () => {
     setOpenFocusModal({ isOpen: false })
   }
@@ -68,7 +67,8 @@ export const TaskFocusModal = () => {
             color='text-blue'
             outline='blue'
             hover='blue'
-            onClick={toggleUpdateTask}>
+            onClick={toggleUpdateTask}
+          >
             <EditIcon size={16} />
           </Button>
           <DeleteTaskButton id={id} group={group} />
@@ -87,7 +87,8 @@ export const TaskFocusModal = () => {
           outline='grey'
           shadow='grey'
           hover='grey'
-          onClick={handleCloseModal}>
+          onClick={handleCloseModal}
+        >
           Return
         </Button>
       </div>
