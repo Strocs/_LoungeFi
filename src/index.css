@@ -7,7 +7,7 @@
 :root {
   font-family: 'Poppins', sans-serif;
   background-image: radial-gradient(circle at center, #3e3e3e 0.05rem, #0f1013 0),
-    radial-gradient(circle at center, #3e3e3e 0.05rem, #0f1013 0);
+    radial-gradient(circle at center, #3e3e3e 0.05rem, rgb(15, 16, 19) 0);
   background-size: 1.2rem 1.2rem;
 }
 
@@ -18,4 +18,21 @@
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+
+
+.mask-lr {
+  mask-image: linear-gradient(to right, rgba(15, 16, 19, 0), white 10%);
+  -webkit-mask-image: linear-gradient(to right, rgba(15, 16, 19, 0), white 10%, white 90%, rgba(15, 16, 19, 0));
+}
+
+.mask-r {
+  mask-image: linear-gradient(to right, rgba(15, 16, 19, 0), white 10%);
+  -webkit-mask-image: linear-gradient(to right, rgba(15, 16, 19, 0), white 10%);
+}
+
+.mask-l {
+  mask-image: linear-gradient(to left, rgba(15, 16, 19, 0), white 10%);
+  -webkit-mask-image: linear-gradient(to left, rgba(15, 16, 19, 0), white 10%);
 }
