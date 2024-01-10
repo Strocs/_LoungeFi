@@ -11,7 +11,7 @@ export const Countdown = ({ minutes, seconds, isStart }) => {
       ? (document.title = `${formattedMinutes}:${formattedSeconds} ${DOCUMENT_TITLE}`)
       : (document.title = DOCUMENT_TITLE)
   }, [seconds, isStart])
-  
+
   return (
     <span className='text-dark text-lg font-bold leading-none w-12'>
       {formattedMinutes}:{formattedSeconds}

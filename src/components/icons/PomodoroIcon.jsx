@@ -3,7 +3,9 @@ export const PomodoroIcon = ({ size = 22, isActive = false }) => {
     <svg height={size} width={size} viewBox='0 0 51.679 51.679'>
       <g>
         <path
-          className={`${isActive ? 'fill-green' : 'fill-grey group-hover:fill-green'} transition-[fill] duration-150`}
+          className={`${
+            isActive ? 'fill-green' : 'fill-grey group-hover:fill-green'
+          } transition-[fill] duration-150`}
           d='M40.47,8.458c-2.562-1.642-7.374-3.93-11.997-1.816c-0.445,0.204-0.952-0.117-0.952-0.607V1.786
 		C27.522,0.804,26.855,0,26.04,0h-2.223c-0.815,0-1.482,0.804-1.482,1.786v4.501c0,0.425-0.385,0.747-0.802,0.661
 		c-1.877-0.387-6.751-0.989-11.412,1.795c-0.638,0.381-0.268,1.381,0.464,1.247c2.17-0.397,5.026-0.67,6.956,0.092
@@ -14,7 +16,9 @@ export const PomodoroIcon = ({ size = 22, isActive = false }) => {
 		c-0.525-0.309-0.436-1.095,0.155-1.24c1.194-0.293,3.252-0.572,6.644-0.46C40.768,9.723,41.049,8.829,40.47,8.458z'
         />
         <path
-          className={`${isActive ? 'fill-red' : 'fill-darkGrey group-hover:fill-red'} transition-[fill] duration-150`}
+          className={`${
+            isActive ? 'fill-red' : 'fill-darkGrey group-hover:fill-red'
+          } transition-[fill] duration-150`}
           d='M41.248,9.99c-0.093-0.065-0.201-0.106-0.314-0.12c-0.4-0.049-0.801-0.095-1.201-0.149
 		c-0.143-0.014-0.287-0.025-0.429-0.039c-2.914-0.048-4.743,0.206-5.846,0.474c-0.599,0.146-0.707,0.931-0.175,1.244
 		c3.457,2.035,4.411,4.659,4.63,6.393c0.08,0.634-0.677,1.02-1.134,0.573c-2.79-2.724-6.308-3.145-7.798-3.194
@@ -26,13 +30,17 @@ export const PomodoroIcon = ({ size = 22, isActive = false }) => {
 		s25.446-10.393,25.446-23.214C51.286,20.928,47.348,14.23,41.248,9.99z'
         />
         <path
-          className={`${isActive ? 'fill-red' : 'fill-darkGrey group-hover:fill-red'} transition-[fill] duration-150`}
+          className={`${
+            isActive ? 'fill-red' : 'fill-darkGrey group-hover:fill-red'
+          } transition-[fill] duration-150`}
           d='M5.791,34.636c-0.342,0-0.675-0.175-0.861-0.49C4.182,32.883,3.692,31.488,3.473,30
 		c-0.08-0.547,0.298-1.055,0.844-1.135c0.556-0.086,1.055,0.298,1.135,0.844c0.178,1.213,0.593,2.395,1.199,3.418
 		c0.281,0.475,0.125,1.089-0.351,1.37C6.14,34.591,5.964,34.636,5.791,34.636z'
         />
         <path
-          className={`${isActive ? 'fill-red' : 'fill-darkGrey group-hover:fill-red'} transition-[fill] duration-150`}
+          className={`${
+            isActive ? 'fill-red' : 'fill-darkGrey group-hover:fill-red'
+          } transition-[fill] duration-150`}
           d='M4.588,26.678c-0.023,0-0.047-0.001-0.07-0.003c-0.552-0.038-0.967-0.516-0.929-1.066
 		c0.094-1.327,0.366-2.616,0.811-3.834c0.189-0.519,0.761-0.783,1.283-0.596c0.519,0.189,0.785,0.764,0.596,1.283
 		c-0.381,1.041-0.614,2.146-0.694,3.285C5.548,26.275,5.109,26.678,4.588,26.678z'
