@@ -1,5 +1,5 @@
 import { Reorder, useDragControls } from 'framer-motion'
-import { GripIcon } from '@components/icons'
+import { MoveIcon } from '@components/icons'
 import { useTaskStore } from '@context'
 import { ANIMATION_VARIANTS, UNGROUPED } from '@constants'
 import { DeleteTaskButton } from './DeleteTaskButton'
@@ -43,7 +43,7 @@ export const TaskItem = ({ item, group = UNGROUPED }) => {
       <div className='flex items-center gap-2'>
         <DeleteTaskButton id={id} group={group} />
         <div className='cursor-grab' onPointerDown={handlePointerDown}>
-          <GripIcon size={24} />
+          <MoveIcon size={24} />
         </div>
       </div>
     </Reorder.Item>
