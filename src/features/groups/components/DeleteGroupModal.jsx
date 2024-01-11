@@ -11,7 +11,7 @@ export const DeleteGroupModal = ({ group, onConfirm, onModal }) => {
         initial='hidden'
         animate='visible'
         exit='hidden'
-        className='bg-white rounded-2xl text-dark text-sm p-6 grid gap-3 justify-items-center absolute z-50 top-0 bottom-0 left-0 right-0 w-fit h-fit m-auto text-center shadow shadow-blue'
+        className='bg-white outline outline-2 outline-red rounded-2xl text-dark text-sm p-6 grid gap-3 justify-items-center absolute z-50 top-20 left-0 right-0 w-fit h-fit m-auto text-center'
       >
         <p className='max-w-[14rem]'>
           Do you want to <b className='text-red'>delete</b> all <b>tasks</b>{' '}
