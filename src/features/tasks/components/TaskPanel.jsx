@@ -26,9 +26,7 @@ export const TaskPanel = () => {
                   list={groupList[group].tasks}
                   group={group}
                   indent
-                >
-                  {group}
-                </TaskList>
+                />
               )
             })}
           </>
