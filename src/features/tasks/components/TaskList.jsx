@@ -20,11 +20,11 @@ export const TaskList = ({ children, list, group, indent }) => {
         }
         values={list}
         name='tasks-list'
-        className={
+        className={`${
           indent
-            ? 'border-l-[1px] border-grey border-dashed ml-4'
-            : ' touch-none'
-        }
+            ? 'border-l-[1px] border-grey border-dashed ml-4 touch-none'
+            : ''
+        } touch-none`}
       >
         {list.map(task => (
           <TaskItem key={task.id} item={task} group={group} />
