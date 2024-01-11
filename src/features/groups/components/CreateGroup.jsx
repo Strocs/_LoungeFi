@@ -1,10 +1,11 @@
 import { useTextInput } from '@hooks'
-import { useTaskStore } from '@context'
+import { useTaskStore, useRadioStore } from '@context'
 import { PlusIcon } from '@components/icons'
 import { motion } from 'framer-motion'
 
 export const CreateGroup = () => {
   const createGroup = useTaskStore(state => state.createGroup)
+  const isRadioOn = useRadioStore(state => state.isRadioOn)
 
   const variants = {
     open: {
@@ -29,12 +30,18 @@ export const CreateGroup = () => {
       initial='closed'
       animate='open'
       name='create-group'
-      className='w-fit h-fit outline outline-2 px-2 outline-blue rounded-full bg-slate-100'
+      className={`w-fit h-fit outline outline-2 px-2 rounded-full  ${
+        isRadioOn
+          ? 'bg-opacityDark outline-opacityDark text-slate-100'
+          : 'bg-slate-100 outline-blue'
+      }`}
       onSubmit={handleSubmit}
       onBlur={handleCloseInput}
     >
       <input
-        className='placeholder:text-sm text-dark placeholder:text-center text-center font-normal text-sm w-14 outline-none'
+        className={`placeholder:text-sm placeholder:text-center text-center font-normal text-sm w-14 outline-none ${
+          isRadioOn ? 'bg-opacityDark placeholder:text-grey' : 'text-dark'
+        }`}
         placeholder='Group'
         type='text'
         ref={ref}

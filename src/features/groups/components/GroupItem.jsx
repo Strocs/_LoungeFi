@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { Button } from '@components/ui'
 import { CloseIcon } from '@components/icons'
 import { DeleteGroupModal } from '@features/groups'
-import { useTaskStore } from '@context'
+import { useTaskStore, useRadioStore } from '@context'
 import { ANIMATION_VARIANTS, FILTER_ITEMS, UNGROUPED } from '@constants'
 
 export const GroupItem = ({ group, isDeletable = false }) => {
@@ -11,6 +11,7 @@ export const GroupItem = ({ group, isDeletable = false }) => {
   const setGroupActive = useTaskStore(state => state.setGroupActive)
   const deleteGroup = useTaskStore(state => state.deleteGroup)
   const taskData = useTaskStore(state => state.taskData)
+  const isRadioOn = useRadioStore(state => state.isRadioOn)
 
   const tasksLength = taskData[group]?.tasks.length
 
@@ -38,10 +39,16 @@ export const GroupItem = ({ group, isDeletable = false }) => {
         color={groupActive === group ? 'blue' : 'white'}
         outline={groupActive === group ? 'white' : 'blue'}
         hover='blue'
-        className='flex items-center gap-1 whitespace-nowrap'
+        className={`flex items-center gap-1 whitespace-nowrap ${
+          groupActive === group
+            ? ''
+            : isRadioOn
+            ? 'bg-opacityDark outline-opacityDark opacity-75 hover:opacity-100 text-slate-100 transition-[background-color,outline,color,opacity] duration-150'
+            : ''
+        }`}
       >
         <p
-          className={`text-normal ${
+          className={`font-normal ${
             isDeletable
               ? 'pl-3 md:px-3 md:group-hover:px-0 md:group-hover:pl-3'
               : 'px-3'

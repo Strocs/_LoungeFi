@@ -1,5 +1,8 @@
 import { useState } from 'react'
-import { PomodoroSettingsButton, PomodoroSettingsModal } from '@features/pomodoroTimer'
+import {
+  PomodoroSettingsButton,
+  PomodoroSettingsModal
+} from '@features/pomodoroTimer'
 import { usePomodoroStore } from '@context'
 
 export const PomodoroSettings = () => {
