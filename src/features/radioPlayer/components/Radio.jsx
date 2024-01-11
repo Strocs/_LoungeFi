@@ -11,12 +11,16 @@ export const Radio = () => {
   const volume = useRadioStore(state => state.volume)
   const setIsBuffering = useRadioStore(state => state.setIsBuffering)
   const isBuffering = useRadioStore(state => state.isBuffering)
-  const setCurrentRadioTitle = useRadioStore(state => state.setCurrentRadioTitle)
+  const setCurrentRadioTitle = useRadioStore(
+    state => state.setCurrentRadioTitle
+  )
 
   const videoRef = useRef(null)
 
   useEffect(() => {
-    setCurrentRadioTitle(videoRef.current?.getInternalPlayer()?.videoTitle || '')
+    setCurrentRadioTitle(
+      videoRef.current?.getInternalPlayer()?.videoTitle || ''
+    )
   })
 
   return (
@@ -29,7 +33,7 @@ export const Radio = () => {
         />
       )}
       {isRadioOn && (
-        <div className='fixed top-0 bottom-0 h-screen left-0 right-0 -z-20 overflow-hidden'>
+        <div className='fixed top-0 bottom-0 h-screen left-0 right-0 -z-20 overflow-hidden landscape:scale-125'>
           <ReactPlayer
             url={youtubeBaseURL + id}
             config={{
