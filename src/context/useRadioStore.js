@@ -10,7 +10,7 @@ const storedCurrentRadio = useLocalStorage({
 
 const storedVolume = useLocalStorage({
   key: STORAGE_VOLUME_ID,
-  initialValue: 0.5
+  initialValue: 1
 })
 
 export const useRadioStore = create(set => ({
