@@ -9,6 +9,7 @@ export const VolumeSlider = () => {
 
   const [clicking, setClicking] = useState(false)
   const [{ x, width }, setCoordinates] = useState({ x: 0, width: 0 })
+  const [isMobile, setIsMobile] = useState(false)
 
   const changeVolume = e => {
     const mouseX = e.clientX
@@ -34,6 +35,14 @@ export const VolumeSlider = () => {
     setCoordinates({ x, width })
   }, [sliderRef.current?.getBoundingClientRect().x])
 
+  useEffect(() => {
+    if (window.PointerEvent && 'maxTouchPoints' in navigator) {
+      if (navigator.maxTouchPoints > 0) {
+        setIsMobile(true)
+      }
+    }
+  }, [])
+
   return (
     <div
       role='slider'
@@ -45,7 +54,8 @@ export const VolumeSlider = () => {
       ref={sliderRef}
       className={`w-auto flex py-2 justify-between gap-1 cursor-pointer transition-all duration-150 ${
         volume === 0 ? 'text-red' : 'text-white'
-      }`}>
+      } ${isMobile ? 'hidden' : ''}`}
+    >
       {Array.from({ length: 10 }, (_, i) => (
         <span
           key={i}
