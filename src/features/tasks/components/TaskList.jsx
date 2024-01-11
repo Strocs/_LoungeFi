@@ -21,7 +21,9 @@ export const TaskList = ({ children, list, group, indent }) => {
         values={list}
         name='tasks-list'
         className={
-          indent ? 'border-l-[1px] border-grey border-dashed ml-4' : ''
+          indent
+            ? 'border-l-[1px] border-grey border-dashed ml-4'
+            : ' touch-none'
         }
       >
         {list.map(task => (
