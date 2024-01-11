@@ -14,10 +14,6 @@ export const RADIO_LIST = [
       'Peaceful Summer Night 🌝 Chill Summer Lofi 🌝 Deep Focus To Study/Work [ Lofi Hip Hop - Lofi Chill ]'
   },
   {
-    id: 'EapVttArmsE',
-    title: 'ＣＨＩＬＬ ＰＨＯＮＫ | 24/7 | @Smooth S o u n d s 🎵'
-  },
-  {
     id: 'lP26UCnoH9s',
     title: 'Coffee Shop Radio ☕ - 24/7 lofi & jazzy hip-hop beats'
   },
