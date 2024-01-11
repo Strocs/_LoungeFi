@@ -18,11 +18,10 @@ export const CreateGroup = () => {
     }
   }
 
-  const { isInputOpen, ref, handleSubmit, handleShowInput, handleCloseInput } = useTextInput(
-    group => {
+  const { isInputOpen, ref, handleSubmit, handleShowInput, handleCloseInput } =
+    useTextInput(group => {
       createGroup({ group })
-    }
-  )
+    })
 
   return isInputOpen ? (
     <motion.form
@@ -30,9 +29,10 @@ export const CreateGroup = () => {
       initial='closed'
       animate='open'
       name='create-group'
-      className='w-fit h-fit outline outline-2 px-2 outline-blue rounded-full bg-white'
+      className='w-fit h-fit outline outline-2 px-2 outline-blue rounded-full bg-slate-100'
       onSubmit={handleSubmit}
-      onBlur={handleCloseInput}>
+      onBlur={handleCloseInput}
+    >
       <input
         className='placeholder:text-xs text-dark placeholder:text-center text-center font-medium text-sm w-14 outline-none'
         type='text'
@@ -46,7 +46,8 @@ export const CreateGroup = () => {
       initial='closed'
       animate='open'
       onClick={handleShowInput}
-      className='text-white px-1'>
+      className='text-slate-100 px-1'
+    >
       <PlusIcon />
     </motion.button>
   )

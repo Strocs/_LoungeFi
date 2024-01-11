@@ -1,6 +1,14 @@
 import { tv } from 'tailwind-variants'
 
-export const Button = ({ size, color, outline, hover, shadow, className, ...props }) => {
+export const Button = ({
+  size,
+  color,
+  outline,
+  hover,
+  shadow,
+  className,
+  ...props
+}) => {
   return (
     <button
       className={button({
@@ -11,7 +19,8 @@ export const Button = ({ size, color, outline, hover, shadow, className, ...prop
         shadow,
         className
       })}
-      {...props}>
+      {...props}
+    >
       {props.children}
     </button>
   )
@@ -21,34 +30,34 @@ const button = tv({
   base: 'rounded-full font-medium relative w-fit h-fit group transition-all duration-150 group',
   variants: {
     color: {
-      white: 'bg-white text-dark',
-      'text-white': 'bg-transparent text-white',
-      blue: 'bg-blue text-white',
-      'text-blue': 'bg-white text-blue',
-      red: 'bg-red text-white',
-      'text-red': 'bg-white text-red',
-      green: 'bg-green text-white',
-      'text-green': 'bg-white text-green',
+      white: 'bg-slate-100 text-dark',
+      'text-slate-100': 'bg-transparent text-slate-100',
+      blue: 'bg-blue text-slate-100',
+      'text-blue': 'bg-slate-100 text-blue',
+      red: 'bg-red text-slate-100',
+      'text-red': 'bg-slate-100 text-red',
+      green: 'bg-green text-slate-100',
+      'text-green': 'bg-slate-100 text-green',
       transparent: 'bg-transparent text-transparent',
-      grey: 'bg-grey text-white',
-      'text-grey': 'bg-white text-grey'
+      grey: 'bg-grey text-slate-100',
+      'text-grey': 'bg-slate-100 text-grey'
     },
     hover: {
-      white: 'hover:bg-white hover:text-dark hover:outline-white',
-      blue: 'hover:bg-blue hover:text-white hover:outline-blue',
-      red: 'hover:bg-red hover:text-white hover:outline-red',
-      green: 'hover:bg-green hover:text-white hover:outline-green',
-      grey: 'hover:bg-grey hover:text-white hover:outline-grey',
+      white: 'hover:bg-slate-100 hover:text-dark hover:outline-slate-100',
+      blue: 'hover:bg-blue hover:text-slate-100 hover:outline-blue',
+      red: 'hover:bg-red hover:text-slate-100 hover:outline-red',
+      green: 'hover:bg-green hover:text-slate-100 hover:outline-green',
+      grey: 'hover:bg-grey hover:text-slate-100 hover:outline-grey'
     },
     shadow: {
-      white: 'shadow shadow-white',
+      white: 'shadow shadow-slate-100',
       blue: 'shadow shadow-blue',
       red: 'shadow shadow-red',
       green: 'shadow shadow-green',
-      grey: 'shadow shadow-grey',
+      grey: 'shadow shadow-grey'
     },
     outline: {
-      white: 'outline outline-2 outline-white',
+      white: 'outline outline-2 outline-slate-100',
       blue: 'outline outline-2 outline-blue',
       red: 'outline outline-2 outline-red',
       green: 'outline outline-2 outline-green',

@@ -53,7 +53,7 @@ export const VolumeSlider = () => {
       onPointerLeave={handleMouseUp}
       ref={sliderRef}
       className={`w-auto flex py-2 justify-between gap-1 cursor-pointer transition-all duration-150 ${
-        volume === 0 ? 'text-red' : 'text-white'
+        volume === 0 ? 'text-red' : 'text-slate-100'
       } ${isMobile ? 'hidden' : ''}`}
     >
       {Array.from({ length: 10 }, (_, i) => (

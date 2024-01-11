@@ -38,8 +38,8 @@ export const Pomodoro = () => {
     <section
       ref={pomodoroRef}
       className={`${
-        isStart ? 'bg-white outline-red' : 'bg-white outline-grey'
-      } flex items-center gap-4 pl-4 pr-3 py-1 h-fit w-fit rounded-full outline outline-2 transition-all duration-150`}
+        isStart ? 'outline-red' : 'outline-grey'
+      } bg-slate-100 flex items-center gap-4 pl-4 pr-3 py-1 h-fit w-fit rounded-full outline outline-2 transition-all duration-150`}
     >
       <div className='flex gap-4 cursor-pointer group' onClick={togglePomodoro}>
         <Button color='transparent'>

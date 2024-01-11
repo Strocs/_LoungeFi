@@ -8,7 +8,10 @@ export const TasksWrapper = ({ children }) => {
   return (
     <section
       name='tasks-panel'
-      className={`relative text-white rounded-xl ${isRadioOn ? 'bg-opacityDark' : ''}`}>
+      className={`relative text-slate-100 rounded-xl ${
+        isRadioOn ? 'bg-opacityDark' : ''
+      }`}
+    >
       {children}
     </section>
   )

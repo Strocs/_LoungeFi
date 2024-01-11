@@ -8,14 +8,23 @@ export const NowPlaying = () => {
   const currentRadioTitle = useRadioStore(state => state.currentRadioTitle)
   const { id } = useRadioStore(state => state.currentRadio)
 
-  const controlText = isBuffering ? 'Buffering...' : isPlaying ? 'Now Playing:' : 'Paused:'
+  const controlText = isBuffering
+    ? 'Buffering...'
+    : isPlaying
+    ? 'Now Playing:'
+    : 'Paused:'
 
   return (
-    <div className={`text-white w-full h-10 relative text-center ${!isRadioOn ? 'opacity-0' : ''}`}>
+    <div
+      className={`text-slate-100 w-full h-10 relative text-center ${
+        !isRadioOn ? 'opacity-0' : ''
+      }`}
+    >
       <p className='font-medium'>{controlText}</p>
       <a
         href={youtubeBaseURL + id}
-        className='text-[0.75rem] font-light whitespace-nowrap text-ellipsis overflow-hidden absolute bottom-0 left-0 right-0 hover:opacity-70 transition-opacity duration-150'>
+        className='text-[0.75rem] font-light whitespace-nowrap text-ellipsis overflow-hidden absolute bottom-0 left-0 right-0 hover:opacity-70 transition-opacity duration-150'
+      >
         {!isBuffering ? currentRadioTitle : ''}
       </a>
     </div>

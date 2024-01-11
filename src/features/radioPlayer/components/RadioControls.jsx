@@ -10,25 +10,29 @@ export const RadioControls = ({ isPlaying = false }) => {
 
   return (
     <section className='h-fit place-self-center'>
-      <div className='flex gap-4 text-white mb-1'>
+      <div className='flex gap-4 text-slate-100 mb-1'>
         <button
           className='shadow-opacityGrey drop-shadow-[-5px_5px_0_rgba(0,0,0,0.25)]'
-          onClick={playLast}>
+          onClick={playLast}
+        >
           <SkipIcon reverse />
         </button>
         <button
           className='shadow-opacityGrey drop-shadow-[-5px_5px_0_rgba(0,0,0,0.25)]'
-          onClick={onPlayOrPause}>
+          onClick={onPlayOrPause}
+        >
           {isPlaying ? <PauseIcon /> : <PlayIcon />}
         </button>
         <button
           className='shadow-opacityGrey drop-shadow-[-5px_5px_0_rgba(0,0,0,0.25)]'
-          onClick={turnOffRadio}>
+          onClick={turnOffRadio}
+        >
           <StopIcon />
         </button>
         <button
           className='shadow-opacityGrey drop-shadow-[-5px_5px_0_rgba(0,0,0,0.25)]'
-          onClick={playNext}>
+          onClick={playNext}
+        >
           <SkipIcon />
         </button>
       </div>
