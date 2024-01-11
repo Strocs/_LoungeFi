@@ -27,10 +27,10 @@ export const TaskItem = ({ item, group = UNGROUPED }) => {
       animate='visible'
       variants={ANIMATION_VARIANTS.OPACITY}
       value={item}
-      whileTap={{ scale: 0.95 }}
+      whileDrag={{ scale: 0.95 }}
       dragListener={false}
       dragControls={controls}
-      className='flex items-center gap-2 py-2 pr-1 pl-3 hover:bg-grey hover:bg-opacity-10 transition-[background-color] duration-200 rounded-full outline-slate-100'
+      className='flex touch-none items-center gap-2 py-2 pr-1 pl-3 hover:bg-grey hover:bg-opacity-10 transition-[background-color] duration-200 rounded-full outline-slate-100'
     >
       <DoneTaskButton group={group} id={id} done={done} />
       <p
