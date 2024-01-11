@@ -85,7 +85,6 @@ export const TaskFocusModal = () => {
           size='md'
           color='white'
           outline='grey'
-          shadow='grey'
           hover='grey'
           onClick={handleCloseModal}
         >
