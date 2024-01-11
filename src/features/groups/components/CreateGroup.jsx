@@ -34,7 +34,8 @@ export const CreateGroup = () => {
       onBlur={handleCloseInput}
     >
       <input
-        className='placeholder:text-xs text-dark placeholder:text-center text-center font-medium text-sm w-14 outline-none'
+        className='placeholder:text-sm text-dark placeholder:text-center text-center font-normal text-sm w-14 outline-none'
+        placeholder='Group'
         type='text'
         ref={ref}
       />

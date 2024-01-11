@@ -40,16 +40,16 @@ export const GroupItem = ({ group, isDeletable = false }) => {
         hover='blue'
         className='flex items-center gap-1 whitespace-nowrap'
       >
-        <span
-          className={
+        <p
+          className={`text-normal ${
             isDeletable
               ? 'pl-3 md:px-3 md:group-hover:px-0 md:group-hover:pl-3'
               : 'px-3'
-          }
+          }`}
           onClick={() => setGroupActive({ group })}
         >
           {groupName}
-        </span>
+        </p>
         {isDeletable && (
           <span
             onClick={handleClick}
