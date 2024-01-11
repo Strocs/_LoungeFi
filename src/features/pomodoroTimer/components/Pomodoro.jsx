@@ -38,7 +38,7 @@ export const Pomodoro = () => {
     <section
       ref={pomodoroRef}
       className={`${
-        isStart ? 'outline-red' : 'outline-grey opacity-75 hover:opacity-100'
+        isStart ? 'outline-red' : 'outline-grey'
       } bg-slate-100 text-dark flex items-center gap-4 pl-4 pr-3 py-1 h-fit w-fit rounded-full outline outline-2 transition-all duration-150`}
     >
       <div className='flex gap-4 cursor-pointer group' onClick={togglePomodoro}>
