@@ -15,7 +15,7 @@ export const Input = ({
       name={name}
       id={name}
       ref={reference}
-      className={`${isRadioOnStyles} transition-[background-color,outline] duration-150 h-full w-full placeholder:text-sm text-sm rounded-full px-4 py-1 text-dark ${customClass}`}
+      className={`${isRadioOnStyles} transition-[background-color,outline] duration-150 h-fit w-full placeholder:text-sm text-sm rounded-full px-4 py-1 text-dark ${customClass}`}
       {...props}
     />
   )
