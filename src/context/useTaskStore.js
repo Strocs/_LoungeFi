@@ -1,6 +1,8 @@
 import { create } from 'zustand'
 import { useLocalStorage } from '@hooks'
 import { STORAGE_TASK_ID, UNGROUPED } from '@constants'
+import { useAuthStore } from './useAuthStore'
+import { startLoadTasks } from '@features/authentication'
 
 const storedValue = useLocalStorage({
   key: STORAGE_TASK_ID,
@@ -21,6 +23,14 @@ export const useTaskStore = create((set, get) => ({
   taskActive: null,
 
   // TASKS STUFFS
+  setTasks: async () => {
+    const { uid } = useAuthStore.getState().userAuth
+    const notesFromDB = await startLoadTasks(uid)
+    set({
+      notes: notesFromDB
+    })
+  },
+
   createTask: ({ task = '' }) => {
     set(state => ({
       taskData: {
