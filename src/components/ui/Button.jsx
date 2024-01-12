@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { tv } from 'tailwind-variants'
 
 export const Button = ({
@@ -7,9 +8,10 @@ export const Button = ({
   hover,
   shadow,
   className,
+  as: Element = 'button',
   ...props
 }) => {
-  return (
+  return Element === 'button' ? (
     <button
       className={button({
         color,
@@ -23,11 +25,25 @@ export const Button = ({
     >
       {props.children}
     </button>
+  ) : (
+    <Link
+      className={button({
+        color,
+        size,
+        outline,
+        hover,
+        shadow,
+        className
+      })}
+      {...props}
+    >
+      {props.children}
+    </Link>
   )
 }
 
 const button = tv({
-  base: 'rounded-full font-medium relative w-fit h-fit group transition-all duration-150 group',
+  base: 'rounded-full relative w-fit h-fit group transition-all duration-150 group',
   variants: {
     color: {
       white: 'bg-slate-100 text-dark',
