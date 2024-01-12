@@ -1,11 +1,13 @@
 {
   "dependencies": {
+    "firebase": "^10.7.1",
     "framer-motion": "10.17.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-player": "^2.14.1",
     "react-router-dom": "^6.21.1",
     "tailwind-variants": "^0.1.20",
+    "validator": "^13.11.0",
     "zustand": "^4.4.7"
   },
   "devDependencies": {
