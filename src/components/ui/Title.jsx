@@ -7,7 +7,9 @@ export function Title ({ isBig }) {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
       className={`${
-        isBig ? 'text-7xl font-light mx-auto' : 'text-3xl font-extralight'
+        isBig
+          ? 'text-6xl sm:text-7xl font-light mx-auto'
+          : 'text-3xl font-extralight'
       } leading-none whitespace-nowrap`}
     >
       _L
@@ -15,7 +17,7 @@ export function Title ({ isBig }) {
         src='/logo_title.png'
         alt='Icon of the website'
         className={`${
-          isBig ? 'h-10 w-10' : 'h-[18px]'
+          isBig ? 'h-9 w-9 sm:h-10 sm:w-10' : 'h-[18px]'
         } inline-block aspect-square`}
         width={18}
         height={18}
