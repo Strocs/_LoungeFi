@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion'
 
-export function Title ({ isBig }) {
+export function Title ({ isBig, noAnimation = false }) {
   return (
     <motion.h1
-      initial={{ y: isBig ? -100 : -50 }}
-      animate={{ y: 0 }}
+      initial={!noAnimation && { y: isBig ? -100 : -50 }}
+      animate={!noAnimation && { y: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
       className={`${
         isBig

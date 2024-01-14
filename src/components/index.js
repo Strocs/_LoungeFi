@@ -1,3 +1,5 @@
 export * from './GithubButton'
 export * from './WelcomeName'
 export * from './DownloadAppButton'
+export * from './Loading'
+export * from './LoadingScreen'

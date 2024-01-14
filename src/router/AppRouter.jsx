@@ -1,11 +1,12 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Home, Login, Register } from '@pages'
 import { useCheckAuth } from '@hooks/useCheckAuth'
+import { LoadingScreen } from '@components'
 
 export function AppRouter () {
   const status = useCheckAuth()
 
-  if (status === 'checking') return <h1>...Checking</h1>
+  if (status === 'checking') return <LoadingScreen />
   return (
     <>
       <Routes>
