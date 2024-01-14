@@ -1,15 +1,17 @@
 import { useState } from 'react'
 import { ProfileButton } from '@features/profile'
-import { useAuthStore } from '@context/useAuthStore'
+import { useAuthStore, useTaskStore } from '@context'
 import { logoutFirebase } from '@features/authentication'
 
 export const Profile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const logout = useAuthStore(state => state.logout)
+  const cleanStateOnLogout = useTaskStore(state => state.cleanStateOnLogout)
 
   const onLogout = () => {
     logout()
+    cleanStateOnLogout()
     logoutFirebase()
   }
 

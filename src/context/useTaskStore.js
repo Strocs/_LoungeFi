@@ -39,8 +39,17 @@ export const useTaskStore = create((set, get) => ({
       }
     })
 
+    set(state => ({
+      taskData: tasksFromDB ? parseTasks : state.taskData
+    }))
+  },
+
+  cleanStateOnLogout: () => {
     set({
-      taskData: parseTasks
+      taskData: {
+        [UNGROUPED]: []
+      },
+      groupActive: UNGROUPED
     })
   },
 
