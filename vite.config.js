@@ -5,6 +5,9 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  define: {
+    __APP_ENV__: process.env.FIREBASE_CONFIG
+  },
   plugins: [
     react(),
     VitePWA({
@@ -57,7 +60,7 @@ export default defineConfig({
       '@router': path.resolve(__dirname, './src/router'),
       '@components': path.resolve(__dirname, './src/components'),
       '@constants': path.resolve(__dirname, './src/constants'),
-      '@features': path.resolve(__dirname, './src/features'),
+      '@features': path.resolve(__dirname, './src/features')
     }
   },
   test: {
