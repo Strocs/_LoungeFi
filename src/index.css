@@ -1,26 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --text: #222;
-  --box-background: #eaeaea;
-  --main-background: #e2e2e2;
-  --gray: #62656D;
-  --red: #CB0D0B;
-}
-
-.dark {
-  --text: #eaeaea;
-  --box-background: #2a2a2a;
-  --main-background: #222;
-  --gray: #838898;
-  --red: #E9574F;
-}
-
-html {
   font-family: 'Poppins', sans-serif;
+  background-image: radial-gradient(circle at center, #3e3e3e 0.05rem, #0f1013 0),
+    radial-gradient(circle at center, #3e3e3e 0.05rem, rgb(15, 16, 19) 0);
+  background-size: 1.2rem 1.2rem;
 }
 
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+.mask-lr {
+  mask-image: linear-gradient(to right, rgba(15, 16, 19, 0), white 10%);
+  -webkit-mask-image: linear-gradient(to right, rgba(15, 16, 19, 0), white 10%, white 90%, rgba(15, 16, 19, 0));
+}
+
+.mask-r {
+  mask-image: linear-gradient(to right, rgba(15, 16, 19, 0), white 10%);
+  -webkit-mask-image: linear-gradient(to right, rgba(15, 16, 19, 0), white 10%);
+}
+
+.mask-l {
+  mask-image: linear-gradient(to left, rgba(15, 16, 19, 0), white 10%);
+  -webkit-mask-image: linear-gradient(to left, rgba(15, 16, 19, 0), white 10%);
+}

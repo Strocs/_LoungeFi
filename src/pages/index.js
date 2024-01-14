@@ -1,2 +1,4 @@
-export * from './mainPage/TasksPage'
-export {TaskInfoPage as default} from './taskInfoPage/TaskInfoPage'
+export * from './Home'
+export * from './Login'
+export * from './Profile'
+export * from './Register'
