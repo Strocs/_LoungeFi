@@ -14,8 +14,6 @@ export const startLoadTasks = async (uid = '') => {
   const docs = await getDocs(collectionRef)
   const tasks = []
 
-  console.log(docs)
-
   docs.forEach(doc => {
     tasks.push({
       db_id: doc.id,
