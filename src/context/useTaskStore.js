@@ -38,10 +38,13 @@ export const useTaskStore = create((set, get) => ({
           : [task]
       }
     })
+    console.log('from store', { tasksFromDB, parseTasks })
 
     set(state => ({
       taskData: tasksFromDB.length < 0 ? parseTasks : state.taskData
     }))
+
+    console.log({ stateData: get().taskData })
   },
 
   cleanStateOnLogout: () => {
