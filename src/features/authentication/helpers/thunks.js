@@ -20,7 +20,7 @@ export const startLoadTasks = async (uid = '') => {
       ...doc.data()
     })
   })
-  console.log({ collectionRef, docs, tasks })
+
   return tasks
 }
 
