@@ -5,7 +5,6 @@ import { getFirestore } from 'firebase/firestore/lite'
 
 // Your web app's Firebase configuration
 const firebaseConfig = JSON.parse(import.meta.env.VITE_FIREBASE_CONFIG)
-console.log(firebaseConfig)
 
 // Initialize Firebase
 export const FirebaseApp = initializeApp(firebaseConfig)

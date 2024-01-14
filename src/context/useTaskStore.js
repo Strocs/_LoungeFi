@@ -40,7 +40,7 @@ export const useTaskStore = create((set, get) => ({
     })
 
     set(state => ({
-      taskData: tasksFromDB ? parseTasks : state.taskData
+      taskData: tasksFromDB.length > 0 ? parseTasks : state.taskData
     }))
   },
 
