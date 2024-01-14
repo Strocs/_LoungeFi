@@ -13,7 +13,7 @@ export const Home = () => {
   const { displayName } = useAuthStore(state => state.userAuth)
   const firstName = displayName?.split(' ')[0]
 
-  const showInstallButton = usePWAInstall()
+  const installApp = usePWAInstall()
 
   return (
     <>
@@ -43,7 +43,11 @@ export const Home = () => {
         <section className='pb-1 pt-3 px-3 grid w-full grid-cols-[1fr_2fr_1fr] items-center'>
           <Profile name={displayName} />
           <Radio />
-          {showInstallButton ? <DownloadAppButton /> : <GithubButton />}
+          {installApp ? (
+            <DownloadAppButton onClick={installApp} />
+          ) : (
+            <GithubButton />
+          )}
         </section>
         <NowPlaying />
       </Footer>
