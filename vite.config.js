@@ -5,9 +5,6 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  define: {
-    __APP_ENV__: process.env.FIREBASE_CONFIG
-  },
   plugins: [
     react(),
     VitePWA({
