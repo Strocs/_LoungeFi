@@ -1,23 +1,24 @@
 import { create } from 'zustand'
 import { useLocalStorage } from '@hooks'
-import { STORAGE_TASK_ID, UNGROUPED } from '@constants'
+import { STORAGE_GROUPS_ID, UNGROUPED } from '@constants'
 import { useAuthStore } from './useAuthStore'
-import { startLoadTasks } from '@features/authentication'
+import {
+  startAddTask,
+  startDeleteTask,
+  startLoadTasks,
+  startUpdateTask
+} from '@features/authentication'
 
 const storedValue = useLocalStorage({
-  key: STORAGE_TASK_ID,
-  initialValue: {
-    taskData: {
-      [UNGROUPED]: {
-        tasks: []
-      }
-    },
-    groupActive: UNGROUPED
-  }
+  key: STORAGE_GROUPS_ID,
+  initialValue: UNGROUPED
 })
 
 export const useTaskStore = create((set, get) => ({
-  ...storedValue,
+  groupActive: storedValue,
+  taskData: {
+    [UNGROUPED]: []
+  },
   isUserWriting: false,
   isFocusModalOpen: false,
   taskActive: null,
@@ -25,101 +26,124 @@ export const useTaskStore = create((set, get) => ({
   // TASKS STUFFS
   setTasks: async () => {
     const { uid } = useAuthStore.getState().userAuth
-    const notesFromDB = await startLoadTasks(uid)
+    const tasksFromDB = await startLoadTasks(uid)
+
+    let parseTasks = {}
+
+    tasksFromDB.forEach(task => {
+      parseTasks = {
+        ...parseTasks,
+        [task.group]: parseTasks[task.group]
+          ? [...parseTasks[task.group], task]
+          : [task]
+      }
+    })
+
     set({
-      notes: notesFromDB
+      taskData: parseTasks
     })
   },
 
-  createTask: ({ task = '' }) => {
+  createTask: async ({ task = '' }) => {
+    const { uid } = useAuthStore.getState().userAuth
+
+    const taskTemplate = {
+      id: crypto.randomUUID(),
+      task,
+      done: false,
+      created: new Date().getTime(),
+      group: get().groupActive
+    }
+
     set(state => ({
       taskData: {
         ...state.taskData,
-        [state.groupActive]: {
-          tasks: [
-            ...state.taskData[state.groupActive].tasks,
-            {
-              id: crypto.randomUUID(),
-              task,
-              done: false,
-              created: new Date().getTime()
-            }
-          ]
-        }
+        [state.groupActive]: [
+          ...state.taskData[state.groupActive],
+          taskTemplate
+        ]
       }
     }))
-    get().updateLocalStorage()
+
+    const dbTask = await startAddTask(uid, taskTemplate)
+
+    set(state => ({
+      taskData: {
+        ...state.taskData,
+        [state.groupActive]: state.taskData[state.groupActive].map(task =>
+          task.id === taskTemplate.id ? { ...task, db_id: dbTask.db_id } : task
+        )
+      }
+    }))
   },
 
-  updateTask: ({ id = '', newTask = '', group }) => {
+  updateTask: async ({ id = '', newTask = '', group }) => {
     set(state => ({
       taskData: {
         ...state.taskData,
-        [group]: {
-          tasks: state.taskData[group].tasks.map(task =>
-            task.id === id ? { ...task, task: newTask } : task
-          )
-        }
+        [group]: state.taskData[group].map(task =>
+          task.id === id ? { ...task, task: newTask } : task
+        )
       }
     }))
-    get().updateLocalStorage()
+
+    const { uid } = useAuthStore.getState().userAuth
+    const selectedTask = get().taskData[group].find(task => task.id === id)
+    await startUpdateTask(uid, selectedTask)
   },
 
-  deleteTask: ({ id, group }) => {
+  deleteTask: async ({ id, group }) => {
+    const selectedTask = get().taskData[group].find(task => task.id === id)
+
     set(state => ({
       taskData: {
         ...state.taskData,
-        [group]: {
-          tasks: state.taskData[group].tasks.filter(task => task.id !== id)
-        }
+        [group]: state.taskData[group].filter(task => task.id !== id)
       }
     }))
-    get().updateLocalStorage()
+
+    const { uid } = useAuthStore.getState().userAuth
+    await startDeleteTask(uid, selectedTask)
   },
 
   reorderTasks: ({ newOrder, group }) => {
     set(state => ({
       taskData: {
         ...state.taskData,
-        [group]: {
-          tasks: newOrder
-        }
+        [group]: newOrder
       }
     }))
-    get().updateLocalStorage()
   },
 
-  toggleDone: ({ id, group }) => {
+  toggleDone: async ({ id, group }) => {
     set(state => ({
       taskData: {
         ...state.taskData,
-        [group]: {
-          tasks: state.taskData[group].tasks.map(task =>
-            task.id === id ? { ...task, done: !task.done } : task
-          )
-        }
+        [group]: state.taskData[group].map(task =>
+          task.id === id ? { ...task, done: !task.done } : task
+        )
       }
     }))
-    get().updateLocalStorage()
+
+    const { uid } = useAuthStore.getState().userAuth
+    const selectedTask = get().taskData[group].find(task => task.id === id)
+    await startUpdateTask(uid, selectedTask)
   },
 
-  deleteAllDones: () => {
-    set(state => {
-      let newTaskData = {}
+  // deleteAllDones: () => {
+  //   set(state => {
+  //     let newTaskData = {}
 
-      for (const group in state.taskData) {
-        newTaskData = {
-          ...newTaskData,
-          [group]: {
-            tasks: state.taskData[group].tasks.filter(({ done }) => !done)
-          }
-        }
-      }
+  //     for (const group in state.taskData) {
+  //       newTaskData = {
+  //         ...newTaskData,
+  //         [group]: state.taskData[group].filter(({ done }) => !done)
+  //       }
+  //     }
 
-      return { taskData: newTaskData }
-    })
-    get().updateLocalStorage()
-  },
+  //     return { taskData: newTaskData }
+  //   })
+  // },
 
   // GROUP STUFFS
   createGroup: ({ group = '' }) => {
@@ -129,13 +153,10 @@ export const useTaskStore = create((set, get) => ({
       return {
         taskData: {
           ...state.taskData,
-          [group]: {
-            tasks: []
-          }
+          [group]: []
         }
       }
     })
-    get().updateLocalStorage()
   },
 
   deleteGroup: ({ group = '', confirmMoveTasks = false }) => {
@@ -146,12 +167,10 @@ export const useTaskStore = create((set, get) => ({
         // Detect behavior
         newData = {
           ...state.taskData,
-          ungrouped: {
-            tasks: [
-              ...state.taskData[UNGROUPED].tasks,
-              ...state.taskData[group].tasks
-            ]
-          }
+          ungrouped: [
+            ...state.taskData[UNGROUPED].tasks,
+            ...state.taskData[group].tasks
+          ]
         }
       }
 
@@ -187,11 +206,6 @@ export const useTaskStore = create((set, get) => ({
   },
 
   updateLocalStorage: () => {
-    const value = {
-      taskData: get().taskData,
-      groupActive: get().groupActive
-    }
-
-    useLocalStorage({ key: STORAGE_TASK_ID, value })
+    useLocalStorage({ key: STORAGE_GROUPS_ID, value: get().groupActive })
   }
 }))

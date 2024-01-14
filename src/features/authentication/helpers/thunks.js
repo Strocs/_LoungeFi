@@ -10,39 +10,54 @@ import { FirebaseDB } from '../firebase/config'
 export const startLoadTasks = async (uid = '') => {
   if (!uid) throw new Error('You must be logged in')
 
-  const collectionRef = collection(FirebaseDB, `${uid}/tasks`)
+  const collectionRef = collection(FirebaseDB, uid, 'loungefi', 'tasks')
   const docs = await getDocs(collectionRef)
-  const notes = []
+  const tasks = []
+
   docs.forEach(doc => {
-    notes.push({
-      id: doc.id,
+    tasks.push({
+      db_id: doc.id,
       ...doc.data()
     })
   })
-  return notes
+
+  return tasks
 }
 
-export const startAddTask = async (uid = '', note) => {
+export const startAddTask = async (uid = '', task) => {
   if (!uid) throw new Error('You must be logged in')
 
-  const newDoc = doc(collection(FirebaseDB, `${uid}/tasks`))
-  await setDoc(newDoc, note)
-  note.id = newDoc.id
+  const newDoc = doc(collection(FirebaseDB, `${uid}/loungefi/tasks`))
+  await setDoc(newDoc, task)
+  task.db_id = newDoc.id
 
-  return note
+  return task
 }
 
-export const startUpdateTask = async (uid = '', activeNote) => {
+export const startReorderTasks = async (uid = '', newOrder) => {
   if (!uid) throw new Error('You must be logged in')
-  const noteToFireStore = { ...activeNote }
-  delete noteToFireStore.id
 
-  const docRef = doc(FirebaseDB, `${uid}/tasks/${activeNote.id}`)
-  await setDoc(docRef, noteToFireStore, { merge: true })
+  const collectionRef = collection(FirebaseDB, `${uid}/loungefi/tasks`)
+  const docs = await getDocs(collectionRef)
+
+  docs.forEach(async doc => {
+    const task = { ...doc.data(), db_id: doc.id }
+    const docRef = doc(FirebaseDB, `${uid}/loungefi/tasks/${task.db_id}`)
+    await setDoc(docRef, task, { merge: true })
+  })
 }
 
-export const startDeleteTask = async (uid = '', activeNote) => {
+export const startUpdateTask = async (uid = '', task) => {
   if (!uid) throw new Error('You must be logged in')
-  const docRef = doc(FirebaseDB, `${uid}/tasks/${activeNote.id}`)
+  const taskToFireStore = { ...task }
+  delete taskToFireStore.db_id
+
+  const docRef = doc(FirebaseDB, `${uid}/loungefi/tasks/${task.db_id}`)
+  await setDoc(docRef, taskToFireStore, { merge: true })
+}
+
+export const startDeleteTask = async (uid = '', task) => {
+  if (!uid) throw new Error('You must be logged in')
+  const docRef = doc(FirebaseDB, `${uid}/loungefi/tasks/${task.db_id}`)
   await deleteDoc(docRef)
 }

@@ -13,7 +13,7 @@ export const GroupItem = ({ group, isDeletable = false }) => {
   const taskData = useTaskStore(state => state.taskData)
   const isRadioOn = useRadioStore(state => state.isRadioOn)
 
-  const tasksLength = taskData[group]?.tasks.length
+  const tasksLength = taskData[group]?.length
 
   const [confirmationModal, setConfirmationModal] = useState(false)
 

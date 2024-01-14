@@ -8,22 +8,22 @@ export const TaskPanel = () => {
 
   const isAllGroup = groupActive === UNGROUPED
 
-  const { ungrouped, ...groupList } = taskData
+  const { ungrouped, ...tasksList } = taskData
 
-  const groups = Object.keys(groupList)
+  const groups = Object.keys(tasksList)
 
   return (
     <TasksWrapper>
       <div className='flex flex-col py-2 pl-2 gap-4 absolute top-0 bottom-0 left-0 right-0 overflow-y-scroll scrollbar-hide'>
         {isAllGroup ? (
           <>
-            <TaskList list={ungrouped.tasks} />
+            <TaskList list={ungrouped} />
             {groups.map(group => {
-              if (groupList[group].tasks.length === 0) return null
+              if (tasksList[group].length === 0) return null
               return (
                 <TaskList
                   key={group}
-                  list={groupList[group].tasks}
+                  list={tasksList[group]}
                   group={group}
                   indent
                 />
@@ -31,7 +31,7 @@ export const TaskPanel = () => {
             })}
           </>
         ) : (
-          <TaskList list={groupList[groupActive].tasks} group={groupActive} />
+          <TaskList list={tasksList[groupActive]} group={groupActive} />
         )}
       </div>
     </TasksWrapper>

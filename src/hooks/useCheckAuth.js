@@ -13,7 +13,7 @@ export const useCheckAuth = () => {
     onAuthStateChanged(FirebaseAuth, async user => {
       if (!user) return logout()
       login(user)
-      // setTasks()
+      setTasks()
     })
   }, [])
   return status
