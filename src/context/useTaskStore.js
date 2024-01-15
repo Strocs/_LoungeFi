@@ -1,11 +1,15 @@
+/* eslint-disable camelcase */
 import { create } from 'zustand'
 import { useLocalStorage } from '@hooks'
 import { STORAGE_GROUPS_ID, UNGROUPED } from '@constants'
 import { useAuthStore } from './useAuthStore'
 import {
-  startAddTask,
+  startCreateGroup,
+  startCreateTask,
+  startDeleteGroup,
   startDeleteTask,
-  startLoadTasks,
+  startLoadData,
+  startReorderTasks,
   startUpdateTask
 } from '@features/authentication'
 
@@ -26,21 +30,12 @@ export const useTaskStore = create((set, get) => ({
   // TASKS STUFFS
   setTasks: async () => {
     const { uid } = useAuthStore.getState().userAuth
-    const tasksFromDB = await startLoadTasks(uid)
 
-    let parseTasks = {}
-
-    tasksFromDB.forEach(task => {
-      parseTasks = {
-        ...parseTasks,
-        [task.group]: parseTasks[task.group]
-          ? [...parseTasks[task.group], task]
-          : [task]
-      }
-    })
+    const tasksFromDB = await startLoadData(uid)
 
     set(state => ({
-      taskData: tasksFromDB.length > 0 ? parseTasks : state.taskData
+      taskData:
+        Object.keys(tasksFromDB).length > 0 ? tasksFromDB : state.taskData
     }))
   },
 
@@ -55,6 +50,8 @@ export const useTaskStore = create((set, get) => ({
 
   createTask: async ({ task = '' }) => {
     const { uid } = useAuthStore.getState().userAuth
+
+    const isFirstTask = get().taskData[UNGROUPED].length === 0
 
     const taskTemplate = {
       id: crypto.randomUUID(),
@@ -74,13 +71,13 @@ export const useTaskStore = create((set, get) => ({
       }
     }))
 
-    const dbTask = await startAddTask(uid, taskTemplate)
+    const { db_id } = await startCreateTask(uid, taskTemplate, isFirstTask)
 
     set(state => ({
       taskData: {
         ...state.taskData,
         [state.groupActive]: state.taskData[state.groupActive].map(task =>
-          task.id === taskTemplate.id ? { ...task, db_id: dbTask.db_id } : task
+          task.id === taskTemplate.id ? { ...task, db_id } : task
         )
       }
     }))
@@ -115,13 +112,16 @@ export const useTaskStore = create((set, get) => ({
     await startDeleteTask(uid, selectedTask)
   },
 
-  reorderTasks: ({ newOrder, group }) => {
+  reorderTasks: async ({ newOrder, group }) => {
     set(state => ({
       taskData: {
         ...state.taskData,
         [group]: newOrder
       }
     }))
+
+    const { uid } = useAuthStore.getState().userAuth
+    await startReorderTasks(uid, newOrder, group)
   },
 
   toggleDone: async ({ id, group }) => {
@@ -155,7 +155,7 @@ export const useTaskStore = create((set, get) => ({
   // },
 
   // GROUP STUFFS
-  createGroup: ({ group = '' }) => {
+  createGroup: async ({ group = '' }) => {
     set(state => {
       if (Object.hasOwn(state.taskData, group)) return state
 
@@ -166,9 +166,24 @@ export const useTaskStore = create((set, get) => ({
         }
       }
     })
+
+    const { uid } = useAuthStore.getState().userAuth
+    await startCreateGroup(uid, group)
   },
 
-  deleteGroup: ({ group = '', confirmMoveTasks = false }) => {
+  deleteGroup: async ({ group = '', confirmMoveTasks = false }) => {
+    const { uid } = useAuthStore.getState().userAuth
+
+    for (const task of get().taskData[group]) {
+      await startDeleteTask(uid, task)
+    }
+
+    const tasksToMove = get().taskData[group].map(task => {
+      task.group = UNGROUPED
+      delete task.db_id
+      return task
+    })
+
     set(state => {
       let newData = state.taskData
 
@@ -176,10 +191,7 @@ export const useTaskStore = create((set, get) => ({
         // Detect behavior
         newData = {
           ...state.taskData,
-          ungrouped: [
-            ...state.taskData[UNGROUPED].tasks,
-            ...state.taskData[group].tasks
-          ]
+          ungrouped: [...state.taskData[UNGROUPED], ...tasksToMove]
         }
       }
 
@@ -190,6 +202,25 @@ export const useTaskStore = create((set, get) => ({
         groupActive: UNGROUPED
       }
     })
+
+    // If move tasks then create all tasks in new group and add new db_id to each one
+    if (confirmMoveTasks) {
+      tasksToMove.forEach(async task => {
+        const { db_id } = await startCreateTask(uid, task)
+        set(state => ({
+          ...state.taskData,
+          ungrouped: state.taskData.ungrouped.map(ungroupedTask => {
+            if (ungroupedTask.id === task.id) {
+              return { ...ungroupedTask, db_id }
+            }
+            return ungroupedTask
+          })
+        }))
+      })
+    }
+
+    await startDeleteGroup(uid, group)
+
     get().updateLocalStorage()
   },
 
