@@ -51,7 +51,8 @@ export const useTaskStore = create((set, get) => ({
   createTask: async ({ task = '' }) => {
     const { uid } = useAuthStore.getState().userAuth
 
-    const isFirstTask = get().taskData[UNGROUPED].length === 0
+    const isFirstTask =
+      get().groupActive === UNGROUPED && get().taskData[UNGROUPED].length === 0
 
     const taskTemplate = {
       id: crypto.randomUUID(),
