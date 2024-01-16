@@ -60,7 +60,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![_LoungeFi](https://i.ibb.co/z408Nsw/Screenshot-2024-01-16-000152.png)](https://example.com)
+[![_LoungeFi](https://i.ibb.co/z408Nsw/Screenshot-2024-01-16-000152.png)](https://loungefi.vercel.app)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
