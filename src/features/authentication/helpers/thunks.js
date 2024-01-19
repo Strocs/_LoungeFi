@@ -29,6 +29,7 @@ export const startLoadData = async (uid = '') => {
     )
 
     const tasks = []
+
     tasksDocs.forEach(task => tasks.push({ db_id: task.id, ...task.data() }))
 
     tasksData[doc.id] = tasks.sort((a, b) => a.order - b.order)
@@ -37,20 +38,11 @@ export const startLoadData = async (uid = '') => {
   return tasksData
 }
 
-export const startCreateTask = async (uid = '', task, isFirstTask) => {
+export const startCreateTask = async (uid = '', task) => {
   if (!uid) throw new Error('You must be logged in')
 
   const tasksRef = collection(FirebaseDB, `${uid}/${task.group}/tasks`)
   const docsRef = doc(tasksRef)
-
-  if (isFirstTask) {
-    const newGroup = doc(FirebaseDB, `${uid}/${task.group}`)
-    await setDoc(
-      newGroup,
-      { group: task.group, timestamp: serverTimestamp() },
-      { merge: true }
-    )
-  }
 
   const querySnapshot = await getDocs(tasksRef)
 

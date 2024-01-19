@@ -26,17 +26,25 @@ export const useTaskStore = create((set, get) => ({
   isUserWriting: false,
   isFocusModalOpen: false,
   taskActive: null,
+  isLoading: false,
 
   // TASKS STUFFS
   setTasks: async () => {
+    set({ isLoading: true })
+
     const { uid } = useAuthStore.getState().userAuth
 
     const tasksFromDB = await startLoadData(uid)
 
-    set(state => ({
-      taskData:
-        Object.keys(tasksFromDB).length > 0 ? tasksFromDB : state.taskData
-    }))
+    if (!tasksFromDB[UNGROUPED]) {
+      await startCreateGroup(uid, UNGROUPED)
+      tasksFromDB[UNGROUPED] = []
+    }
+
+    set({
+      taskData: tasksFromDB,
+      isLoading: false
+    })
   },
 
   cleanStateOnLogout: () => {
@@ -50,9 +58,6 @@ export const useTaskStore = create((set, get) => ({
 
   createTask: async ({ task = '' }) => {
     const { uid } = useAuthStore.getState().userAuth
-
-    const isFirstTask =
-      get().groupActive === UNGROUPED && get().taskData[UNGROUPED].length === 0
 
     const taskTemplate = {
       id: crypto.randomUUID(),
@@ -72,7 +77,7 @@ export const useTaskStore = create((set, get) => ({
       }
     }))
 
-    const { db_id } = await startCreateTask(uid, taskTemplate, isFirstTask)
+    const { db_id } = await startCreateTask(uid, taskTemplate)
 
     set(state => ({
       taskData: {
