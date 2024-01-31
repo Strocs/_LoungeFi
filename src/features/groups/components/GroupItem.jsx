@@ -5,6 +5,7 @@ import { CloseIcon } from '@components/icons'
 import { DeleteGroupModal } from '@features/groups'
 import { useTaskStore, useRadioStore } from '@context'
 import { ANIMATION_VARIANTS, FILTER_ITEMS, UNGROUPED } from '@constants'
+import { createPortal } from 'react-dom'
 
 export const GroupItem = ({ group, isDeletable = false }) => {
   const groupActive = useTaskStore(state => state.groupActive)
@@ -66,13 +67,15 @@ export const GroupItem = ({ group, isDeletable = false }) => {
           </span>
         )}
       </Button>
-      {confirmationModal && (
-        <DeleteGroupModal
-          onConfirm={onConfirmMoveGroup}
-          onModal={setConfirmationModal}
-          group={group}
-        />
-      )}
+      {confirmationModal &&
+        createPortal(
+          <DeleteGroupModal
+            onConfirm={onConfirmMoveGroup}
+            onModal={setConfirmationModal}
+            group={group}
+          />,
+          document.body
+        )}
     </motion.li>
   )
 }
