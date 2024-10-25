@@ -25,9 +25,9 @@
 
 ### UI/UX
 
-- [ ] fix: improve spinner animation
-- [ ] fix: description text can be better redacted
-- [ ] feat: when user focus a task clean the UI
+- [x] fix: improve spinner animation
+- [x] fix: description text can be better redacted
+- [ ] feat: when user start to focus a task clean the UI
 
 ### Settings
 
