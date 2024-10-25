@@ -3,7 +3,7 @@ import { Home, Login, Register } from '@pages'
 import { useCheckAuth } from '@hooks/useCheckAuth'
 import { LoadingScreen } from '@components'
 
-export function AppRouter () {
+export function AppRouter() {
   const status = useCheckAuth()
 
   if (status === 'checking') return <LoadingScreen />

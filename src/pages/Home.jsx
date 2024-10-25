@@ -7,10 +7,12 @@ import { GroupList } from '@features/groups'
 import { Pomodoro } from '@features/pomodoroTimer'
 import { Radio, NowPlaying } from '@features/radioPlayer'
 import { Profile } from '@features/profile'
+import clsx from 'clsx'
 
 export const Home = () => {
-  const isFocusModalOpen = useTaskStore(state => state.isFocusModalOpen)
-  const { displayName } = useAuthStore(state => state.userAuth)
+  const isFocusModalOpen = useTaskStore((state) => state.isFocusModalOpen)
+  const { displayName } = useAuthStore((state) => state.userAuth)
+
   const firstName = displayName?.split(' ')[0]
 
   const installApp = usePWAInstall()
@@ -25,9 +27,10 @@ export const Home = () => {
         <Pomodoro />
       </Header>
       <main
-        className={`grid ${
-          isFocusModalOpen ? 'grid-rows-1' : 'grid-rows-[auto_auto_1fr]'
-        } gap-3 max-w-xl w-full`}
+        className={clsx('grid w-full max-w-xl gap-3', {
+          'grid-rows-1': isFocusModalOpen,
+          'grid-rows-[auto_auto_1fr]': !isFocusModalOpen,
+        })}
       >
         {isFocusModalOpen ? (
           <TaskFocusModal />
@@ -40,7 +43,7 @@ export const Home = () => {
         )}
       </main>
       <Footer>
-        <section className='pb-1 pt-3 px-3 grid w-full grid-cols-[1fr_2fr_1fr] items-center'>
+        <section className='grid w-full grid-cols-[1fr_2fr_1fr] items-center px-3 pb-1 pt-3'>
           <Profile name={displayName} />
           <Radio />
           {installApp ? (
