@@ -8,18 +8,18 @@ import { useForm } from '@hooks'
 
 const formData = {
   email: '',
-  password: ''
+  password: '',
 }
 
 export const Login = () => {
   const { email, password, onInputChange } = useForm(formData)
 
   const startEmailAndPasswordSignIn = useAuthStore(
-    state => state.startEmailAndPasswordSignIn
+    (state) => state.startEmailAndPasswordSignIn,
   )
-  const startGoogleSignIn = useAuthStore(state => state.startGoogleSignIn)
-  const logout = useAuthStore(state => state.logout)
-  const { status, errorMessage } = useAuthStore(state => state.userAuth)
+  const startGoogleSignIn = useAuthStore((state) => state.startGoogleSignIn)
+  const logout = useAuthStore((state) => state.logout)
+  const { status, errorMessage } = useAuthStore((state) => state.userAuth)
 
   const isCheckingAuth = useMemo(() => status === 'checking', [status])
 
@@ -27,7 +27,7 @@ export const Login = () => {
     logout(errorMessage || null)
   }, [])
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault()
     startEmailAndPasswordSignIn({ email, password })
   }
@@ -39,10 +39,10 @@ export const Login = () => {
   return (
     <>
       <HeaderLogin />
-      <main className='flex flex-col gap-10 h-full items-center w-full max-w-xs pt-20'>
+      <main className='flex size-full max-w-xs flex-col items-center gap-10 pt-20'>
         <form
           onSubmit={handleSubmit}
-          className='flex flex-col gap-4 text-light w-full h-min'
+          className='flex h-min w-full flex-col gap-4 font-light'
         >
           <label htmlFor='email' name='email'>
             <span className='ml-3'>Email</span>
@@ -73,7 +73,7 @@ export const Login = () => {
             outline='white'
             hover='white'
             size='md'
-            className='w-full mt-6'
+            className='mt-6 w-full'
           >
             Log in
           </Button>
@@ -86,9 +86,9 @@ export const Login = () => {
               : 'Something Wrong happen, Try again.'
           }
         />
-        <section className='grid gap-3 h-fit'>
+        <section className='grid h-fit gap-3'>
           <p className='text-center text-sm font-light'>Or sign up using</p>
-          <div className='flex gap-3 w-full items-center justify-center'>
+          <div className='flex w-full items-center justify-center gap-3'>
             <Button
               onClick={handleGoggleSignIn}
               disabled={isCheckingAuth}
@@ -99,21 +99,21 @@ export const Login = () => {
             >
               <GoogleIcon />
             </Button>
-            {/* <Button
-              outline='white'
-              size='round-xl'
-              hover='white'
-              className='bg-dark text-white'
-            >
-              <XIcon />
-            </Button> */}
+            {/* <Button */}
+            {/*   outline='white' */}
+            {/*   size='round-xl' */}
+            {/*   hover='white' */}
+            {/*   className='bg-dark text-white' */}
+            {/* > */}
+            {/*   <XIcon /> */}
+            {/* </Button> */}
           </div>
         </section>
         <p className='text-sm text-grey'>
           If you don{"'"}t have an account{' '}
           <Link
             to={'/register'}
-            className='text-white hover:text-blue transition-colors duration-150'
+            className='text-white transition-colors duration-150 hover:text-blue'
           >
             Sign Up here
           </Link>
