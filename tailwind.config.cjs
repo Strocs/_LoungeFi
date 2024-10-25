@@ -2,7 +2,7 @@
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   future: {
-    hoverOnlyWhenSupported: true
+    hoverOnlyWhenSupported: true,
   },
   theme: {
     extend: {
@@ -15,20 +15,31 @@ module.exports = {
         lightgrey: '#D9D9D9',
         opacityGrey: 'rgba(217, 217, 217, 0.25)',
         dark: '#0F1013',
-        opacityDark: '#0F101380'
+        opacityDark: '#0F101380',
       },
       keyframes: {
         nowPlaying: {
           '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(100%)' }
-        }
+          '100%': { transform: 'translateX(100%)' },
+        },
+        rotate: {
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        stretch: {
+          '0%': { strokeDasharray: '0, 150', strokeDashoffset: 0 },
+          '50%': { strokeDasharray: '75, 150', strokeDashoffset: -25 },
+          '100%': { strokeDashoffset: -100 },
+        },
       },
       animation: {
-        nowPlaying: 'nowPlaying 4s linear infinite'
+        nowPlaying: 'nowPlaying 4s linear infinite',
+        rotate: 'rotate var(--spinner-speed) linear infinite',
+        stretch:
+          'stretch calc(var(--spinner-speed) * 0.75) ease-in-out infinite',
       },
       boxShadow: {
-        DEFAULT: '5px 5px'
-      }
-    }
-  }
+        DEFAULT: '5px 5px',
+      },
+    },
+  },
 }
