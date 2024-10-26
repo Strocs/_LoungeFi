@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 
 export const usePomodoro = ({
-  changeStep = () => {},
-  countdown = () => {},
-  togglePomodoro = () => {},
+  changeStep = () => null,
+  countdown = () => null,
+  togglePomodoro = () => null,
   isStart = false,
   isTimerEnd = false,
   alarmSound = null,
@@ -13,9 +13,13 @@ export const usePomodoro = ({
   const alarm = alarmSound && new Audio(alarmSound)
 
   useEffect(() => {
-    const togglePomodoroKeyDown = e => {
-      if (e.keyCode !== toggleKeyButton) return
-      if (keyDownCondition) return
+    const togglePomodoroKeyDown = (e) => {
+      if (e.keyCode !== toggleKeyButton) {
+        return
+      }
+      if (keyDownCondition) {
+        return
+      }
       togglePomodoro()
     }
 
