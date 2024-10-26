@@ -1,16 +1,7 @@
 import { Link } from 'react-router-dom'
 import { tv } from 'tailwind-variants'
 
-export const Button = ({
-  size,
-  color,
-  outline,
-  hover,
-  shadow,
-  className,
-  as: Element = 'button',
-  ...props
-}) => {
+export const Button = ({ size, color, outline, hover, shadow, className, as: Element = 'button', ...props }) => {
   return Element === 'button' ? (
     <button
       className={button({
@@ -43,7 +34,7 @@ export const Button = ({
 }
 
 const button = tv({
-  base: 'rounded-full relative w-fit h-fit group transition-all duration-150 group',
+  base: 'rounded-full relative size-fit group transition-all duration-150 group',
   variants: {
     color: {
       white: 'bg-slate-100 text-dark',
@@ -77,7 +68,8 @@ const button = tv({
       blue: 'outline outline-2 outline-blue',
       red: 'outline outline-2 outline-red',
       green: 'outline outline-2 outline-green',
-      grey: 'outline outline-2 outline-grey'
+      grey: 'outline outline-2 outline-grey',
+      none: 'outline-none'
     },
     size: {
       sm: 'px-2 text-sm',

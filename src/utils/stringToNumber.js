@@ -1,4 +1,4 @@
-export function stringToNumber (inputString) {
+export function stringToNumber(inputString) {
   // Simple hash function
   let hash = 0
   for (let i = 0; i < inputString.length; i++) {
