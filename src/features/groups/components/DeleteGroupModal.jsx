@@ -14,26 +14,13 @@ export const DeleteGroupModal = ({ group, onConfirm, onModal }) => {
         className='bg-slate-100 outline outline-2 outline-red rounded-2xl text-dark text-sm p-6 grid gap-3 justify-items-center absolute z-50 top-20 left-0 right-0 w-fit h-fit m-auto text-center'
       >
         <p className='max-w-[14rem]'>
-          Do you want to <b className='text-red'>delete</b> all <b>tasks</b>{' '}
-          from <b>{group}</b>?
+          Do you want to <b className='text-red'>delete</b> all <b>tasks</b> from <b>{group}</b>?
         </p>
         <div className='flex gap-4 justify-center'>
-          <Button
-            size='md'
-            color='white'
-            hover='blue'
-            outline='blue'
-            onClick={() => onConfirm(true)}
-          >
+          <Button size='md' color='white' hover='blue' outline='blue' onClick={() => onConfirm(true)}>
             Move to <b>All</b>
           </Button>
-          <Button
-            size='md'
-            color='text-red'
-            hover='red'
-            outline='red'
-            onClick={() => onConfirm(false)}
-          >
+          <Button size='md' color='text-red' hover='red' outline='red' onClick={() => onConfirm(false)}>
             Just delete it
           </Button>
         </div>
