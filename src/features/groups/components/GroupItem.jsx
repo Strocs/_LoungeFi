@@ -2,17 +2,19 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@components/ui'
 import { CloseIcon } from '@components/icons'
-import { DeleteGroupModal } from '@features/groups'
-import { useTaskStore, useRadioStore } from '@context'
-import { ANIMATION_VARIANTS, FILTER_ITEMS, UNGROUPED } from '@constants'
+import { DeleteGroupModal } from '@features/groups/components'
 import { createPortal } from 'react-dom'
+import { useTaskStore } from '@features/tasks/store'
+import { useRadioStore } from '@features/radio/store'
+import { FILTER_ITEMS, UNGROUPED } from '@features/tasks/constants'
+import { ANIMATION_VARIANTS } from '@constants/constants'
 
 export const GroupItem = ({ group, isDeletable = false }) => {
-  const groupActive = useTaskStore(state => state.groupActive)
-  const setGroupActive = useTaskStore(state => state.setGroupActive)
-  const deleteGroup = useTaskStore(state => state.deleteGroup)
-  const taskData = useTaskStore(state => state.taskData)
-  const isRadioOn = useRadioStore(state => state.isRadioOn)
+  const groupActive = useTaskStore((state) => state.groupActive)
+  const setGroupActive = useTaskStore((state) => state.setGroupActive)
+  const deleteGroup = useTaskStore((state) => state.deleteGroup)
+  const taskData = useTaskStore((state) => state.taskData)
+  const isRadioOn = useRadioStore((state) => state.isRadioOn)
 
   const tasksLength = taskData[group]?.length
 
@@ -20,7 +22,7 @@ export const GroupItem = ({ group, isDeletable = false }) => {
 
   const groupName = group === UNGROUPED ? FILTER_ITEMS.ALL : group
 
-  const onConfirmMoveGroup = confirmation => {
+  const onConfirmMoveGroup = (confirmation) => {
     deleteGroup({ group, confirmMoveTasks: confirmation })
     setConfirmationModal(false)
   }
@@ -30,30 +32,20 @@ export const GroupItem = ({ group, isDeletable = false }) => {
   }
 
   return (
-    <motion.li
-      variants={ANIMATION_VARIANTS.OPACITY}
-      initial='hidden'
-      animate='visible'
-      exit='hidden'
-    >
+    <motion.li variants={ANIMATION_VARIANTS.OPACITY} initial='hidden' animate='visible' exit='hidden'>
       <Button
         color={groupActive === group ? 'blue' : 'white'}
         outline={groupActive === group ? 'white' : 'blue'}
         hover='blue'
-        className={`flex items-center gap-1 whitespace-nowrap ${
-          groupActive === group
+        className={`flex items-center gap-1 whitespace-nowrap ${groupActive === group
             ? ''
             : isRadioOn
-            ? 'bg-opacityDark outline-opacityDark opacity-75 hover:opacity-100 text-slate-100 transition-[background-color,outline,color,opacity] duration-150'
-            : ''
-        }`}
+              ? 'bg-dark/20 outline-dark/20 opacity-75 hover:opacity-100 text-slate-100 transition-[background-color,outline,color,opacity] duration-150'
+              : ''
+          }`}
       >
         <p
-          className={`font-normal ${
-            isDeletable
-              ? 'pl-3 md:px-3 md:group-hover:px-0 md:group-hover:pl-3'
-              : 'px-3'
-          }`}
+          className={`font-normal ${isDeletable ? 'pl-3 md:px-3 md:group-hover:px-0 md:group-hover:pl-3' : 'px-3'}`}
           onClick={() => setGroupActive({ group })}
         >
           {groupName}
@@ -69,11 +61,7 @@ export const GroupItem = ({ group, isDeletable = false }) => {
       </Button>
       {confirmationModal &&
         createPortal(
-          <DeleteGroupModal
-            onConfirm={onConfirmMoveGroup}
-            onModal={setConfirmationModal}
-            group={group}
-          />,
+          <DeleteGroupModal onConfirm={onConfirmMoveGroup} onModal={setConfirmationModal} group={group} />,
           document.body
         )}
     </motion.li>

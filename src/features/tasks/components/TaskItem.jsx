@@ -1,18 +1,18 @@
 import { Reorder, useDragControls } from 'framer-motion'
 import { MoveIcon } from '@components/icons'
-import { useTaskStore } from '@context'
-import { ANIMATION_VARIANTS, UNGROUPED } from '@constants'
-import { DeleteTaskButton } from './DeleteTaskButton'
-import { DoneTaskButton } from './DoneTaskButton'
+import { useTaskStore } from '@features/tasks/store'
+import { ANIMATION_VARIANTS } from '@constants'
+import { DeleteTaskButton, DoneTaskButton } from '@features/tasks/components'
+import { UNGROUPED } from '@features/tasks/constants'
 
 export const TaskItem = ({ item, group = UNGROUPED }) => {
   const { id, task, done } = item
 
-  const setOpenFocusModal = useTaskStore(state => state.setOpenFocusModal)
+  const setOpenFocusModal = useTaskStore((state) => state.setOpenFocusModal)
 
   const controls = useDragControls()
 
-  const handlePointerDown = e => {
+  const handlePointerDown = (e) => {
     e.preventDefault()
     controls.start(e)
   }
@@ -35,18 +35,13 @@ export const TaskItem = ({ item, group = UNGROUPED }) => {
       <DoneTaskButton group={group} id={id} done={done} />
       <p
         onDoubleClick={handleDoubleClick}
-        className={`leading-none text-sm w-full cursor-pointer ${
-          done ? 'line-through text-grey' : ''
-        }`}
+        className={`leading-none text-sm w-full cursor-pointer ${done ? 'line-through text-grey' : ''}`}
       >
         {task}
       </p>
       <div className='flex items-center gap-2'>
         <DeleteTaskButton id={id} group={group} />
-        <div
-          className='cursor-grab touch-none'
-          onPointerDown={handlePointerDown}
-        >
+        <div className='cursor-grab touch-none' onPointerDown={handlePointerDown}>
           <MoveIcon size={24} />
         </div>
       </div>

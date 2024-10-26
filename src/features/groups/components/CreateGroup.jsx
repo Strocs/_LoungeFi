@@ -1,11 +1,13 @@
 import { useTextInput } from '@hooks'
-import { useTaskStore, useRadioStore } from '@context'
 import { PlusIcon } from '@components/icons'
 import { motion } from 'framer-motion'
+import { useTaskStore } from '@features/tasks/store'
+import { useRadioStore } from '@features/radio/store'
+import clsx from 'clsx'
 
 export const CreateGroup = () => {
-  const createGroup = useTaskStore(state => state.createGroup)
-  const isRadioOn = useRadioStore(state => state.isRadioOn)
+  const createGroup = useTaskStore((state) => state.createGroup)
+  const isRadioOn = useRadioStore((state) => state.isRadioOn)
 
   const variants = {
     open: {
@@ -19,10 +21,9 @@ export const CreateGroup = () => {
     }
   }
 
-  const { isInputOpen, ref, handleSubmit, handleShowInput, handleCloseInput } =
-    useTextInput(group => {
-      createGroup({ group })
-    })
+  const { isInputOpen, ref, handleSubmit, handleShowInput, handleCloseInput } = useTextInput((group) => {
+    createGroup({ group })
+  })
 
   return isInputOpen ? (
     <motion.form
@@ -30,18 +31,16 @@ export const CreateGroup = () => {
       initial='closed'
       animate='open'
       name='create-group'
-      className={`w-fit h-fit outline outline-2 px-2 rounded-full  ${
-        isRadioOn
-          ? 'bg-opacityDark outline-opacityDark text-slate-100'
-          : 'bg-slate-100 outline-blue'
-      }`}
+      className={clsx('size-fit outline outline-2 px-2 rounded-full', {
+        'bg-dark/20 text-slate-100 outline-dark/20 ': isRadioOn,
+        'outline-blue bg-slate-100': !isRadioOn
+      })}
       onSubmit={handleSubmit}
       onBlur={handleCloseInput}
     >
       <input
-        className={`placeholder:text-sm placeholder:text-center text-center font-normal text-sm w-14 outline-none ${
-          isRadioOn ? 'bg-opacityDark placeholder:text-grey' : 'text-dark'
-        }`}
+        className={`placeholder:text-sm placeholder:text-center text-center font-normal text-sm w-14 outline-none bg-transparent ${isRadioOn ? 'placeholder:text-grey' : 'text-dark'
+          }`}
         placeholder='Group'
         type='text'
         ref={ref}

@@ -1,12 +1,11 @@
-import { useTaskStore } from '@context'
-import { GroupItem, CreateGroup } from '@features/groups'
+import { useTaskStore } from '@features/tasks/store'
+import { GroupItem, CreateGroup, SkeletonGroups } from '@features/groups/components'
 import { AnimatePresence } from 'framer-motion'
-import { SkeletonGroups } from './SkeletonGroups'
 import { useRef } from 'react'
 
 export const GroupList = () => {
-  const taskData = useTaskStore(state => state.taskData)
-  const isLoading = useTaskStore(state => state.isLoading)
+  const taskData = useTaskStore((state) => state.taskData)
+  const isLoading = useTaskStore((state) => state.isLoading)
   const ref = useRef(null)
   const [all, ...groupList] = Object.keys(taskData)
 
@@ -17,13 +16,13 @@ export const GroupList = () => {
       ) : (
         <ul
           ref={ref}
-          onWheel={e => onWheel(ref.current, e)}
+          onWheel={(e) => onWheel(ref.current, e)}
           className='flex gap-3 h-fit pr-6 pl-[10px] py-1 overflow-x-scroll scroll-smooth  scrollbar-hide'
         >
           <GroupItem group={all} />
           <AnimatePresence>
-            {groupList.map(group => (
-              <GroupItem key={group} group={group} isDeletable />
+            {groupList.map((group) => (
+              <GroupItem key={group} group={group} isDeletable={true} />
             ))}
           </AnimatePresence>
         </ul>
@@ -33,7 +32,7 @@ export const GroupList = () => {
   )
 }
 
-function onWheel (ref, ev) {
+function onWheel(ref, ev) {
   const isTouchPad = Math.abs(ev.deltaX) !== 0 || Math.abs(ev.deltaY) < 15
 
   if (isTouchPad) {

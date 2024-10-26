@@ -1,24 +1,22 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { Home, Login, Register } from '@pages'
-import { useCheckAuth } from '@hooks/useCheckAuth'
-import { LoadingScreen } from '@components'
+import { HomePage, LoginPage, RegisterPage } from '@pages'
+import { useCheckAuth } from '@features/auth/hooks'
 
 export function AppRouter() {
   const status = useCheckAuth()
 
-  if (status === 'checking') return <LoadingScreen />
   return (
     <>
       <Routes>
         {status === 'authenticated' ? (
           <>
-            <Route path='/' element={<Home />} />
+            <Route path='/' element={<HomePage />} />
             <Route path='/*' element={<Navigate to='/' />} />
           </>
         ) : (
           <>
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/register' element={<RegisterPage />} />
             <Route path='/*' element={<Navigate to='/login' />} />
           </>
         )}

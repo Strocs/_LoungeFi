@@ -1,7 +1,3 @@
 export function Header({ children }) {
-  return (
-    <header className='flex items-start justify-between w-full py-4 max-w-xl gap-4'>
-      {children}
-    </header>
-  )
+  return <header className='flex w-full max-w-xl items-start justify-between gap-4 py-4'>{children}</header>
 }
