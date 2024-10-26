@@ -1,9 +1,9 @@
-import { useRadioStore } from '@context'
+import { useRadioStore } from '@features/radioPlayer/store'
 import { useEffect, useRef, useState } from 'react'
 
 export const VolumeSlider = () => {
-  const setVolume = useRadioStore(state => state.setVolume)
-  const volume = useRadioStore(state => state.volume)
+  const setVolume = useRadioStore((state) => state.setVolume)
+  const volume = useRadioStore((state) => state.volume)
 
   const sliderRef = useRef(null)
 
@@ -11,22 +11,24 @@ export const VolumeSlider = () => {
   const [{ x, width }, setCoordinates] = useState({ x: 0, width: 0 })
   const [isMobile, setIsMobile] = useState(false)
 
-  const changeVolume = e => {
+  const changeVolume = (e) => {
     const mouseX = e.clientX
     setVolume(+((mouseX - x) / width).toFixed(2))
   }
 
-  const handleMouseDown = e => {
+  const handleMouseDown = (e) => {
     setClicking(true)
     changeVolume(e)
   }
 
-  const handleMouseUp = e => {
+  const handleMouseUp = () => {
     setClicking(false)
   }
 
-  const handleMouseMove = e => {
-    if (!clicking) return
+  const handleMouseMove = (e) => {
+    if (!clicking) {
+      return
+    }
     changeVolume(e)
   }
 

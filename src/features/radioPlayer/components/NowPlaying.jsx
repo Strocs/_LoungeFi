@@ -1,25 +1,17 @@
-import { youtubeBaseURL } from '@constants'
-import { useRadioStore } from '@context'
+import { youtubeBaseURL } from '@features/radioPlayer/constants'
+import { useRadioStore } from '@features/radioPlayer/store'
 
 export const NowPlaying = () => {
-  const isPlaying = useRadioStore(state => state.isPlaying)
-  const isRadioOn = useRadioStore(state => state.isRadioOn)
-  const isBuffering = useRadioStore(state => state.isBuffering)
-  const currentRadioTitle = useRadioStore(state => state.currentRadioTitle)
-  const { id } = useRadioStore(state => state.currentRadio)
+  const isPlaying = useRadioStore((state) => state.isPlaying)
+  const isRadioOn = useRadioStore((state) => state.isRadioOn)
+  const isBuffering = useRadioStore((state) => state.isBuffering)
+  const currentRadioTitle = useRadioStore((state) => state.currentRadioTitle)
+  const { id } = useRadioStore((state) => state.currentRadio)
 
-  const controlText = isBuffering
-    ? 'Buffering...'
-    : isPlaying
-    ? 'Now Playing:'
-    : 'Paused:'
+  const controlText = isBuffering ? 'Buffering...' : isPlaying ? 'Now Playing:' : 'Paused:'
 
   return (
-    <div
-      className={`text-slate-100 w-full h-10 relative text-center ${
-        !isRadioOn ? 'opacity-0' : ''
-      }`}
-    >
+    <div className={`text-slate-100 w-full h-10 relative text-center ${!isRadioOn ? 'opacity-0' : ''}`}>
       <p className='font-medium'>{controlText}</p>
       <a
         href={youtubeBaseURL + id}

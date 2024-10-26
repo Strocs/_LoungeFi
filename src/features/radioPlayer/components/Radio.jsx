@@ -1,26 +1,22 @@
-import { useRadioStore } from '@context'
-import { RadioControls } from '@features/radioPlayer'
-import ReactPlayer from 'react-player'
+import { RadioControls } from '@features/radioPlayer/components'
+import { youtubeBaseURL } from '@features/radioPlayer/constants'
+import { useRadioStore } from '@features/radioPlayer/store'
 import { useEffect, useRef } from 'react'
-import { youtubeBaseURL } from '@constants'
+import ReactPlayer from 'react-player'
 
 export const Radio = () => {
-  const isPlaying = useRadioStore(state => state.isPlaying)
-  const isRadioOn = useRadioStore(state => state.isRadioOn)
-  const { id } = useRadioStore(state => state.currentRadio)
-  const volume = useRadioStore(state => state.volume)
-  const setIsBuffering = useRadioStore(state => state.setIsBuffering)
-  const isBuffering = useRadioStore(state => state.isBuffering)
-  const setCurrentRadioTitle = useRadioStore(
-    state => state.setCurrentRadioTitle
-  )
+  const isPlaying = useRadioStore((state) => state.isPlaying)
+  const isRadioOn = useRadioStore((state) => state.isRadioOn)
+  const { id } = useRadioStore((state) => state.currentRadio)
+  const volume = useRadioStore((state) => state.volume)
+  const setIsBuffering = useRadioStore((state) => state.setIsBuffering)
+  const isBuffering = useRadioStore((state) => state.isBuffering)
+  const setCurrentRadioTitle = useRadioStore((state) => state.setCurrentRadioTitle)
 
   const videoRef = useRef(null)
 
   useEffect(() => {
-    setCurrentRadioTitle(
-      videoRef.current?.getInternalPlayer()?.videoTitle || ''
-    )
+    setCurrentRadioTitle(videoRef.current?.getInternalPlayer()?.videoTitle || '')
   })
 
   return (
