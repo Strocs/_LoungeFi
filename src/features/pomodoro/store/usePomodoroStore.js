@@ -1,4 +1,4 @@
-import { POMODORO_VALUES, STORAGE_POMODORO_ID } from '@features/pomodoroTimer/constants'
+import { POMODORO_VALUES, STORAGE_POMODORO_ID } from '@features/pomodoro/constants'
 import { localStorage } from '@utils'
 import { create } from 'zustand'
 

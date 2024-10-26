@@ -1,4 +1,4 @@
-import { useRadioStore } from '@features/radioPlayer/store'
+import { useRadioStore } from '@features/radio/store'
 import { useEffect, useRef, useState } from 'react'
 
 export const VolumeSlider = () => {

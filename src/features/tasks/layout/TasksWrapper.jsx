@@ -1,4 +1,4 @@
-import { useRadioStore } from '@features/radioPlayer/store'
+import { useRadioStore } from '@features/radio/store'
 
 // TODO: Add swipe between Tasks Panels changing the Task Group selected
 

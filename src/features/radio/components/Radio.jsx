@@ -1,6 +1,6 @@
-import { RadioControls } from '@features/radioPlayer/components'
-import { youtubeBaseURL } from '@features/radioPlayer/constants'
-import { useRadioStore } from '@features/radioPlayer/store'
+import { RadioControls } from '@features/radio/components'
+import { youtubeBaseURL } from '@features/radio/constants'
+import { useRadioStore } from '@features/radio/store'
 import { useEffect, useRef } from 'react'
 import ReactPlayer from 'react-player'
 

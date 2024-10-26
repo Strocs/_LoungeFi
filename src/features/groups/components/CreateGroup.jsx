@@ -2,7 +2,7 @@ import { useTextInput } from '@hooks'
 import { PlusIcon } from '@components/icons'
 import { motion } from 'framer-motion'
 import { useTaskStore } from '@features/tasks/store'
-import { useRadioStore } from '@features/radioPlayer/store'
+import { useRadioStore } from '@features/radio/store'
 import clsx from 'clsx'
 
 export const CreateGroup = () => {

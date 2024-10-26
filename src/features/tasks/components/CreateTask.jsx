@@ -2,7 +2,7 @@ import { useTaskStore } from '@features/tasks/store'
 import { useTextInput } from '@hooks'
 import { PlusIcon } from '@components/icons'
 import { Input, Button } from '@components/ui'
-import { useRadioStore } from '@features/radioPlayer/store'
+import { useRadioStore } from '@features/radio/store'
 
 export const CreateTask = () => {
   const createTask = useTaskStore((state) => state.createTask)

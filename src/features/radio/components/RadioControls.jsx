@@ -1,6 +1,6 @@
 import { PauseIcon, PlayIcon, SkipIcon, StopIcon } from '@components/icons'
-import { VolumeSlider } from '@features/radioPlayer/components'
-import { useRadioStore } from '@features/radioPlayer/store'
+import { VolumeSlider } from '@features/radio/components'
+import { useRadioStore } from '@features/radio/store'
 
 export const RadioControls = ({ isPlaying = false }) => {
   const onPlayOrPause = useRadioStore((state) => state.onPlayOrPause)

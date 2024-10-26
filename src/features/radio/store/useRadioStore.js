@@ -1,4 +1,4 @@
-import { RADIO_LIST, STORAGE_RADIO_ID, STORAGE_VOLUME_ID } from '@features/radioPlayer/constants'
+import { RADIO_LIST, STORAGE_RADIO_ID, STORAGE_VOLUME_ID } from '@features/radio/constants'
 import { getNextItemIndex, getPrevItemIndex } from '@utils'
 import { localStorage } from '@utils/localStorage'
 import { create } from 'zustand'

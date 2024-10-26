@@ -1,5 +1,5 @@
-import { youtubeBaseURL } from '@features/radioPlayer/constants'
-import { useRadioStore } from '@features/radioPlayer/store'
+import { youtubeBaseURL } from '@features/radio/constants'
+import { useRadioStore } from '@features/radio/store'
 
 export const NowPlaying = () => {
   const isPlaying = useRadioStore((state) => state.isPlaying)

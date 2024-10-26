@@ -1,4 +1,4 @@
-import { usePomodoroStore } from '@features/pomodoroTimer/store'
+import { usePomodoroStore } from '@features/pomodoro/store'
 
 export const StepsList = ({ isStart }) => {
   const { isLongRest, steps, currentStep } = usePomodoroStore()

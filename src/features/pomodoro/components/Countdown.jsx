@@ -7,9 +7,7 @@ export const Countdown = ({ minutes, seconds, isStart }) => {
   const formattedSeconds = formatTime(seconds)
 
   useEffect(() => {
-    isStart
-      ? (document.title = `${formattedMinutes}:${formattedSeconds} ${DOCUMENT_TITLE}`)
-      : (document.title = DOCUMENT_TITLE)
+    document.title = isStart ? `${formattedMinutes}:${formattedSeconds} ${DOCUMENT_TITLE}` : DOCUMENT_TITLE
   }, [seconds, isStart])
 
   return (

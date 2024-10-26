@@ -5,7 +5,7 @@ import { CloseIcon } from '@components/icons'
 import { DeleteGroupModal } from '@features/groups/components'
 import { createPortal } from 'react-dom'
 import { useTaskStore } from '@features/tasks/store'
-import { useRadioStore } from '@features/radioPlayer/store'
+import { useRadioStore } from '@features/radio/store'
 import { FILTER_ITEMS, UNGROUPED } from '@features/tasks/constants'
 import { ANIMATION_VARIANTS } from '@constants/constants'
 

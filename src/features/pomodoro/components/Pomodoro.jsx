@@ -1,11 +1,11 @@
 import { PomodoroIcon } from '@components/icons'
-import { Countdown, StepsList, PomodoroSettings } from '@features/pomodoroTimer/components'
+import { Countdown, StepsList, PomodoroSettings } from '@features/pomodoro/components'
 import { Button } from '@components/ui'
-import { POMODORO_VALUES, TOGGLE_KEY } from '@features/pomodoroTimer/constants'
+import { POMODORO_VALUES, TOGGLE_KEY } from '@features/pomodoro/constants'
 import { useRef, useEffect } from 'react'
 import { useTaskStore } from '@features/tasks/store'
-import { usePomodoro } from '@features/pomodoroTimer/hooks'
-import { usePomodoroStore } from '@features/pomodoroTimer/store'
+import { usePomodoro } from '@features/pomodoro/hooks'
+import { usePomodoroStore } from '@features/pomodoro/store'
 
 const { ALARM } = POMODORO_VALUES
 
@@ -33,8 +33,9 @@ export const Pomodoro = () => {
   return (
     <section
       ref={pomodoroRef}
-      className={`${isStart ? 'outline-red' : 'outline-grey'
-        } bg-slate-100 text-dark flex items-center gap-4 pl-4 pr-3 py-1 h-fit w-fit rounded-full outline outline-2 transition-all duration-150`}
+      className={`${
+        isStart ? 'outline-red' : 'outline-grey'
+      } bg-slate-100 text-dark flex items-center gap-4 pl-4 pr-3 py-1 h-fit w-fit rounded-full outline outline-2 transition-all duration-150`}
     >
       <div className='flex gap-4 cursor-pointer group' onClick={togglePomodoro}>
         <Button color='transparent' outline='none'>

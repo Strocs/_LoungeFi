@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { PomodoroSettingsButton, PomodoroSettingsModal } from '@features/pomodoroTimer/components'
-import { usePomodoroStore } from '@features/pomodoroTimer/store'
+import { PomodoroSettingsButton, PomodoroSettingsModal } from '@features/pomodoro/components'
+import { usePomodoroStore } from '@features/pomodoro/store'
 
 export const PomodoroSettings = () => {
   const [openModal, setOpenModal] = useState(false)
