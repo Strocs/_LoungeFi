@@ -1,12 +1,12 @@
-import { useTaskStore } from '@context'
-import { TaskList, TasksWrapper } from '@features/tasks'
-import { UNGROUPED } from '@constants'
-import { SkeletonTasks } from './SkeletonTasks'
+import { useTaskStore } from '@features/tasks/store'
+import { TaskList, SkeletonTasks } from '@features/tasks/components'
+import { UNGROUPED } from '@features/tasks/constants'
+import { TasksWrapper } from '@features/tasks/layout'
 
 export const TaskPanel = () => {
-  const groupActive = useTaskStore(state => state.groupActive)
-  const taskData = useTaskStore(state => state.taskData)
-  const isLoading = useTaskStore(state => state.isLoading)
+  const groupActive = useTaskStore((state) => state.groupActive)
+  const taskData = useTaskStore((state) => state.taskData)
+  const isLoading = useTaskStore((state) => state.isLoading)
 
   const { ungrouped, ...tasksList } = taskData
 
@@ -22,16 +22,11 @@ export const TaskPanel = () => {
         ) : isAllGroup ? (
           <>
             <TaskList list={ungrouped} />
-            {groups.map(group => {
-              if (tasksList[group].length === 0) return null
-              return (
-                <TaskList
-                  key={group}
-                  list={tasksList[group]}
-                  group={group}
-                  indent
-                />
-              )
+            {groups.map((group) => {
+              if (tasksList[group].length === 0) {
+                return null
+              }
+              return <TaskList key={group} list={tasksList[group]} group={group} indent={true} />
             })}
           </>
         ) : (

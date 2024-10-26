@@ -1,13 +1,13 @@
-import { useTaskStore } from '@context'
+import { useTaskStore } from '@features/tasks/store'
 import { useTextInput } from '@hooks'
 import { PlusIcon } from '@components/icons'
 import { Input, Button } from '@components/ui'
-import { useRadioStore } from '@context/useRadioStore'
+import { useRadioStore } from '@features/radioPlayer/store'
 
 export const CreateTask = () => {
-  const createTask = useTaskStore(state => state.createTask)
-  const toggleIsWriting = useTaskStore(state => state.toggleIsWriting)
-  const isRadioOn = useRadioStore(state => state.isRadioOn)
+  const createTask = useTaskStore((state) => state.createTask)
+  const toggleIsWriting = useTaskStore((state) => state.toggleIsWriting)
+  const isRadioOn = useRadioStore((state) => state.isRadioOn)
 
   const { ref, handleSubmit } = useTextInput(() => {
     createTask({ task: ref.current.value })
@@ -30,11 +30,7 @@ export const CreateTask = () => {
         color='blue'
         size='round-md'
         outline='white'
-        className={
-          isRadioOn
-            ? 'bg-opacityDark outline-opacityDark transition-[background-color,outline] duration-150'
-            : ''
-        }
+        className={isRadioOn ? 'bg-dark/20 outline-dark/20 transition-[background-color,outline] duration-150' : ''}
       >
         <PlusIcon />
       </Button>
