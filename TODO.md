@@ -19,6 +19,7 @@
 ### Pomodoro Timer
 
 - [ ] feat: add settings to pomodoro
+- [x] ui: add a reset button
 
 ### LOFI Radio Player
 
@@ -44,5 +45,4 @@
 ### Others
 
 - [x] arch: resolve linter and format issues
-- [x] arch: folder structure must be better (screaming architecture)
-- [ ] feat: add a changelog
+- [x] arch: implement screaming architecture
