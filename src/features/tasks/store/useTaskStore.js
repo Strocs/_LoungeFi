@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { STORAGE_GROUPS_ID, UNGROUPED } from '@features/tasks/constants'
+import { STORAGE_GROUPS_ID, UNGROUPED } from '@features/groups/constants'
 import { useAuthStore } from '@features/auth/store'
 import { localStorage } from '@utils'
 import {

@@ -52,7 +52,7 @@ export const usePomodoroStore = create((set, get) => ({
       }
     })
     const { isStart, ...value } = get()
-    useLocalStorage({ key: STORAGE_POMODORO_ID, value })
+    localStorage({ key: STORAGE_POMODORO_ID, value })
   },
   countdown: () => {
     set((state) => ({
@@ -61,13 +61,13 @@ export const usePomodoroStore = create((set, get) => ({
     }))
 
     const { isStart, ...value } = get()
-    useLocalStorage({ key: STORAGE_POMODORO_ID, value })
+    localStorage({ key: STORAGE_POMODORO_ID, value })
   },
   resetPomodoro: () => {
     set({ ...initialValue, isStart: false })
 
     const { isStart, ...value } = get()
-    useLocalStorage({ key: STORAGE_POMODORO_ID, value })
+    localStorage({ key: STORAGE_POMODORO_ID, value })
   },
   togglePomodoro: () => set((state) => ({ isStart: !state.isStart }))
 }))

@@ -1,6 +1,8 @@
+import { cn } from '@utils/clsxWithTailwindMerge'
+
 export const ErrorMessage = ({ errorText = '', className: customClass = '', ...props }) => {
   return (
-    <p {...props} className={`text-sm leading-none text-red ${customClass}`}>
+    <p {...props} className={cn('text-red text-sm leading-none', customClass)}>
       {errorText}
     </p>
   )

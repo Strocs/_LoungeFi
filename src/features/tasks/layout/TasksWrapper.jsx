@@ -6,7 +6,7 @@ export const TasksWrapper = ({ children }) => {
   const isRadioOn = useRadioStore((state) => state.isRadioOn)
 
   return (
-    <section name='tasks-panel' className={`relative text-slate-100 rounded-xl ${isRadioOn ? 'bg-dark/20' : ''}`}>
+    <section name='tasks-panel' className={`relative rounded-xl text-slate-100 ${isRadioOn ? 'bg-dark/20' : ''}`}>
       {children}
     </section>
   )

@@ -1,5 +1,6 @@
 import { youtubeBaseURL } from '@features/radio/constants'
 import { useRadioStore } from '@features/radio/store'
+import { cn } from '@utils/clsxWithTailwindMerge'
 
 export const NowPlaying = () => {
   const isPlaying = useRadioStore((state) => state.isPlaying)
@@ -11,11 +12,16 @@ export const NowPlaying = () => {
   const controlText = isBuffering ? 'Buffering...' : isPlaying ? 'Now Playing:' : 'Paused:'
 
   return (
-    <div className={`text-slate-100 w-full h-10 relative text-center ${!isRadioOn ? 'opacity-0' : ''}`}>
+    <div
+      className={cn(
+        'relative h-10 w-full text-center text-slate-100 opacity-0 transition-opacity duration-150',
+        isRadioOn && 'opacity-100'
+      )}
+    >
       <p className='font-medium'>{controlText}</p>
       <a
         href={youtubeBaseURL + id}
-        className='text-[0.75rem] font-light whitespace-nowrap text-ellipsis overflow-hidden absolute bottom-0 left-0 right-0 hover:opacity-70 transition-opacity duration-150'
+        className='absolute right-0 bottom-0 left-0 overflow-hidden text-ellipsis whitespace-nowrap font-light text-[0.75rem] transition-opacity duration-150 hover:opacity-70'
       >
         {!isBuffering ? currentRadioTitle : ''}
       </a>

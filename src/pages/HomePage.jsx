@@ -44,7 +44,7 @@ export const HomePage = () => {
         )}
       </main>
       <Footer>
-        <section className='grid w-full grid-cols-[1fr_2fr_1fr] items-center px-3 pb-1 pt-3'>
+        <section className='grid w-full grid-cols-[1fr_2fr_1fr] items-center px-3 pt-3 pb-1'>
           <Profile name={displayName} />
           <Radio />
           {installApp ? <DownloadAppButton onClick={installApp} /> : <GithubButton />}

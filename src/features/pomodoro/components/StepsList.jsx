@@ -1,11 +1,12 @@
 import { usePomodoroStore } from '@features/pomodoro/store'
+import { cn } from '@utils/clsxWithTailwindMerge'
 
 export const StepsList = ({ isStart }) => {
   const { isLongRest, steps, currentStep } = usePomodoroStore()
   return (
-    <div className='flex gap-1 justify-center w-full'>
+    <div className='flex w-full justify-center gap-1'>
       {isLongRest ? (
-        <span className={`${isStart ? 'bg-blue' : 'bg-grey'} w-full h-2 sm:h-[.6rem] rounded`} />
+        <span className={cn('h-2 w-full rounded bg-grey sm:h-[.6rem]', isStart && 'bg-blue')} />
       ) : (
         Array.from({ length: steps }, (_, index) => {
           const isActive = index + 1 === currentStep
@@ -13,9 +14,10 @@ export const StepsList = ({ isStart }) => {
           return (
             <span
               key={index}
-              className={`w-2 h-2 sm:w-[.6rem] sm:h-[.6rem] shrink-0 rounded-full ${
-                isActive ? workingColor : 'bg-lightgrey'
-              }`}
+              className={cn(
+                'h-2 w-2 shrink-0 rounded-full bg-lightgrey sm:h-[.6rem] sm:w-[.6rem]',
+                isActive && workingColor
+              )}
             />
           )
         })

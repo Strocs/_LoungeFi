@@ -15,7 +15,7 @@ export const PomodoroSettings = () => {
   const handleToggleModal = () => setOpenModal(!openModal)
 
   return (
-    <div className='relative rounded-full flex'>
+    <div className='relative flex rounded-full'>
       <PomodoroSettingsButton onClick={handleToggleModal} />
       {openModal && <PomodoroSettingsModal onClick={handleResetPomodoro} />}
     </div>

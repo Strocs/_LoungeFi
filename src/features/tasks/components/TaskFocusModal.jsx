@@ -6,7 +6,7 @@ import { useTextInput } from '@hooks/useTextInput'
 import { formatDate } from '@utils/formatDate'
 import { getTaskById } from '@utils/getTaskById'
 import { TasksWrapper } from '@features/tasks/layout'
-import clsx from 'clsx'
+import { cn } from '@utils/clsxWithTailwindMerge'
 
 export const TaskFocusModal = () => {
   const { id, group } = useTaskStore((state) => state.taskActive)
@@ -40,7 +40,7 @@ export const TaskFocusModal = () => {
 
   return (
     <TasksWrapper>
-      <div className='flex flex-col items-center justify-center gap-6 h-full font-extralight text-center'>
+      <div className='flex h-full flex-col items-center justify-center gap-6 text-center font-extralight'>
         <div>
           <p className='font-medium'>{isInputOpen ? 'Updating:' : 'Now focusing on:'}</p>
           {isInputOpen ? (
@@ -51,11 +51,11 @@ export const TaskFocusModal = () => {
                 id=''
                 ref={ref}
                 defaultValue={task}
-                className='bg-dark/40 bg-opacity-20 font-bold outline-dark/60 outline-2 outline-dashed text-3xl w-fit text-center rounded-full px-3'
+                className='w-fit rounded-full bg-dark/40 bg-opacity-20 px-3 text-center font-bold text-3xl outline-dashed outline-2 outline-dark/60'
               />
             </form>
           ) : (
-            <h2 className='text-3xl font-bold'>{task}</h2>
+            <h2 className='font-bold text-3xl'>{task}</h2>
           )}
         </div>
         <p className='text-sm'>
@@ -68,7 +68,7 @@ export const TaskFocusModal = () => {
             color={isInputOpen ? 'blue' : 'text-blue'}
             outline='blue'
             hover='blue'
-            className={clsx('transition-transform duration-150', { 'scale-125': isInputOpen })}
+            className={cn('transition-transform duration-150', isInputOpen && 'scale-125')}
             onClick={toggleUpdateTask}
           >
             <EditIcon size={16} />

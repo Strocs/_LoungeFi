@@ -1,4 +1,5 @@
 import { useRadioStore } from '@features/radio/store'
+import { cn } from '@utils/clsxWithTailwindMerge'
 import { useEffect, useRef, useState } from 'react'
 
 export const VolumeSlider = () => {
@@ -35,7 +36,7 @@ export const VolumeSlider = () => {
   useEffect(() => {
     const { x, width } = sliderRef.current.getBoundingClientRect()
     setCoordinates({ x, width })
-  }, [sliderRef.current?.getBoundingClientRect().x])
+  }, [])
 
   useEffect(() => {
     if (window.PointerEvent && 'maxTouchPoints' in navigator) {
@@ -54,16 +55,19 @@ export const VolumeSlider = () => {
       onPointerMove={handleMouseMove}
       onPointerLeave={handleMouseUp}
       ref={sliderRef}
-      className={`w-auto flex py-2 justify-between gap-1 cursor-pointer transition-all duration-150 ${
-        volume === 0 ? 'text-red' : 'text-slate-100'
-      } ${isMobile ? 'hidden' : ''}`}
+      className={cn(
+        'flex w-auto cursor-pointer justify-between gap-1 py-2 text-slate-100 transition-all duration-150',
+        volume === 0 && 'text-red',
+        isMobile && 'hidden'
+      )}
     >
       {Array.from({ length: 10 }, (_, i) => (
         <span
           key={i}
-          className={`w-full h-3 rounded-full pointer-events-none bg-current ${
-            i / 10 < volume ? 'opacity-100' : 'opacity-50'
-          }`}
+          className={cn(
+            'pointer-events-none h-3 w-full rounded-full bg-current opacity-50',
+            i / 10 < volume && 'opacity-100'
+          )}
         />
       ))}
     </div>

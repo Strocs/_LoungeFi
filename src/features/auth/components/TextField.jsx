@@ -13,7 +13,7 @@ export const TextField = ({ placeholder, type, name, value, onChange, required, 
         customClass={error ? 'outline-red' : ''}
         required={required}
       />
-      {error && <ErrorMessage errorText={errorText} className='ml-3 mt-2' />}
+      {error && <ErrorMessage errorText={errorText} className='mt-2 ml-3' />}
     </label>
   )
 }
