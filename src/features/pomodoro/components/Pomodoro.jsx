@@ -1,12 +1,12 @@
 import { PomodoroIcon } from '@components/icons'
-import { Countdown, StepsList, PomodoroSettings } from '@features/pomodoro/components'
 import { Button } from '@components/ui'
+import { Countdown, ResetPomodoro, StepsList } from '@features/pomodoro/components'
 import { POMODORO_VALUES, TOGGLE_KEY } from '@features/pomodoro/constants'
-import { useRef, useEffect } from 'react'
-import { useTaskStore } from '@features/tasks/store'
 import { usePomodoro } from '@features/pomodoro/hooks'
 import { usePomodoroStore } from '@features/pomodoro/store'
+import { useTaskStore } from '@features/tasks/store'
 import { cn } from '@utils'
+import { useEffect, useRef } from 'react'
 
 const { ALARM } = POMODORO_VALUES
 
@@ -29,7 +29,7 @@ export const Pomodoro = () => {
 
   useEffect(() => {
     document.body.focus()
-  }, [isStart])
+  }, [])
 
   return (
     <section
@@ -48,7 +48,7 @@ export const Pomodoro = () => {
           <StepsList isStart={isStart} />
         </div>
       </div>
-      <PomodoroSettings />
+      <ResetPomodoro />
     </section>
   )
 }

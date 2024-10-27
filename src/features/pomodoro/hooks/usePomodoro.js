@@ -27,7 +27,7 @@ export const usePomodoro = ({
     return () => {
       window.removeEventListener('keydown', togglePomodoroKeyDown)
     }
-  }, [keyDownCondition, isStart])
+  }, [keyDownCondition, togglePomodoro, toggleKeyButton])
 
   useEffect(() => {
     let countdownInterval
@@ -43,5 +43,5 @@ export const usePomodoro = ({
     }
 
     return () => clearInterval(countdownInterval)
-  }, [isStart, isTimerEnd])
+  }, [isStart, isTimerEnd, countdown, changeStep, alarm?.play])
 }
