@@ -6,7 +6,7 @@ export const ResetPomodoro = () => {
 
   return (
     <div className='relative flex rounded-full'>
-      <button className='text-black/20 hover:text-red transition duration-150' onClick={resetPomodoro}>
+      <button className='text-black/20 transition duration-150 hover:text-red' onClick={resetPomodoro}>
         <ResetIcon />
       </button>
     </div>
