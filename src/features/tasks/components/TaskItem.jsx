@@ -9,7 +9,7 @@ import { cn } from '@utils/clsxWithTailwindMerge'
 export const TaskItem = ({ item, group = UNGROUPED }) => {
   const { id, task, done } = item
 
-  const setOpenFocusModal = useTaskStore((state) => state.setOpenFocusModal)
+  const setFocused = useTaskStore((state) => state.setFocused)
 
   const controls = useDragControls()
 
@@ -19,7 +19,7 @@ export const TaskItem = ({ item, group = UNGROUPED }) => {
   }
 
   const handleDoubleClick = () => {
-    setOpenFocusModal({ isOpen: true, task: { id, group } })
+    setFocused({ isFocused: true, task: { id, group } })
   }
 
   return (
