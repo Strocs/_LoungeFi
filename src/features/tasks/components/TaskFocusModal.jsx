@@ -56,7 +56,10 @@ export const TaskFocusModal = () => {
             {formatTime(minutes) + ':' + formatTime(seconds)}
           </p>
           <StepsList size='md' />
-          <button className='rounded-md bg-black/20 px-2 py-0.5 font-normal hover:bg-black/40' onClick={togglePomodoro}>
+          <button
+            className={cn('rounded-md bg-black/20 px-2 py-0.5 font-normal hover:bg-black/40', !isStart && 'bg-green')}
+            onClick={togglePomodoro}
+          >
             {isStart ? 'Stop' : 'Start'}
           </button>
         </section>
