@@ -1,16 +1,19 @@
 import { EditIcon } from '@components/icons'
 import { Button } from '@components/ui'
-import { useTaskStore } from '@features/tasks/store'
+import { StepsList } from '@features/pomodoro/components'
+import { usePomodoro } from '@features/pomodoro/hooks'
 import { DeleteTaskButton, DoneTaskButton } from '@features/tasks/components'
-import { useTextInput } from '@hooks/useTextInput'
-import { formatDate } from '@utils/formatDate'
-import { getTaskById } from '@utils/getTaskById'
 import { TasksWrapper } from '@features/tasks/layout'
+import { useTaskStore } from '@features/tasks/store'
+import { useTextInput } from '@hooks/useTextInput'
 import { cn } from '@utils/clsxWithTailwindMerge'
+import { formatDate } from '@utils/formatDate'
+import { formatTime } from '@utils/formatTime'
+import { getTaskById } from '@utils/getTaskById'
 
 export const TaskFocusModal = () => {
   const { id, group } = useTaskStore((state) => state.taskActive)
-  const setOpenFocusModal = useTaskStore((state) => state.setOpenFocusModal)
+  const setFocused = useTaskStore((state) => state.setFocused)
   const updateTask = useTaskStore((state) => state.updateTask)
 
   const { task, created, done } = getTaskById({ group, id })
@@ -22,7 +25,7 @@ export const TaskFocusModal = () => {
   }, false)
 
   const handleCloseModal = () => {
-    setOpenFocusModal({ isOpen: false })
+    setFocused({ isFocused: false })
   }
 
   const toggleUpdateTask = (e) => {
@@ -38,9 +41,25 @@ export const TaskFocusModal = () => {
     handleCloseInput(e)
   }
 
+  const { minutes, seconds, togglePomodoro, isStart } = usePomodoro()
+
   return (
     <TasksWrapper>
       <div className='flex h-full flex-col items-center justify-center gap-6 text-center font-extralight'>
+        <section className='space-y-4'>
+          <p
+            className={cn(
+              'font-bold text-8xl text-white leading-[0.7] transition-opacity duration-150',
+              !isStart && 'opacity-50'
+            )}
+          >
+            {formatTime(minutes) + ':' + formatTime(seconds)}
+          </p>
+          <StepsList size='md' />
+          <button className='rounded-md bg-black/20 px-2 py-0.5 font-normal hover:bg-black/40' onClick={togglePomodoro}>
+            {isStart ? 'Stop' : 'Start'}
+          </button>
+        </section>
         <div>
           <p className='font-medium'>{isInputOpen ? 'Updating:' : 'Now focusing on:'}</p>
           {isInputOpen ? (
