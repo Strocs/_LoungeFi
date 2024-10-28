@@ -1,52 +1,30 @@
 import { PomodoroIcon } from '@components/icons'
-import { Countdown, StepsList, PomodoroSettings } from '@features/pomodoro/components'
 import { Button } from '@components/ui'
-import { POMODORO_VALUES, TOGGLE_KEY } from '@features/pomodoro/constants'
-import { useRef, useEffect } from 'react'
-import { useTaskStore } from '@features/tasks/store'
+import { Countdown, ResetPomodoro, StepsList } from '@features/pomodoro/components'
 import { usePomodoro } from '@features/pomodoro/hooks'
-import { usePomodoroStore } from '@features/pomodoro/store'
+import { cn } from '@utils'
 
-const { ALARM } = POMODORO_VALUES
-
-export const Pomodoro = () => {
-  const { minutes, seconds, isStart, countdown, changeStep, togglePomodoro } = usePomodoroStore()
-
-  const isUserWriting = useTaskStore((state) => state.isUserWriting)
-  const pomodoroRef = useRef(null)
-
-  usePomodoro({
-    changeStep,
-    togglePomodoro,
-    isStart,
-    countdown,
-    isTimerEnd: minutes === 0 && seconds === 0,
-    keyDownCondition: isUserWriting,
-    alarmSound: ALARM,
-    toggleKeyButton: TOGGLE_KEY
-  })
-
-  useEffect(() => {
-    document.body.focus()
-  }, [isStart])
+export const Pomodoro = ({ className }) => {
+  const { isStart, togglePomodoro, seconds, minutes } = usePomodoro()
 
   return (
     <section
-      ref={pomodoroRef}
-      className={`${
-        isStart ? 'outline-red' : 'outline-grey'
-      } bg-slate-100 text-dark flex items-center gap-4 pl-4 pr-3 py-1 h-fit w-fit rounded-full outline outline-2 transition-all duration-150`}
+      className={cn(
+        'flex h-fit w-fit items-center gap-4 rounded-full bg-slate-100 py-1 pr-3 pl-4 text-dark outline outline-2 outline-grey transition-all duration-150',
+        isStart && 'outline-red',
+        className
+      )}
     >
-      <div className='flex gap-4 cursor-pointer group' onClick={togglePomodoro}>
+      <div className='group flex cursor-pointer gap-4' onClick={togglePomodoro}>
         <Button color='transparent' outline='none'>
           <PomodoroIcon size={32} isActive={isStart} />
         </Button>
-        <div className='w-fit grid place-items-center'>
+        <div className='grid w-fit place-items-center'>
           <Countdown minutes={minutes} seconds={seconds} isStart={isStart} />
           <StepsList isStart={isStart} />
         </div>
       </div>
-      <PomodoroSettings />
+      <ResetPomodoro />
     </section>
   )
 }

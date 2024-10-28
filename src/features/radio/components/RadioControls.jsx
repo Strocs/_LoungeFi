@@ -10,7 +10,7 @@ export const RadioControls = ({ isPlaying = false }) => {
 
   return (
     <section className='h-fit place-self-center'>
-      <div className='flex gap-4 text-slate-100 mb-1'>
+      <div className='mb-1 flex gap-4 text-slate-100'>
         <button className='shadow-opacityGrey drop-shadow-[-5px_5px_0_rgba(0,0,0,0.25)]' onClick={playLast}>
           <SkipIcon reverse={true} />
         </button>

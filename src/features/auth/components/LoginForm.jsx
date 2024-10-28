@@ -18,7 +18,7 @@ export const LoginForm = () => {
 
   useEffect(() => {
     logout(errorMessage || null)
-  }, [])
+  }, [logout, errorMessage])
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -75,7 +75,7 @@ export const LoginForm = () => {
         }
       />
       <section className='grid h-fit gap-3'>
-        <p className='text-center text-sm font-light'>Or sign up using</p>
+        <p className='text-center font-light text-sm'>Or sign up using</p>
         <div className='flex w-full items-center justify-center gap-3'>
           <Button
             onClick={handleGoggleSignIn}
@@ -97,7 +97,7 @@ export const LoginForm = () => {
           {/* </Button> */}
         </div>
       </section>
-      <p className='text-sm text-grey'>
+      <p className='text-grey text-sm'>
         If you don{"'"}t have an account{' '}
         <Link to={'/register'} className='text-white transition-colors duration-150 hover:text-blue'>
           Sign Up here

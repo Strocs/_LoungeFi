@@ -1,3 +1,4 @@
+import { cn } from '@utils/clsxWithTailwindMerge'
 import { motion } from 'framer-motion'
 
 export function Title({ isBig, noAnimation = false }) {
@@ -6,9 +7,10 @@ export function Title({ isBig, noAnimation = false }) {
       initial={!noAnimation && { y: isBig ? -100 : -50 }}
       animate={!noAnimation && { y: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
-      className={`${
-        isBig ? 'mx-auto text-6xl font-light sm:text-7xl' : 'text-3xl font-extralight'
-      } whitespace-nowrap leading-none`}
+      className={cn(
+        'whitespace-nowrap font-extralight text-3xl leading-none',
+        isBig && 'mx-auto font-light text-6xl sm:text-7xl'
+      )}
     >
       _L
       <svg

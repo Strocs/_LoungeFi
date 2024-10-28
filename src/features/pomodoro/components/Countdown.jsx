@@ -8,10 +8,10 @@ export const Countdown = ({ minutes, seconds, isStart }) => {
 
   useEffect(() => {
     document.title = isStart ? `${formattedMinutes}:${formattedSeconds} ${DOCUMENT_TITLE}` : DOCUMENT_TITLE
-  }, [seconds, isStart])
+  }, [isStart, formattedSeconds, formattedMinutes])
 
   return (
-    <span className='text-lg font-bold leading-none w-12'>
+    <span className='w-12 font-bold text-lg leading-none'>
       {formattedMinutes}:{formattedSeconds}
     </span>
   )

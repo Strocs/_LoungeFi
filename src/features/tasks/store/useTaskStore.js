@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { STORAGE_GROUPS_ID, UNGROUPED } from '@features/tasks/constants'
+import { STORAGE_GROUPS_ID, UNGROUPED } from '@features/groups/constants'
 import { useAuthStore } from '@features/auth/store'
 import { localStorage } from '@utils'
 import {
@@ -23,7 +23,7 @@ export const useTaskStore = create((set, get) => ({
     [UNGROUPED]: []
   },
   isUserWriting: false,
-  isFocusModalOpen: false,
+  isFocused: false,
   taskActive: null,
   isLoading: false,
 
@@ -238,14 +238,14 @@ export const useTaskStore = create((set, get) => ({
     })
   },
 
-  setOpenFocusModal: ({ isOpen, task }) => {
+  setFocused: ({ isFocused, task }) => {
     set({
-      isFocusModalOpen: isOpen,
-      taskActive: isOpen ? task : null
+      isFocused,
+      taskActive: isFocused ? task : null
     })
   },
 
   updateLocalStorage: () => {
-    useLocalStorage({ key: STORAGE_GROUPS_ID, value: get().groupActive })
+    localStorage({ key: STORAGE_GROUPS_ID, value: get().groupActive })
   }
 }))

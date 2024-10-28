@@ -11,29 +11,28 @@ import { useTaskStore } from '@features/tasks/store'
 import clsx from 'clsx'
 
 export const HomePage = () => {
-  const isFocusModalOpen = useTaskStore((state) => state.isFocusModalOpen)
+  const isFocused = useTaskStore((state) => state.isFocused)
   const { displayName } = useAuthStore((state) => state.userAuth)
-
   const firstName = displayName?.split(' ')[0]
 
   const installApp = usePWAInstall()
 
   return (
     <>
-      <Header>
+      <Header className={[isFocused && 'translate-x-[calc(50%-75px)]', 'transition-transform duration-300']}>
         <div className='grid gap-1'>
           <Title />
           <WelcomeName name={firstName} />
         </div>
-        <Pomodoro />
+        {!isFocused && <Pomodoro />}
       </Header>
       <main
         className={clsx('grid w-full max-w-xl gap-3', {
-          'grid-rows-1': isFocusModalOpen,
-          'grid-rows-[auto_auto_1fr]': !isFocusModalOpen
+          'grid-rows-1': isFocused,
+          'grid-rows-[auto_auto_1fr]': !isFocused
         })}
       >
-        {isFocusModalOpen ? (
+        {isFocused ? (
           <TaskFocusModal />
         ) : (
           <>
@@ -44,7 +43,7 @@ export const HomePage = () => {
         )}
       </main>
       <Footer>
-        <section className='grid w-full grid-cols-[1fr_2fr_1fr] items-center px-3 pb-1 pt-3'>
+        <section className='grid w-full grid-cols-[1fr_2fr_1fr] items-center px-3 pt-3 pb-1'>
           <Profile name={displayName} />
           <Radio />
           {installApp ? <DownloadAppButton onClick={installApp} /> : <GithubButton />}

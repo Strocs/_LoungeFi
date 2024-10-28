@@ -3,6 +3,7 @@ import { useTextInput } from '@hooks'
 import { PlusIcon } from '@components/icons'
 import { Input, Button } from '@components/ui'
 import { useRadioStore } from '@features/radio/store'
+import { cn } from '@utils/clsxWithTailwindMerge'
 
 export const CreateTask = () => {
   const createTask = useTaskStore((state) => state.createTask)
@@ -30,7 +31,7 @@ export const CreateTask = () => {
         color='blue'
         size='round-md'
         outline='white'
-        className={isRadioOn ? 'bg-dark/20 outline-dark/20 transition-[background-color,outline] duration-150' : ''}
+        className={cn({ 'bg-dark/20 outline-dark/20 transition-[background-color,outline] duration-150': isRadioOn })}
       >
         <PlusIcon />
       </Button>

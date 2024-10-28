@@ -3,7 +3,7 @@ import { PlusIcon } from '@components/icons'
 import { motion } from 'framer-motion'
 import { useTaskStore } from '@features/tasks/store'
 import { useRadioStore } from '@features/radio/store'
-import clsx from 'clsx'
+import { cn } from '@utils/clsxWithTailwindMerge'
 
 export const CreateGroup = () => {
   const createGroup = useTaskStore((state) => state.createGroup)
@@ -31,16 +31,18 @@ export const CreateGroup = () => {
       initial='closed'
       animate='open'
       name='create-group'
-      className={clsx('size-fit outline outline-2 px-2 rounded-full', {
-        'bg-dark/20 text-slate-100 outline-dark/20 ': isRadioOn,
-        'outline-blue bg-slate-100': !isRadioOn
-      })}
+      className={cn(
+        'size-fit rounded-full bg-slate-100 px-2 outline outline-2 outline-blue',
+        isRadioOn && 'bg-dark/20 text-slate-100 outline-dark/20 '
+      )}
       onSubmit={handleSubmit}
       onBlur={handleCloseInput}
     >
       <input
-        className={`placeholder:text-sm placeholder:text-center text-center font-normal text-sm w-14 outline-none bg-transparent ${isRadioOn ? 'placeholder:text-grey' : 'text-dark'
-          }`}
+        className={cn(
+          'w-14 bg-transparent text-center font-normal text-dark text-sm outline-none placeholder:text-center placeholder:text-sm',
+          isRadioOn && 'placeholder:text-grey'
+        )}
         placeholder='Group'
         type='text'
         ref={ref}
@@ -53,7 +55,7 @@ export const CreateGroup = () => {
       initial='closed'
       animate='open'
       onClick={handleShowInput}
-      className='text-slate-100 px-1'
+      className='px-1 text-slate-100'
     >
       <PlusIcon />
     </motion.button>

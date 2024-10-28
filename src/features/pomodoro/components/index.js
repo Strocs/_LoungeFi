@@ -1,6 +1,4 @@
 export * from './Pomodoro'
 export * from './Countdown'
 export * from './StepsList'
-export * from './PomodoroSettings'
-export * from './PomodoroSettingsModal'
-export * from './PomodoroSettingsButton'
+export * from './ResetPomodoro'

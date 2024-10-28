@@ -10,14 +10,14 @@ export const GroupList = () => {
   const [all, ...groupList] = Object.keys(taskData)
 
   return (
-    <section className='grid grid-cols-[1fr_auto] items-center gap-2 w-full relative h-fit'>
+    <section className='relative grid h-fit w-full grid-cols-[1fr_auto] items-center gap-2'>
       {isLoading ? (
         <SkeletonGroups />
       ) : (
         <ul
           ref={ref}
           onWheel={(e) => onWheel(ref.current, e)}
-          className='flex gap-3 h-fit pr-6 pl-[10px] py-1 overflow-x-scroll scroll-smooth  scrollbar-hide'
+          className='scrollbar-hide flex h-fit gap-3 overflow-x-scroll scroll-smooth py-1 pr-6 pl-[10px]'
         >
           <GroupItem group={all} />
           <AnimatePresence>

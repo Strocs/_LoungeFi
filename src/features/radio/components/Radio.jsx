@@ -24,12 +24,12 @@ export const Radio = () => {
       <RadioControls isPlaying={isPlaying} />
       {isBuffering && isPlaying && (
         <img
-          className='absolute top-0 bottom-0 left-0 right-0 -z-10 w-full h-full object-cover contrast-150'
+          className='-z-10 absolute top-0 right-0 bottom-0 left-0 h-full w-full object-cover contrast-150'
           src='loading.gif'
         />
       )}
       {isRadioOn && (
-        <div className='fixed top-0 bottom-0 h-screen left-0 right-0 -z-20 overflow-hidden landscape:scale-125'>
+        <div className='-z-20 fixed top-0 right-0 bottom-0 left-0 h-screen overflow-hidden landscape:scale-125'>
           <ReactPlayer
             url={youtubeBaseURL + id}
             config={{
@@ -43,7 +43,7 @@ export const Radio = () => {
             width='1730px'
             height='973px'
             playsinline={true}
-            className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'
+            className='-translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2 transform'
             playing={isPlaying}
             volume={volume}
             onPlay={() => setIsBuffering(false)}

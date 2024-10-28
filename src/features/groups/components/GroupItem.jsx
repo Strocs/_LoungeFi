@@ -6,8 +6,9 @@ import { DeleteGroupModal } from '@features/groups/components'
 import { createPortal } from 'react-dom'
 import { useTaskStore } from '@features/tasks/store'
 import { useRadioStore } from '@features/radio/store'
-import { FILTER_ITEMS, UNGROUPED } from '@features/tasks/constants'
+import { FILTER_ITEMS, UNGROUPED } from '@features/groups/constants'
 import { ANIMATION_VARIANTS } from '@constants/constants'
+import { cn } from '@utils/clsxWithTailwindMerge'
 
 export const GroupItem = ({ group, isDeletable = false }) => {
   const groupActive = useTaskStore((state) => state.groupActive)
@@ -20,7 +21,7 @@ export const GroupItem = ({ group, isDeletable = false }) => {
 
   const [confirmationModal, setConfirmationModal] = useState(false)
 
-  const groupName = group === UNGROUPED ? FILTER_ITEMS.ALL : group
+  const groupName = group === UNGROUPED ? FILTER_ITEMS.all : group
 
   const onConfirmMoveGroup = (confirmation) => {
     deleteGroup({ group, confirmMoveTasks: confirmation })
@@ -32,20 +33,20 @@ export const GroupItem = ({ group, isDeletable = false }) => {
   }
 
   return (
-    <motion.li variants={ANIMATION_VARIANTS.OPACITY} initial='hidden' animate='visible' exit='hidden'>
+    <motion.li variants={ANIMATION_VARIANTS.opacity} initial='hidden' animate='visible' exit='hidden'>
       <Button
         color={groupActive === group ? 'blue' : 'white'}
         outline={groupActive === group ? 'white' : 'blue'}
         hover='blue'
-        className={`flex items-center gap-1 whitespace-nowrap ${groupActive === group
-            ? ''
-            : isRadioOn
-              ? 'bg-dark/20 outline-dark/20 opacity-75 hover:opacity-100 text-slate-100 transition-[background-color,outline,color,opacity] duration-150'
-              : ''
-          }`}
+        className={cn('flex items-center gap-1 whitespace-nowrap', {
+          'bg-dark/20 text-slate-100 opacity-75 outline-dark/20 transition-[background-color,outline,color,opacity] duration-150 hover:opacity-100':
+            groupActive !== group && isRadioOn
+        })}
       >
         <p
-          className={`font-normal ${isDeletable ? 'pl-3 md:px-3 md:group-hover:px-0 md:group-hover:pl-3' : 'px-3'}`}
+          className={cn('px-3 font-normal', {
+            'pl-3 md:px-3 md:group-hover:px-0 md:group-hover:pl-3': isDeletable
+          })}
           onClick={() => setGroupActive({ group })}
         >
           {groupName}
@@ -53,7 +54,7 @@ export const GroupItem = ({ group, isDeletable = false }) => {
         {isDeletable && (
           <span
             onClick={handleClick}
-            className='md:hidden group-hover:inline-block transition-[display] duration-150 text-sm hover:bg-red rounded-full p-1 mr-1'
+            className='mr-1 rounded-full p-1 text-sm transition-[display] duration-150 hover:bg-red group-hover:inline-block md:hidden'
           >
             <CloseIcon size={14} />
           </span>

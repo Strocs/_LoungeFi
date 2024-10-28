@@ -4,7 +4,7 @@
 
 - [ ] feat: add offline support
   - [ ] cache user lists on local, if user is offline, the lists are loaded from the cache
-    - Cache have an timestamp that is the lst time the list was updated
+    - Cache have an timestamp that is the list time the list was updated
     - If the cache is newer than the remote
   - [ ] sync user lists with server when online
     - [ ] when offline added, deleted or updated tasks are put in a queue to be synced when online
@@ -18,7 +18,8 @@
 
 ### Pomodoro Timer
 
-- [ ] feat: add settings to pomodoro
+- [x] ui: add a reset button
+- [x] feat: when a pomodoro is focused, the timer must be showed on focus panel
 
 ### LOFI Radio Player
 
@@ -30,6 +31,7 @@
 - [x] fix: improve spinner animation
 - [x] fix: description text can be better redacted
 - [x] feat: when user start to focus a task clean the UI
+- [ ] style: add shadow on scrollable areas
 
 ### Settings
 
@@ -44,5 +46,4 @@
 ### Others
 
 - [x] arch: resolve linter and format issues
-- [x] arch: folder structure must be better (screaming architecture)
-- [ ] feat: add a changelog
+- [x] arch: implement screaming architecture
