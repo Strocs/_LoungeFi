@@ -1,28 +1,31 @@
-import { POMODORO_VALUES } from '@constants'
-import { usePomodoro } from '../../src/features/pomodoroTimer/hooks/usePomodoro'
+import { POMODORO_VALUES } from '@features/pomodoro/constants'
+import { usePomodoro } from '@features/pomodoro/hooks'
 import { act, renderHook } from '@testing-library/react'
 import { describe, expect, test } from 'vitest'
 
 describe('Tests on custom hook: usePomodoro', () => {
-  const {
-    cyclesBeforeLongBreak: numberOfCycles,
-    timersInMinutes: times,
-    alarmSound
-  } = POMODORO_VALUES
+  const { cycles, timers, alarm } = POMODORO_VALUES
+
   const initialValues = {
     isStart: false,
     currentCycle: 1,
     currentStep: 1,
-    minutes: times.work,
+    minutes: timers.work,
     seconds: 0
+  }
+
+  const pomodoroValues = {
+    cycles,
+    timers,
+    alarm
   }
 
   test('should start with initial values', () => {
     const { result } = renderHook(() =>
       usePomodoro({
-        numberOfCycles,
-        times,
-        alarmSound
+        cycles,
+        timers,
+        alarm
       })
     )
     const { pomodoro } = result.current
@@ -32,9 +35,7 @@ describe('Tests on custom hook: usePomodoro', () => {
   test('should change state of isStart when toggle function is called', () => {
     const { result } = renderHook(() =>
       usePomodoro({
-        numberOfCycles,
-        times,
-        alarmSound
+        alarmSound: alarm
       })
     )
 

@@ -63,7 +63,8 @@ export const useTaskStore = create((set, get) => ({
       task,
       done: false,
       created: new Date().getTime(),
-      group: get().groupActive
+      group: get().groupActive,
+      note: '',
     }
 
     set((state) => ({
@@ -151,6 +152,19 @@ export const useTaskStore = create((set, get) => ({
   //     return { taskData: newTaskData }
   //   })
   // },
+
+  setNote: async ({ id, note, group }) => {
+    set((state) => ({
+      taskData: {
+        ...state.taskData,
+        [group]: state.taskData[group].map((task) => (task.id === id ? { ...task, note } : task))
+      }
+    }))
+
+    const { uid } = useAuthStore.getState().userAuth
+    const selectedTask = get().taskData[group].find((task) => task.id === id)
+    await startUpdateTask(uid, selectedTask)
+  },
 
   // GROUP STUFFS
   createGroup: async ({ group = '' }) => {
