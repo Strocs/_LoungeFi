@@ -15,13 +15,18 @@ export const TaskFocusModal = () => {
   const { id, group } = useTaskStore((state) => state.taskActive)
   const setFocused = useTaskStore((state) => state.setFocused)
   const updateTask = useTaskStore((state) => state.updateTask)
+  const setNote = useTaskStore((state) => state.setNote)
 
-  const { task, created, done } = getTaskById({ group, id })
+  const { task, created, note, done } = getTaskById({ group, id })
 
   const createdDate = formatDate(created)
 
-  const { ref, handleSubmit, isInputOpen, handleShowInput, handleCloseInput } = useTextInput((value) => {
+  const updateInput = useTextInput((value) => {
     updateTask({ id, group, newTask: value })
+  }, false)
+
+  const notesInput = useTextInput((value) => {
+    setNote({ id, group, note: value })
   }, false)
 
   const handleCloseModal = () => {
@@ -29,17 +34,18 @@ export const TaskFocusModal = () => {
   }
 
   const toggleUpdateTask = (e) => {
-    if (isInputOpen) {
-      handleCloseInput(e)
+    if (updateInput.isInputOpen) {
+      updateInput.handleCloseInput(e)
     } else {
-      handleShowInput(e)
+      updateInput.handleShowInput(e)
     }
   }
 
-  const handleOnSubmit = (e) => {
-    handleSubmit(e)
-    handleCloseInput(e)
+  const handleOnSubmit = (e, input) => {
+    input.handleSubmit(e)
+    input.handleCloseInput(e)
   }
+
 
   const { minutes, seconds, togglePomodoro, isStart } = usePomodoro()
 
@@ -64,15 +70,15 @@ export const TaskFocusModal = () => {
           </button>
         </section>
         <div>
-          <p className='font-medium'>{isInputOpen ? 'Updating:' : 'Now focusing on:'}</p>
-          {isInputOpen ? (
-            <form onSubmit={handleOnSubmit}>
+          <p className='font-medium'>{updateInput.isInputOpen ? 'Updating:' : 'Now focusing on:'}</p>
+          {updateInput.isInputOpen ? (
+            <form onSubmit={(e) => handleOnSubmit(e, updateInput)}>
               <input
                 type='text'
                 name=''
                 id=''
-                ref={ref}
-                defaultValue={task}
+                ref={updateInput.ref}
+                defaultValue={task ?? ''}
                 className='w-fit rounded-full bg-dark/40 bg-opacity-20 px-3 text-center font-bold text-3xl outline-dashed outline-2 outline-dark/60'
               />
             </form>
@@ -80,6 +86,7 @@ export const TaskFocusModal = () => {
             <h2 className='font-bold text-3xl'>{task}</h2>
           )}
         </div>
+        <textarea onBlur={(e) => handleOnSubmit(e, notesInput)} onClick={notesInput.handleShowInput} ref={notesInput.ref} defaultValue={note ?? ''} className='[field-sizing:content] w-full max-w-sm rounded-md bg-transparent resize-none text-sm text-white/80 placeholder:text-white/60 placeholder:text-center placeholder:hover:text-white' placeholder='Add a note'></textarea>
         <p className='text-sm'>
           <b> {done ? 'Completed' : 'In Progress'}</b>
         </p>
@@ -87,10 +94,10 @@ export const TaskFocusModal = () => {
           <DoneTaskButton id={id} done={done} group={group} />
           <Button
             size='round-sm'
-            color={isInputOpen ? 'blue' : 'text-blue'}
+            color={updateInput.isInputOpen ? 'blue' : 'text-blue'}
             outline='blue'
             hover='blue'
-            className={cn('transition-transform duration-150', isInputOpen && 'scale-125')}
+            className={cn('transition-transform duration-150', updateInput.isInputOpen && 'scale-125')}
             onClick={toggleUpdateTask}
           >
             <EditIcon size={16} />
