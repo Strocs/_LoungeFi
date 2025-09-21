@@ -86,10 +86,20 @@ export const TaskFocusModal = () => {
             <h2 className='font-bold text-3xl'>{task}</h2>
           )}
         </div>
-        <textarea onBlur={(e) => handleOnSubmit(e, notesInput)} onClick={notesInput.handleShowInput} ref={notesInput.ref} defaultValue={note ?? ''} className='[field-sizing:content] w-full max-w-sm rounded-md bg-transparent resize-none text-sm text-white/80 placeholder:text-white/60 placeholder:text-center placeholder:hover:text-white' placeholder='Add a note'></textarea>
+
+        {/* NOTES */}
+        <div>
+          <label for="task-notes">Notes</label>
+          <textarea id='task-notes' onBlur={(e) => handleOnSubmit(e, notesInput)} onClick={notesInput.handleShowInput} ref={notesInput.ref} defaultValue={note ?? ''} className='[field-sizing:content] w-full max-w-sm rounded-md bg-transparent resize-none text-sm text-white/80 placeholder:text-white/60 placeholder:text-center placeholder:hover:text-white' placeholder='Add a note'></textarea>
+        </div>
+
+
+        {/* PROGRESS */}
         <p className='text-sm'>
           <b> {done ? 'Completed' : 'In Progress'}</b>
         </p>
+
+        {/* BUTTONS */}
         <div className='flex gap-6'>
           <DoneTaskButton id={id} done={done} group={group} />
           <Button
